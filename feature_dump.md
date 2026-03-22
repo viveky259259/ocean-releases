@@ -1,4 +1,0 @@
-- ~~Persist the custom sessions~~ DONE (commit a796666)
-- Persists the workspaces (already persists in SQLite — active workspace restore pending)
-- Helper mobile app
-- ~~internal view of files- on file path, give an option to read it there. then open it in an overlay screen.~~ DONE (commit 0c15276)
