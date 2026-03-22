@@ -1,232 +1,304 @@
-# Ocean Developer Documentation
+# Ocean Documentation
 
-**Ocean** is a terminal workspace for agentic development, built with Solid.js + Tauri 2 + Rust.
+**Ocean** is a desktop terminal built for developers who work with AI coding agents. It organizes your terminal sessions into workspaces, tracks what each agent is doing, and gives you split panes, git integration, and command history — all in one window.
 
-## Quick Start
+---
 
-```bash
-# Install dependencies and build
-./scripts/install.sh --open
+## Installation
 
-# Development mode (hot-reload)
-npm run tauri dev
+### macOS (Apple Silicon)
 
-# Run tests
-npm test
-```
+1. Download the latest release from the [Releases page](https://github.com/viveky259259/ocean-releases/releases)
+2. Extract the archive:
+   ```bash
+   tar -xzf Ocean_*_aarch64.app.tar.gz
+   ```
+3. Move `Ocean.app` to your Applications folder:
+   ```bash
+   mv Ocean.app /Applications/
+   ```
+4. On first launch, macOS may block the app. Open **System Settings > Privacy & Security** and click **Open Anyway**, or run:
+   ```bash
+   xattr -cr /Applications/Ocean.app
+   ```
+5. Double-click `Ocean.app` to launch
 
-## Architecture
+---
 
-```
-┌─────────────────────────────────────────────┐
-│                  Frontend                    │
-│          Solid.js + TypeScript + Vite        │
-│                                             │
-│  ┌──────────┐  ┌──────────┐  ┌───────────┐ │
-│  │  Stores   │  │Components│  │    Lib    │ │
-│  │ (state)   │  │  (UI)    │  │ (ipc,keys)│ │
-│  └─────┬─────┘  └─────┬────┘  └─────┬─────┘ │
-│        └───────────────┴─────────────┘       │
-│                    IPC Bridge                │
-├─────────────────────────────────────────────┤
-│                  Backend                     │
-│              Tauri 2 + Rust                  │
-│                                             │
-│  ┌─────┐ ┌────────┐ ┌───────┐ ┌──────────┐ │
-│  │ PTY │ │Sessions│ │  Git  │ │ Metrics  │ │
-│  │Mgr  │ │  Mgr   │ │Watcher│ │Collector │ │
-│  └─────┘ └────────┘ └───────┘ └──────────┘ │
-│  ┌─────┐ ┌────────┐ ┌───────┐ ┌──────────┐ │
-│  │ DB  │ │History │ │A2UI   │ │Connectors│ │
-│  │SQLite│ │Detector│ │Parser │ │ Detector │ │
-│  └─────┘ └────────┘ └───────┘ └──────────┘ │
-└─────────────────────────────────────────────┘
-```
+## Getting Started
 
-## Project Structure
+When Ocean launches, you'll see a single terminal session in the **Default** workspace.
+
+### The Interface
 
 ```
-ocean/
-├── src/                        # Frontend (Solid.js)
-│   ├── components/             # UI components
-│   │   ├── terminal/           # TerminalArea, TerminalPane, PaneDivider
-│   │   ├── sidebar/            # Sidebar, WorkspaceGroup, SessionNode
-│   │   ├── statusbar/          # StatusBar, detail panels
-│   │   ├── merge/              # MergePanel, ConflictBanner
-│   │   ├── ship/               # ShipDialog
-│   │   ├── connectors/         # ConnectorBar
-│   │   └── a2ui/               # Agent-to-UI renderers
-│   ├── stores/                 # Reactive state (Solid.js stores/signals)
-│   ├── lib/                    # IPC, keybindings, observability
-│   └── styles/                 # CSS variables and globals
-├── src-tauri/                  # Backend (Rust)
-│   ├── src/
-│   │   ├── lib.rs              # Tauri setup, IPC command handlers
-│   │   ├── pty/                # PTY spawning, read/write, resize
-│   │   ├── session/            # Session lifecycle, activity tracking
-│   │   ├── history/            # Command detection, session recording
-│   │   ├── metrics/            # System, network, git metrics
-│   │   ├── terminal/           # Output annotation engine
-│   │   ├── a2ui/               # Agent-to-UI protocol parser
-│   │   ├── connectors/         # Docker/Flutter/Node detection
-│   │   ├── filesystem/         # COW filesystem, file operations
-│   │   └── git/                # Git status, watcher
-│   └── tauri.conf.json         # Tauri configuration
-├── scripts/
-│   ├── install.sh              # Dev setup (--open to build & launch)
-│   └── release.sh              # GitHub release automation
-└── docs/                       # This documentation
+┌──────────────────────────────────────────────────────┐
+│  NetworkIndicator   SystemMetrics         GitStatus  │  Status Bar
+├──────────┬───────────────────────────────────────────┤
+│ SESSIONS │  ● Shell 1                                │  Pane Header
+│          │                                           │
+│ Default  │  ~ $                                      │  Terminal
+│ ● Shell 1│                                           │
+│ ● Shell 2│                                           │
+│          │                                           │
+│ Settings │                                           │
+├──────────┴───────────────────────────────────────────┤
+│ docker ● │ flutter ● │ node ●                        │  Connectors
+└──────────────────────────────────────────────────────┘
 ```
 
-## Core Concepts
+- **Sidebar** (left): Workspaces and sessions
+- **Terminal area** (center): Active terminal panes
+- **Status bar** (top): System metrics, network, git info
+- **Connector bar** (bottom): Detected dev tools
 
-### Sessions & Workspaces
+---
 
-- **Workspace**: A named container for sessions, optionally linked to a git repo
-- **Session**: A terminal shell instance with its own PTY process
-- **Session Tree**: Parent-child hierarchy (Cmd+N spawns children)
+## Sessions
 
-### Layout System
+Sessions are individual terminal instances, each running its own shell process.
 
-- **Layout Group**: A set of terminal panes displayed together
-- **Split Panes**: Cmd+D (vertical) / Cmd+Shift+D (horizontal) splits within a group
-- **Max Panes**: 5 per group
-- Groups are independent — Cmd+1-9 switches between them
+| Action | Shortcut |
+|--------|----------|
+| New session | **Cmd+T** |
+| Spawn child session | **Cmd+N** |
+| Close session | **Cmd+W** |
+| Switch tabs | **Cmd+1** through **Cmd+9** |
+| Previous / next tab | **Cmd+[** / **Cmd+]** |
 
-```
-Layout Group 1:          Layout Group 2:
-┌──────┬──────┐          ┌─────────────┐
-│ Sh 1 │ Sh 2 │          │    Sh 3     │
-│      ├──────┤          │             │
-│      │ Sh 3 │          │             │
-└──────┴──────┘          └─────────────┘
-```
+- **Rename**: Double-click the session name in the sidebar
+- **Closed sessions**: Move to the **Closed** section. Click to view scrollback history.
 
-### State Management
+---
 
-All state uses Solid.js primitives:
+## Split Panes
 
-| Store | Type | Purpose |
-|-------|------|---------|
-| `sessionStore` | `createStore` | Workspaces, sessions, tree |
-| `layoutStore` | `createStore` | Pane layout, groups |
-| `uiStore` | `createSignal` | Panel visibility toggles |
-| `settingsStore` | `createStore` | User preferences (persisted) |
-| `notificationStore` | Signals + arrays | Notifications and toasts |
-| `panelStore` | `createSignal` | Active detail panel |
-| `activityStore` | Signals + Map | Per-session activity timeline |
-| `logStore` | Signals + array | Debug console entries |
+Work on multiple things side by side within the same tab.
 
-### IPC Layer
+| Action | Shortcut |
+|--------|----------|
+| Split vertical (side by side) | **Cmd+D** |
+| Split horizontal (stacked) | **Cmd+Shift+D** |
 
-Frontend communicates with Rust via `src/lib/ipc.ts`:
+### Sidebar Indicators
 
-```typescript
-import { invoke, listen } from "./lib/ipc";
+Sessions sharing a split show direction-aware badges:
 
-// Command (request-response)
-const workspaces = await invoke<Workspace[]>("list_workspaces");
+| Badge | Meaning |
+|-------|---------|
+| **┃2** | 2 panes side by side (vertical) |
+| **━2** | 2 panes stacked (horizontal) |
+| **┼3** | 3+ panes, mixed layout |
 
-// Event (push from backend)
-listen<string>("pty-output-{sessionId}", (event) => {
-  terminal.write(atob(event.payload));
-});
-```
+### Resizing
 
-Tauri detection: checks `window.__TAURI_INTERNALS__` (Tauri 2). Falls back to mock IPC for browser-based testing.
+- Drag the divider between panes
+- Click **⇔** in the pane header to auto-resize to your configured width
+- Up to **5 panes** per tab
+
+---
+
+## Workspaces
+
+Workspaces group sessions under a project.
+
+- **WS** button: Create a blank workspace
+- **Repo** button: Create a workspace linked to a git repository
+
+### Repo Workspaces
+
+When linked to a git repo, workspaces show:
+- Branch name, ahead/behind counts in the pane header
+- Staged, modified, and untracked file counts
+- Ship to PR capability (**Cmd+Shift+S**)
+
+---
 
 ## Keyboard Shortcuts
 
+### Essential
+
 | Shortcut | Action |
 |----------|--------|
-| Cmd+T | New session |
-| Cmd+N | Spawn child session |
-| Cmd+W | Close session |
-| Cmd+D | Split vertical |
-| Cmd+Shift+D | Split horizontal |
-| Cmd+1-9 | Switch layout groups |
-| Cmd+[ / ] | Previous/next group |
-| Cmd+P | Quick session switcher |
-| Cmd+Shift+P | Command palette |
-| Cmd+, | Settings |
-| Cmd+B | Toggle sidebar |
-| Cmd+G | Toggle git panel |
-| Cmd+Shift+V | Git visualizer |
+| **Cmd+T** | New session |
+| **Cmd+W** | Close session |
+| **Cmd+D** | Split vertical |
+| **Cmd+Shift+D** | Split horizontal |
+| **Cmd+1-9** | Switch tabs |
+| **Cmd+P** | Quick session switcher |
+| **Cmd+Shift+P** | Command palette |
+| **Cmd+B** | Toggle sidebar |
+| **Cmd+,** | Settings |
 
-## Testing
+### Git
 
-```bash
-npm test              # Run once
-npm run test:watch    # Watch mode
-npm run test:coverage # With coverage report
+| Shortcut | Action |
+|----------|--------|
+| **Cmd+G** | Git panel |
+| **Cmd+Shift+V** | Git visualizer |
+| **Cmd+Shift+S** | Ship to PR |
+
+### Panels
+
+| Shortcut | Action |
+|----------|--------|
+| **Cmd+Shift+H** | Terminal history |
+| **Cmd+Shift+E** | Snippet library |
+| **Cmd+Shift+G** | Session DAG view |
+| **Cmd+Shift+J** | Agent dashboard |
+| **Cmd+Shift+N** | Notifications |
+| **Cmd+Shift+L** | Activity timeline |
+| **Cmd+Shift+A** | API inspector |
+| **Cmd+K** | Toggle connectors |
+
+All shortcuts are searchable in **Settings > Commands** tab.
+
+---
+
+## Command Palette
+
+**Cmd+Shift+P** opens the command palette — a searchable list of every command, shortcut, and saved snippet.
+
+**Cmd+P** opens the quick switcher to jump to any session by name.
+
+---
+
+## Terminal History
+
+**Cmd+Shift+H** opens the history panel showing commands across all sessions.
+
+- Type to search
+- **Enter** to re-run a command
+- Exit codes shown: **✓** success, **✗** failure with code
+
+---
+
+## Snippet Library
+
+**Cmd+Shift+E** opens the snippet library for saved commands.
+
+- **Name**: Descriptive label
+- **Command**: Shell command (supports `${variable}` templates)
+- **Category**: general, dev, git, docker, etc.
+
+Run snippets from the library or from the command palette.
+
+---
+
+## AI Agent Detection
+
+Ocean detects AI coding agents running in your sessions:
+
+**Claude** | **Codex** | **Aider** | **Cursor** | **GitHub Copilot** | **Cody** | **Gemini** | **Devin**
+
+Detected agents show a colored badge in the pane header. View all agents in the Agent Dashboard (**Cmd+Shift+J**).
+
+---
+
+## Git Visualizer
+
+**Cmd+Shift+V** opens the Git Visualizer showing:
+- Staged, modified, and untracked files
+- File diffs
+- Staging controls
+
+---
+
+## Settings
+
+Open with **Cmd+,** or the gear icon in the sidebar.
+
+| Setting | Description | Default |
+|---------|-------------|---------|
+| Auto-resize width | Target width for split pane auto-resize | 800px |
+| Auto-resize height | Target height for horizontal splits | 400px |
+| Claude Code Native | Show Claude Code indicator at top of app | Off |
+
+---
+
+## Use Cases
+
+### Multi-Agent Development
+
+Run Claude Code in one pane, Aider in another, and a manual shell in a third. Ocean tracks each agent with status badges.
+
+```
+┌────────────────┬────────────────┐
+│ ● Claude Code  │ ● Aider        │
+│ Working on     │ Refactoring    │
+│ auth module... │ tests...       │
+├────────────────┴────────────────┤
+│ ● Shell                         │
+│ ~/project $ git status          │
+└─────────────────────────────────┘
 ```
 
-**232 tests** across 16 files:
+### Microservice Development
 
-| Category | Files | Tests |
-|----------|-------|-------|
-| Store unit tests | 12 | 154 |
-| Lifecycle integration | 1 | 28 |
-| Sidebar UI behavior | 1 | 18 |
-| Session/layout stores | 2 | 32 |
+Create a workspace per service. Each workspace holds sessions for servers, logs, and tests.
 
-Test setup (`src/test-setup.ts`) mocks Tauri IPC and localStorage.
-
-## Building
-
-```bash
-# Development (hot-reload)
-npm run tauri dev
-
-# Production build
-npm run tauri build
-
-# Full install + build + open
-./scripts/install.sh --open
-
-# Release to GitHub
-./scripts/release.sh 0.6.0
+```
+▼ API Service       3 sessions
+  ● Server  ● Tests  ● Logs
+▼ Frontend          2 sessions
+  ● Dev Server  ● Build
+▼ Database          1 session
+  ● Migrations
 ```
 
-### Prerequisites
+### Feature Branch Workflow
 
-- Node.js >= 18
-- Rust (via rustup)
-- Xcode Command Line Tools (macOS)
+1. Create a repo workspace (click **Repo**)
+2. Split panes for code + tests
+3. Monitor git status in pane headers
+4. Review changes in Git Visualizer (**Cmd+Shift+V**)
+5. Ship to PR (**Cmd+Shift+S**)
 
-## Configuration
+### Debugging with History
 
-### Settings (localStorage: `ocean:settings`)
+1. Run your failing command
+2. Open history (**Cmd+Shift+H**) to find previous runs
+3. Compare exit codes and timing
+4. Click to re-run from history
 
-| Setting | Default | Range |
-|---------|---------|-------|
-| `paneResizeWidth` | 800px | 200-2000 |
-| `paneResizeHeight` | 400px | 100-1200 |
-| `updateChannel` | stable | stable/beta/nightly |
-| `claudeCodeNative` | false | boolean |
+---
 
-### Tauri Config (`src-tauri/tauri.conf.json`)
+## Data and Privacy
 
-- Window: 1200x800 (min 800x600)
-- Bundle target: `app` (macOS .app)
-- CSP configured for self + Firebase + Sentry
+| What | Where | Shared? |
+|------|-------|---------|
+| Sessions and history | Local on your machine | Never |
+| Settings | Local on your machine | Never |
+| Terminal content | Never collected | Never |
+| Crash reports | Optional, anonymous | Only if you opt in |
 
-## Data Storage
+Ocean runs entirely on your machine. No terminal content or commands leave your device.
 
-| Data | Location | Format |
-|------|----------|--------|
-| Database | `~/.ocean/ocean.db` | SQLite |
-| Crash reports | `~/.ocean/crashes/` | JSON |
-| Session recordings | DB + filesystem | asciicast v2 |
-| Layout | localStorage `ocean:layout-groups` | JSON |
-| Settings | localStorage `ocean:settings` | JSON |
+---
 
-## Observability
+## Troubleshooting
 
-Three provider adapters (registered based on telemetry consent):
+**App won't open on macOS**
+```bash
+xattr -cr /Applications/Ocean.app
+```
 
-- **ConsoleProvider**: Browser console logging
-- **FirebaseProvider**: Analytics events
-- **SentryProvider**: Crash/error reporting
+**Terminal shows blank screen**
+Quit and relaunch the app. If it persists, delete `~/.ocean/ocean.db` and restart.
 
-Events tracked: launch, workspace.created, session.created, snippet usage, shortcut usage, crashes.
+**Sessions missing after restart**
+Ocean respawns sessions automatically. If a session's directory was deleted, it won't respawn. Create a new session with **Cmd+T**.
+
+**Shortcut not working**
+Open **Cmd+Shift+P** and search for the action. Some shortcuts may conflict with macOS system shortcuts.
+
+---
+
+## Downloads
+
+Get the latest version from the [Releases page](https://github.com/viveky259259/ocean-releases/releases).
+
+| Version | Date | Highlights |
+|---------|------|------------|
+| v0.6.0 | 2026-03-22 | Git Visualizer, split indicators, 16 bug fixes |
+| v0.5.0 | 2026-03-21 | Ocean Sync backend, settings improvements |
