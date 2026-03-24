@@ -216,6 +216,19 @@ Open with **Cmd+,** or the gear icon in the sidebar.
 
 ---
 
+## Articles
+
+Understand Ocean from the perspective that matters to you:
+
+| Article | For | What You'll Learn |
+|---------|-----|-------------------|
+| [Ocean for AI Developers](articles/ocean-for-ai-developers.md) | Developers using Claude, Aider, Cursor | COW isolation, conflict detection, agent workflow, Claude context UI |
+| [Ocean for Architects](articles/ocean-for-architects.md) | Tech leads & solution architects | 24 problems solved, system architecture, security model, performance budgets |
+| [Ocean for Product Managers](articles/ocean-for-product-managers.md) | Non-technical stakeholders | Business impact, team visibility, cost comparison, ROI |
+| [Ocean for Enterprises](articles/ocean-for-enterprises.md) | IT, security & engineering leadership | Governance, audit trail, managed config, deployment, ROI framework |
+
+---
+
 ## Use Cases
 
 ### Multi-Agent Development
