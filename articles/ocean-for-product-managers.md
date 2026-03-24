@@ -70,9 +70,22 @@ This is like a dashboard for your development environment.
 
 When an AI agent prints a file name, you can click it to open the file. When it shows an error, you can click it to have another agent fix it. No more copying and pasting between windows. Everything in the terminal is interactive.
 
-### 5. Ships clean code to your repository
+### 5. Resolves conflicts intelligently
+
+When two agents do conflict, Ocean doesn't just detect it — it offers solutions:
+
+- **Automatic merge** for non-overlapping changes (no human needed)
+- **AI-powered merge** for complex conflicts (Claude analyzes both versions and suggests a resolution with a confidence score)
+- **One-click undo** if a merge goes wrong (automatic snapshots before every merge)
+- **Merge queue** that recommends which agent's work to merge first based on complexity
+
+### 6. Ships clean code to your repository
 
 When the work is done, one command turns everything the agents did into clean, reviewable code changes and a pull request. The PR includes which agent did what, making code review straightforward.
+
+### 7. Shares work instantly
+
+A developer can share any running service with a teammate via a public URL — one click to create a secure tunnel. No deployment, no staging environment needed.
 
 ## What This Means for Your Team
 

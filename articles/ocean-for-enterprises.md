@@ -83,6 +83,23 @@ Ocean:
 
 For a team running dozens of agents daily, this prevents hours of rework per week.
 
+### 3a. Complete Conflict Resolution Pipeline
+
+Detection alone is not enough. Ocean v0.7.0 ships a full resolution pipeline:
+
+| Capability | What It Does |
+|-----------|-------------|
+| **3-way merge engine** | Computes base/ours/theirs at the hunk level, with per-hunk accept/reject/edit |
+| **AI-assisted merge** | Claude API integration resolves complex conflicts with confidence scoring |
+| **Merge queue** | Recommends optimal merge order across multiple agents based on complexity |
+| **Advisory file locks** | Developers can lock files to prevent conflicts before they occur |
+| **Session stash** | Save/restore session state mid-merge for safe experimentation |
+| **Automatic snapshots** | Every merge creates a pre-merge backup; one-click undo if the result is wrong |
+| **Dependency graph** | Declare inter-session dependencies; Ocean enforces merge ordering and detects cycles |
+| **Health dashboard** | Aggregate conflict metrics, risk areas, and session activity in a single view |
+
+This reduces conflict resolution from a multi-tool, multi-step process to a single integrated workflow.
+
 ### 4. Audit Trail and Traceability
 
 Every action in Ocean is logged to a local audit database:

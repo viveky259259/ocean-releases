@@ -88,6 +88,22 @@ Severity Classification:
 
 When two agents diverge from the same base, you need the original file to perform a semantic merge. Ocean maintains the **base snapshot** as the common ancestor at all times, enabling the 3-way merge engine (built on the `similar` crate) to classify overlapping edits accurately.
 
+### Problem: Merge resolution requires switching tools
+
+Traditional: detect conflict in git, open a diff tool, manually resolve, commit. Ocean provides a complete resolution pipeline without leaving the terminal:
+
+- **Per-hunk actions**: Accept A, Accept B, Accept Both, Accept Base, Manual Edit
+- **AI-assisted merge**: Claude API integration with confidence scoring and quality evaluation
+- **Merge queue**: Topological sort computes optimal merge order based on conflict complexity
+- **Pre-merge snapshots**: Automatic backup before every merge, one-click undo
+- **Session stash**: Save/restore session state mid-merge
+- **Advisory file locks**: Prevent concurrent edits before conflicts occur
+- **Dependency graph**: Declare session dependencies, enforce merge order, detect cycles (DFS + Kahn's algorithm)
+
+### Problem: No visibility into file contention patterns
+
+Which files are "hot" across your agents? Ocean's **file activity heatmap** shows contention density across the workspace. The **health dashboard** aggregates conflict metrics, session activity, and risk areas into a single view.
+
 ### Problem: Conflict remediation cost compounds over time
 
 A conflict caught at t=5min costs 1 minute to resolve. The same conflict caught at t=60min costs 30+ minutes because both agents built further on their divergent foundations. Ocean's real-time detection collapses the feedback loop:
@@ -159,7 +175,13 @@ Commit trailers:
   Ocean-Delta-Files: 5 modified, 2 created
 ```
 
-Each session's delta becomes a commit. The workspace becomes a PR with full DAG context in the body.
+Each session's delta becomes a commit. The workspace becomes a PR with full DAG context in the body. Auto-commit generates smart messages based on the merge: "Merge auth-session: update 3 files" or "Merge feature-work: update login.rs" for single-file merges.
+
+### Problem: Sharing local development state with teammates
+
+A developer runs a dev server. A teammate needs to see it. Traditional options: deploy to staging (slow), ngrok (manual setup), or screen share (bandwidth).
+
+Ocean's built-in **port forwarding** detects listening ports automatically and offers one-click tunnel creation via Bore or Cloudflared. Share a public URL instantly. Ocean auto-installs the provider binary on first use.
 
 ### Problem: No audit trail for agent-generated code
 

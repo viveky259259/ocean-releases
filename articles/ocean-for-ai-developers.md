@@ -51,6 +51,26 @@ Conflicts are classified by severity:
 
 You see this in real-time as colored badges on each session pane. No surprises at merge time.
 
+### Full Conflict Resolution — Not Just Detection
+
+When conflicts do arise, Ocean gives you a complete resolution toolkit:
+
+**3-way merge engine** — Ocean computes the base, yours, and theirs for every conflicting file and offers per-hunk resolution: Accept A, Accept B, Accept Both, Accept Base, or Manual Edit.
+
+**AI-assisted merge** — Click "AI Suggest" on any conflict. Ocean sends the three versions to Claude, which produces a merged result with a confidence score. Review, accept, or edit.
+
+**Merge queue** — When 4 agents finish at the same time, Ocean computes the optimal merge order based on conflict complexity. Merge the easy ones first, leaving the hard ones for focused attention.
+
+**Pre-conflict warnings** — Before a conflict even exists, Ocean alerts you when two sessions start editing the same file. Lock the file, or let them continue and resolve later.
+
+**Stash and undo** — Save your session state mid-merge with a label. Every merge creates an automatic snapshot — one-click rollback if the result is wrong.
+
+**Dependency graph** — Declare that "Session B depends on Session A" and Ocean enforces merge order. No more merging B before A's changes are in the base.
+
+### Agent Notifications
+
+Ocean monitors your agents and tells you when they need attention. If an agent has been waiting for input for 30 seconds, the pane header turns yellow. If the window is in the background, you get a desktop notification. No more checking tabs to see which agent is stuck.
+
 ### Agent-Aware Terminal
 
 Ocean detects AI agents automatically — Claude Code, Codex, Aider, Cursor, Copilot, Cody, Gemini, Devin. Each gets a colored badge in the pane header. The Agent Dashboard (Cmd+Shift+J) shows all agents across all workspaces with their lifecycle state.
@@ -93,6 +113,11 @@ When you're done, **Cmd+Shift+S** translates your Session DAG back to git:
 - Each session becomes a commit with agent metadata in trailers
 - The workspace becomes a PR with full DAG context in the body
 - Clean, reviewable git history — even though 4 agents worked in parallel
+- Auto-commit with smart messages after each merge ("Merge auth-session: update login.rs, add tests.rs")
+
+### Port Forwarding — Share What You're Building
+
+Running a dev server in a session? Right-click the detected port to create a public tunnel instantly via Bore or Cloudflared. Share the URL with a teammate or test on a mobile device. Ocean auto-installs the tunnel provider on first use.
 
 ## Claude Context Management — Built In
 
