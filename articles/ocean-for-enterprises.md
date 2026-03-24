@@ -226,7 +226,7 @@ mv Ocean.app /Applications/
 - **Usage dashboards** — Organizational view of agent productivity
 
 ### V2 Roadmap
-- **Team collaboration** — Shared workspaces with real-time co-viewing
+- **Team collaboration** — Shared workspace for team collaboration
 - **Cloud agent orchestration** — Spawn and manage cloud-hosted agents
 - **Remote sessions** — SSH-based terminal sessions with local Ocean UI
 - **Plugin marketplace** — Custom connectors, output patterns, and integrations
