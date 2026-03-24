@@ -138,6 +138,13 @@ When linked to a git repo, workspaces show:
 | **Cmd+Shift+V** | Git visualizer |
 | **Cmd+Shift+S** | Ship to PR |
 
+### Merge & Conflicts
+
+| Shortcut | Action |
+|----------|--------|
+| **Cmd+Shift+M** | Merge panel |
+| **Cmd+Shift+S** | Ship to PR |
+
 ### Panels
 
 | Shortcut | Action |
@@ -150,6 +157,7 @@ When linked to a git repo, workspaces show:
 | **Cmd+Shift+L** | Activity timeline |
 | **Cmd+Shift+A** | API inspector |
 | **Cmd+K** | Toggle connectors |
+| **Cmd+Shift+O** | Ports panel |
 
 All shortcuts are searchable in **Settings > Commands** tab.
 
@@ -201,6 +209,74 @@ Detected agents show a colored badge in the pane header. View all agents in the 
 - Staged, modified, and untracked files
 - File diffs
 - Staging controls
+
+---
+
+## Conflict Resolution
+
+When multiple sessions edit the same files, Ocean detects and resolves conflicts automatically.
+
+### How It Works
+
+Each session runs in its own **copy-on-write** clone of the workspace. When you merge a session back, Ocean:
+
+1. **Detects conflicts** at the file and line level
+2. **Classifies severity**: disjoint (auto-merge safe), overlapping (review), or conflicting (manual)
+3. **Shows a merge panel** with inline diffs and per-hunk resolution controls
+
+### Merge Panel
+
+Open with **Cmd+Shift+M** when conflicts are detected. The conflict banner at the top shows the count.
+
+| Action | Description |
+|--------|-------------|
+| Accept A | Keep the current session's version |
+| Accept B | Keep the other session's version |
+| Accept Both | Include both changes |
+| Accept Base | Revert to the original |
+| Manual Edit | Write your own resolution |
+| AI Suggest | Ask Claude to merge intelligently |
+
+### AI-Assisted Merge
+
+Click **AI Suggest** on any conflict to get a Claude-powered merge suggestion with a confidence score. Review the result and accept, edit, or dismiss.
+
+Requires `ANTHROPIC_API_KEY` environment variable.
+
+### Supporting Features
+
+| Feature | Description |
+|---------|-------------|
+| **Pre-conflict warnings** | Alert when 2+ sessions start editing the same file |
+| **Merge queue** | Recommended merge order based on conflict complexity |
+| **File locks** | Advisory locks to prevent concurrent edits |
+| **Session stash** | Save/restore session state mid-merge |
+| **Merge undo** | Automatic pre-merge snapshots with one-click rollback |
+| **Dependency graph** | Declare session dependencies, enforce merge order |
+| **Activity heatmap** | Bird's-eye view of which files are "hot" |
+| **Health dashboard** | Aggregate workspace health and conflict metrics |
+
+---
+
+## Port Forwarding
+
+Share local ports publicly using built-in tunneling.
+
+Right-click a detected port in the **Ports Panel** to create a tunnel via:
+- **Bore** (lightweight, open-source)
+- **Cloudflared** (Cloudflare)
+
+Ocean auto-installs the tunnel provider on first use.
+
+---
+
+## Agent Notifications
+
+Ocean monitors AI agents running in your sessions and notifies you when they need input:
+
+- Pane header turns **yellow** after 30 seconds of agent waiting
+- Desktop notification if the window is not focused
+- View all agent states in the **Agent Dashboard** (**Cmd+Shift+J**)
 
 ---
 
@@ -313,5 +389,6 @@ Get the latest version from the [Releases page](https://github.com/viveky259259/
 
 | Version | Date | Highlights |
 |---------|------|------------|
+| v0.7.0 | 2026-03-24 | Conflict resolution (26 stories), AI merge, file locks, stash, heatmap, dependency graph, port forwarding, documentation |
 | v0.6.0 | 2026-03-22 | Git Visualizer, split indicators, 16 bug fixes |
 | v0.5.0 | 2026-03-21 | Ocean Sync backend, settings improvements |
