@@ -16,8 +16,11 @@ This is NOT the source code repo. The source lives in the private `ocean` repo. 
 ```
 ocean-releases/
 ├── README.md                              # Repo landing page with download links
-├── index.md                               # Full user documentation (GitHub Pages)
+├── index.md                               # Full user documentation (legacy, kept for reference)
+├── docs.md                                # Full user documentation (served at /docs)
 ├── _config.yml                            # Jekyll theme config
+├── website/                               # Waitlist landing page (deployed via NetLaunch as joinocean)
+│   └── index.html                         # Self-contained landing page with Google Forms waitlist
 └── articles/
     ├── ocean-for-ai-developers.md         # Hands-on guide for devs using AI agents
     ├── ocean-for-architects.md            # Technical deep-dive, problem-centric
@@ -103,5 +106,8 @@ Articles in `articles/` follow a consistent structure:
 ## GitHub Pages
 - Served from `main` branch root
 - Theme: `pages-themes/minimal@v0.2.0`
-- `index.md` is the landing page at `viveky259259.github.io/ocean-releases`
-- Articles are not linked from index.md yet — they can be shared directly via URL
+- `index.html` is the landing page with waitlist at `viveky259259.github.io/ocean-releases`
+- `docs.md` is the full documentation at `viveky259259.github.io/ocean-releases/docs`
+- Waitlist landing page in `website/` folder, deployed via NetLaunch as `joinocean`
+- Waitlist form links to Google Forms
+- Articles are linked from docs page and can be shared directly via URL

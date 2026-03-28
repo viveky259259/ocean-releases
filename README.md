@@ -2,7 +2,15 @@
 
 **Terminal for Agentic Development**
 
-Ocean is a desktop terminal workspace built with Solid.js + Tauri 2, designed for developers working with AI coding agents.
+Ocean is a desktop terminal built for developers working with AI coding agents. Run multiple agents in isolated sessions, resolve conflicts automatically, and ship clean PRs.
+
+## Website
+
+**[viveky259259.github.io/ocean-releases](https://viveky259259.github.io/ocean-releases)** — Join the waitlist for early access.
+
+## Documentation
+
+Read the full developer documentation at **[viveky259259.github.io/ocean-releases/docs](https://viveky259259.github.io/ocean-releases/docs)**
 
 ## Download
 
@@ -11,10 +19,6 @@ Download the latest release from the [Releases page](https://github.com/viveky25
 | Platform | Download |
 |----------|----------|
 | macOS (Apple Silicon) | [Ocean.app.tar.gz](https://github.com/viveky259259/ocean-releases/releases/latest) |
-
-## Documentation
-
-Read the full developer documentation at **[viveky259259.github.io/ocean-releases](https://viveky259259.github.io/ocean-releases)**
 
 ## Features
 
