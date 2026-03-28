@@ -4,6 +4,12 @@
 
 ---
 
+## Join the Waitlist
+
+Ocean is in private beta for macOS (Apple Silicon). **[Join the waitlist](https://forms.gle/4RQFThD8KF6Vu1Su6)** to get early access.
+
+---
+
 ## Installation
 
 ### macOS (Apple Silicon)

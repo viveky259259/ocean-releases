@@ -4,13 +4,13 @@
 
 Ocean is a desktop terminal built for developers working with AI coding agents. Run multiple agents in isolated sessions, resolve conflicts automatically, and ship clean PRs.
 
-## Website
+## Waitlist
 
-**[viveky259259.github.io/ocean-releases](https://viveky259259.github.io/ocean-releases)** — Join the waitlist for early access.
+**[Join the waitlist](https://forms.gle/4RQFThD8KF6Vu1Su6)** for early access. Or visit the waitlist site at **[joinocean.web.app](https://joinocean.web.app)**.
 
 ## Documentation
 
-Read the full developer documentation at **[viveky259259.github.io/ocean-releases/docs](https://viveky259259.github.io/ocean-releases/docs)**
+Read the full developer documentation at **[viveky259259.github.io/ocean-releases](https://viveky259259.github.io/ocean-releases)**
 
 ## Download
 
