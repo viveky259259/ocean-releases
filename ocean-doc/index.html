@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ocean Docs - Terminal for Agentic Development</title>
+<meta name="description" content="Documentation for Ocean, a desktop terminal built for developers who work with AI coding agents.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #09090b;
+    --surface: #111113;
+    --surface-2: #18181b;
+    --border: #27272a;
+    --text: #fafafa;
+    --muted: #a1a1aa;
+    --dim: #71717a;
+    --accent: #06b6d4;
+    --accent-2: #0ea5e9;
+    --green: #22c55e;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    --sidebar-width: 260px;
+    --nav-height: 56px;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-height) + 24px);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── Nav ─────────────────────────────────── */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--nav-height);
+    background: rgba(9, 9, 11, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 100;
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .nav-logo span {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+  }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: var(--muted);
+  }
+
+  .hamburger svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* ── Layout ──────────────────────────────── */
+  .layout {
+    display: flex;
+    padding-top: var(--nav-height);
+    min-height: 100vh;
+  }
+
+  /* ── Sidebar ─────────────────────────────── */
+  .sidebar {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-width);
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 20px 0;
+    z-index: 50;
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .sidebar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+  }
+
+  .sidebar-section {
+    padding: 0 16px;
+    margin-bottom: 8px;
+  }
+
+  .sidebar-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--dim);
+    padding: 8px 8px 4px;
+  }
+
+  .sidebar a {
+    display: block;
+    padding: 6px 12px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 450;
+    border-radius: 6px;
+    transition: all 0.15s;
+    line-height: 1.5;
+  }
+
+  .sidebar a:hover {
+    color: var(--text);
+    background: var(--surface-2);
+  }
+
+  .sidebar a.active {
+    color: var(--accent);
+    background: rgba(6, 182, 212, 0.08);
+  }
+
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 40;
+  }
+
+  /* ── Content ─────────────────────────────── */
+  .content {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    min-width: 0;
+    padding: 40px 48px 80px;
+    max-width: 900px;
+  }
+
+  .content > *:first-child {
+    margin-top: 0;
+  }
+
+  /* ── Typography ──────────────────────────── */
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin: 48px 0 16px;
+    color: var(--text);
+  }
+
+  h1:first-child {
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    margin: 48px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+    margin: 32px 0 12px;
+    color: var(--text);
+  }
+
+  p {
+    margin: 12px 0;
+    color: var(--text);
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  a:hover {
+    color: var(--accent-2);
+    text-decoration: underline;
+  }
+
+  strong {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  ul, ol {
+    margin: 12px 0;
+    padding-left: 24px;
+  }
+
+  li {
+    margin: 6px 0;
+    color: var(--text);
+  }
+
+  li::marker {
+    color: var(--dim);
+  }
+
+  /* ── Code ────────────────────────────────── */
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--accent);
+  }
+
+  pre {
+    margin: 16px 0;
+    padding: 16px 20px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow-x: auto;
+    line-height: 1.6;
+  }
+
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ── Tables ──────────────────────────────── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 16px 0;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  thead th {
+    background: var(--surface-2);
+    padding: 10px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr:nth-child(even) {
+    background: rgba(255,255,255,0.015);
+  }
+
+  tbody tr:hover {
+    background: rgba(6, 182, 212, 0.04);
+  }
+
+  /* ── kbd ─────────────────────────────────── */
+  kbd {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  /* ── Agent badges ────────────────────────── */
+  .agent-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  .agent-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    gap: 6px;
+  }
+
+  .agent-badge::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ── Intro hero ──────────────────────────── */
+  .intro-hero {
+    margin-bottom: 32px;
+  }
+
+  .intro-hero h1 {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+  }
+
+  .intro-hero p {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 640px;
+  }
+
+  .waitlist-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .waitlist-cta:hover {
+    opacity: 0.9;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  /* ── Articles grid ───────────────────────── */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+  }
+
+  .article-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+
+  .article-card:hover {
+    border-color: var(--accent);
+  }
+
+  .article-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .article-card .for {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .article-card p {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ── Use case diagrams ───────────────────── */
+  .use-case {
+    margin: 24px 0;
+  }
+
+  /* ── Version table highlight ─────────────── */
+  .version-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    background: rgba(6, 182, 212, 0.12);
+    color: var(--accent);
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: var(--font-mono);
+  }
+
+  /* ── Responsive ──────────────────────────── */
+  @media (max-width: 900px) {
+    .content {
+      padding: 32px 24px 60px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hamburger {
+      display: block;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .nav-links.show {
+      display: flex;
+      position: absolute;
+      top: var(--nav-height);
+      right: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0 0 8px 8px;
+      flex-direction: column;
+      padding: 12px 20px;
+      gap: 12px;
+    }
+
+    .sidebar {
+      transform: translateX(-100%);
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
+    }
+
+    .sidebar-overlay.show {
+      display: block;
+    }
+
+    .content {
+      margin-left: 0;
+      padding: 24px 16px 60px;
+    }
+
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.25rem; }
+
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-left">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="8" fill="url(#logo-grad)"/>
+        <path d="M8 12 L16 8 L24 12 L24 20 L16 24 L8 20Z" stroke="#fff" stroke-width="1.5" fill="none"/>
+        <circle cx="16" cy="16" r="3" fill="#fff" opacity="0.9"/>
+        <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#06b6d4"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient></defs>
+      </svg>
+      <span>Ocean Docs</span>
+    </a>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="https://ocean-app.web.app">Home</a>
+    <a href="https://joinocean.web.app">Waitlist</a>
+    <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</nav>
+
+<!-- ── Sidebar Overlay ───────────────────────────── -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ───────────────────────────────────── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">Getting Started</div>
+    <a href="#installation">Installation</a>
+    <a href="#getting-started">Getting Started</a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">Core Features</div>
+    <a href="#sessions">Sessions</a>
+    <a href="#split-panes">Split Panes</a>
+    <a href="#workspaces">Workspaces</a>
+    <a href="#keyboard-shortcuts">Keyboard Shortcuts</a>
+    <a href="#command-palette">Command Palette</a>
+    <a href="#terminal-history">Terminal History</a>
+    <a href="#snippet-library">Snippet Library</a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">AI & Git</div>
+    <a href="#ai-agent-detection">AI Agent Detection</a>
+    <a href="#git-visualizer">Git Visualizer</a>
+    <a href="#conflict-resolution">Conflict Resolution</a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">Tools</div>
+    <a href="#port-forwarding">Port Forwarding</a>
+    <a href="#agent-notifications">Agent Notifications</a>
+    <a href="#settings">Settings</a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">Resources</div>
+    <a href="#articles">Articles</a>
+    <a href="#use-cases">Use Cases</a>
+    <a href="#data-and-privacy">Data & Privacy</a>
+    <a href="#troubleshooting">Troubleshooting</a>
+    <a href="#downloads">Downloads</a>
+  </div>
+</aside>
+
+<!-- ── Main Content ──────────────────────────────── -->
+<div class="layout">
+<main class="content">
+
+<!-- Intro -->
+<section class="intro-hero" id="ocean-documentation">
+  <h1>Ocean Documentation</h1>
+  <p><strong>Ocean</strong> is a desktop terminal built for developers who work with AI coding agents. It organizes your terminal sessions into workspaces, tracks what each agent is doing, and gives you split panes, git integration, and command history &mdash; all in one window.</p>
+  <a href="https://forms.gle/4RQFThD8KF6Vu1Su6" class="waitlist-cta" target="_blank" rel="noopener">
+    Join the Waitlist
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+  <p style="margin-top:12px; font-size:13px; color:var(--dim);">Ocean is in private beta for macOS (Apple Silicon).</p>
+</section>
+
+<hr>
+
+<!-- Installation -->
+<h2 id="installation">Installation</h2>
+<h3>macOS (Apple Silicon)</h3>
+<ol>
+  <li>Download the latest release from the <a href="https://github.com/viveky259259/ocean-releases/releases" target="_blank" rel="noopener">Releases page</a></li>
+  <li>Extract the archive:
+    <pre><code>tar -xzf Ocean_*_aarch64.app.tar.gz</code></pre>
+  </li>
+  <li>Move <code>Ocean.app</code> to your Applications folder:
+    <pre><code>mv Ocean.app /Applications/</code></pre>
+  </li>
+  <li>On first launch, macOS may block the app. Open <strong>System Settings &gt; Privacy &amp; Security</strong> and click <strong>Open Anyway</strong>, or run:
+    <pre><code>xattr -cr /Applications/Ocean.app</code></pre>
+  </li>
+  <li>Double-click <code>Ocean.app</code> to launch</li>
+</ol>
+
+<hr>
+
+<!-- Getting Started -->
+<h2 id="getting-started">Getting Started</h2>
+<p>When Ocean launches, you'll see a single terminal session in the <strong>Default</strong> workspace.</p>
+
+<h3>The Interface</h3>
+<pre><code>&#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+&#x2502;  NetworkIndicator   SystemMetrics         GitStatus  &#x2502;  Status Bar
+&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+&#x2502; SESSIONS &#x2502;  &#x25CF; Shell 1                                &#x2502;  Pane Header
+&#x2502;          &#x2502;                                           &#x2502;
+&#x2502; Default  &#x2502;  ~ $                                      &#x2502;  Terminal
+&#x2502; &#x25CF; Shell 1&#x2502;                                           &#x2502;
+&#x2502; &#x25CF; Shell 2&#x2502;                                           &#x2502;
+&#x2502;          &#x2502;                                           &#x2502;
+&#x2502; Settings &#x2502;                                           &#x2502;
+&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+&#x2502; docker &#x25CF; &#x2502; flutter &#x25CF; &#x2502; node &#x25CF;                        &#x2502;  Connectors
+&#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</code></pre>
+
+<ul>
+  <li><strong>Sidebar</strong> (left): Workspaces and sessions</li>
+  <li><strong>Terminal area</strong> (center): Active terminal panes</li>
+  <li><strong>Status bar</strong> (top): System metrics, network, git info</li>
+  <li><strong>Connector bar</strong> (bottom): Detected dev tools</li>
+</ul>
+
+<hr>
+
+<!-- Sessions -->
+<h2 id="sessions">Sessions</h2>
+<p>Sessions are individual terminal instances, each running its own shell process.</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Action</th><th>Shortcut</th></tr></thead>
+  <tbody>
+    <tr><td>New session</td><td><kbd>Cmd+T</kbd></td></tr>
+    <tr><td>Spawn child session</td><td><kbd>Cmd+N</kbd></td></tr>
+    <tr><td>Close session</td><td><kbd>Cmd+W</kbd></td></tr>
+    <tr><td>Switch tabs</td><td><kbd>Cmd+1</kbd> through <kbd>Cmd+9</kbd></td></tr>
+    <tr><td>Previous / next tab</td><td><kbd>Cmd+[</kbd> / <kbd>Cmd+]</kbd></td></tr>
+  </tbody>
+</table>
+</div>
+
+<ul>
+  <li><strong>Rename</strong>: Double-click the session name in the sidebar</li>
+  <li><strong>Closed sessions</strong>: Move to the <strong>Closed</strong> section. Click to view scrollback history.</li>
+</ul>
+
+<hr>
+
+<!-- Split Panes -->
+<h2 id="split-panes">Split Panes</h2>
+<p>Work on multiple things side by side within the same tab.</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Action</th><th>Shortcut</th></tr></thead>
+  <tbody>
+    <tr><td>Split vertical (side by side)</td><td><kbd>Cmd+D</kbd></td></tr>
+    <tr><td>Split horizontal (stacked)</td><td><kbd>Cmd+Shift+D</kbd></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Sidebar Indicators</h3>
+<p>Sessions sharing a split show direction-aware badges:</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Badge</th><th>Meaning</th></tr></thead>
+  <tbody>
+    <tr><td><code>&#x2503;2</code></td><td>2 panes side by side (vertical)</td></tr>
+    <tr><td><code>&#x2501;2</code></td><td>2 panes stacked (horizontal)</td></tr>
+    <tr><td><code>&#x253C;3</code></td><td>3+ panes, mixed layout</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Resizing</h3>
+<ul>
+  <li>Drag the divider between panes</li>
+  <li>Click <strong>&#x21D4;</strong> in the pane header to auto-resize to your configured width</li>
+  <li>Up to <strong>5 panes</strong> per tab</li>
+</ul>
+
+<hr>
+
+<!-- Workspaces -->
+<h2 id="workspaces">Workspaces</h2>
+<p>Workspaces group sessions under a project.</p>
+<ul>
+  <li><strong>WS</strong> button: Create a blank workspace</li>
+  <li><strong>Repo</strong> button: Create a workspace linked to a git repository</li>
+</ul>
+
+<h3>Repo Workspaces</h3>
+<p>When linked to a git repo, workspaces show:</p>
+<ul>
+  <li>Branch name, ahead/behind counts in the pane header</li>
+  <li>Staged, modified, and untracked file counts</li>
+  <li>Ship to PR capability (<kbd>Cmd+Shift+S</kbd>)</li>
+</ul>
+
+<hr>
+
+<!-- Keyboard Shortcuts -->
+<h2 id="keyboard-shortcuts">Keyboard Shortcuts</h2>
+
+<h3>Essential</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Shortcut</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td><kbd>Cmd+T</kbd></td><td>New session</td></tr>
+    <tr><td><kbd>Cmd+W</kbd></td><td>Close session</td></tr>
+    <tr><td><kbd>Cmd+D</kbd></td><td>Split vertical</td></tr>
+    <tr><td><kbd>Cmd+Shift+D</kbd></td><td>Split horizontal</td></tr>
+    <tr><td><kbd>Cmd+1-9</kbd></td><td>Switch tabs</td></tr>
+    <tr><td><kbd>Cmd+P</kbd></td><td>Quick session switcher</td></tr>
+    <tr><td><kbd>Cmd+Shift+P</kbd></td><td>Command palette</td></tr>
+    <tr><td><kbd>Cmd+B</kbd></td><td>Toggle sidebar</td></tr>
+    <tr><td><kbd>Cmd+,</kbd></td><td>Settings</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Git</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Shortcut</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td><kbd>Cmd+G</kbd></td><td>Git panel</td></tr>
+    <tr><td><kbd>Cmd+Shift+V</kbd></td><td>Git visualizer</td></tr>
+    <tr><td><kbd>Cmd+Shift+S</kbd></td><td>Ship to PR</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Merge &amp; Conflicts</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Shortcut</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td><kbd>Cmd+Shift+M</kbd></td><td>Merge panel</td></tr>
+    <tr><td><kbd>Cmd+Shift+S</kbd></td><td>Ship to PR</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>Panels</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Shortcut</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td><kbd>Cmd+Shift+H</kbd></td><td>Terminal history</td></tr>
+    <tr><td><kbd>Cmd+Shift+E</kbd></td><td>Snippet library</td></tr>
+    <tr><td><kbd>Cmd+Shift+G</kbd></td><td>Session DAG view</td></tr>
+    <tr><td><kbd>Cmd+Shift+J</kbd></td><td>Agent dashboard</td></tr>
+    <tr><td><kbd>Cmd+Shift+N</kbd></td><td>Notifications</td></tr>
+    <tr><td><kbd>Cmd+Shift+L</kbd></td><td>Activity timeline</td></tr>
+    <tr><td><kbd>Cmd+Shift+A</kbd></td><td>API inspector</td></tr>
+    <tr><td><kbd>Cmd+K</kbd></td><td>Toggle connectors</td></tr>
+    <tr><td><kbd>Cmd+Shift+O</kbd></td><td>Ports panel</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>All shortcuts are searchable in <strong>Settings &gt; Commands</strong> tab.</p>
+
+<hr>
+
+<!-- Command Palette -->
+<h2 id="command-palette">Command Palette</h2>
+<p><kbd>Cmd+Shift+P</kbd> opens the command palette &mdash; a searchable list of every command, shortcut, and saved snippet.</p>
+<p><kbd>Cmd+P</kbd> opens the quick switcher to jump to any session by name.</p>
+
+<hr>
+
+<!-- Terminal History -->
+<h2 id="terminal-history">Terminal History</h2>
+<p><kbd>Cmd+Shift+H</kbd> opens the history panel showing commands across all sessions.</p>
+<ul>
+  <li>Type to search</li>
+  <li><strong>Enter</strong> to re-run a command</li>
+  <li>Exit codes shown: <span style="color:var(--green);">&#x2713;</span> success, <span style="color:#ef4444;">&#x2717;</span> failure with code</li>
+</ul>
+
+<hr>
+
+<!-- Snippet Library -->
+<h2 id="snippet-library">Snippet Library</h2>
+<p><kbd>Cmd+Shift+E</kbd> opens the snippet library for saved commands.</p>
+<ul>
+  <li><strong>Name</strong>: Descriptive label</li>
+  <li><strong>Command</strong>: Shell command (supports <code>${variable}</code> templates)</li>
+  <li><strong>Category</strong>: general, dev, git, docker, etc.</li>
+</ul>
+<p>Run snippets from the library or from the command palette.</p>
+
+<hr>
+
+<!-- AI Agent Detection -->
+<h2 id="ai-agent-detection">AI Agent Detection</h2>
+<p>Ocean detects AI coding agents running in your sessions:</p>
+
+<div class="agent-badges">
+  <span class="agent-badge">Claude</span>
+  <span class="agent-badge">Codex</span>
+  <span class="agent-badge">Aider</span>
+  <span class="agent-badge">Cursor</span>
+  <span class="agent-badge">GitHub Copilot</span>
+  <span class="agent-badge">Cody</span>
+  <span class="agent-badge">Gemini</span>
+  <span class="agent-badge">Devin</span>
+</div>
+
+<p>Detected agents show a colored badge in the pane header. View all agents in the Agent Dashboard (<kbd>Cmd+Shift+J</kbd>).</p>
+
+<hr>
+
+<!-- Git Visualizer -->
+<h2 id="git-visualizer">Git Visualizer</h2>
+<p><kbd>Cmd+Shift+V</kbd> opens the Git Visualizer showing:</p>
+<ul>
+  <li>Staged, modified, and untracked files</li>
+  <li>File diffs</li>
+  <li>Staging controls</li>
+</ul>
+
+<hr>
+
+<!-- Conflict Resolution -->
+<h2 id="conflict-resolution">Conflict Resolution</h2>
+<p>When multiple sessions edit the same files, Ocean detects and resolves conflicts automatically.</p>
+
+<h3>How It Works</h3>
+<p>Each session runs in its own <strong>copy-on-write</strong> clone of the workspace. When you merge a session back, Ocean:</p>
+<ol>
+  <li><strong>Detects conflicts</strong> at the file and line level</li>
+  <li><strong>Classifies severity</strong>: disjoint (auto-merge safe), overlapping (review), or conflicting (manual)</li>
+  <li><strong>Shows a merge panel</strong> with inline diffs and per-hunk resolution controls</li>
+</ol>
+
+<h3>Merge Panel</h3>
+<p>Open with <kbd>Cmd+Shift+M</kbd> when conflicts are detected. The conflict banner at the top shows the count.</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Action</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Accept A</strong></td><td>Keep the current session's version</td></tr>
+    <tr><td><strong>Accept B</strong></td><td>Keep the other session's version</td></tr>
+    <tr><td><strong>Accept Both</strong></td><td>Include both changes</td></tr>
+    <tr><td><strong>Accept Base</strong></td><td>Revert to the original</td></tr>
+    <tr><td><strong>Manual Edit</strong></td><td>Write your own resolution</td></tr>
+    <tr><td><strong>AI Suggest</strong></td><td>Ask Claude to merge intelligently</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>AI-Assisted Merge</h3>
+<p>Click <strong>AI Suggest</strong> on any conflict to get a Claude-powered merge suggestion with a confidence score. Review the result and accept, edit, or dismiss.</p>
+<p>Requires <code>ANTHROPIC_API_KEY</code> environment variable.</p>
+
+<h3>Supporting Features</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Feature</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Pre-conflict warnings</strong></td><td>Alert when 2+ sessions start editing the same file</td></tr>
+    <tr><td><strong>Merge queue</strong></td><td>Recommended merge order based on conflict complexity</td></tr>
+    <tr><td><strong>File locks</strong></td><td>Advisory locks to prevent concurrent edits</td></tr>
+    <tr><td><strong>Session stash</strong></td><td>Save/restore session state mid-merge</td></tr>
+    <tr><td><strong>Merge undo</strong></td><td>Automatic pre-merge snapshots with one-click rollback</td></tr>
+    <tr><td><strong>Dependency graph</strong></td><td>Declare session dependencies, enforce merge order</td></tr>
+    <tr><td><strong>Activity heatmap</strong></td><td>Bird's-eye view of which files are "hot"</td></tr>
+    <tr><td><strong>Health dashboard</strong></td><td>Aggregate workspace health and conflict metrics</td></tr>
+  </tbody>
+</table>
+</div>
+
+<hr>
+
+<!-- Port Forwarding -->
+<h2 id="port-forwarding">Port Forwarding</h2>
+<p>Share local ports publicly using built-in tunneling.</p>
+<p>Right-click a detected port in the <strong>Ports Panel</strong> to create a tunnel via:</p>
+<ul>
+  <li><strong>Bore</strong> (lightweight, open-source)</li>
+  <li><strong>Cloudflared</strong> (Cloudflare)</li>
+</ul>
+<p>Ocean auto-installs the tunnel provider on first use.</p>
+
+<hr>
+
+<!-- Agent Notifications -->
+<h2 id="agent-notifications">Agent Notifications</h2>
+<p>Ocean monitors AI agents running in your sessions and notifies you when they need input:</p>
+<ul>
+  <li>Pane header turns <strong style="color:#eab308;">yellow</strong> after 30 seconds of agent waiting</li>
+  <li>Desktop notification if the window is not focused</li>
+  <li>View all agent states in the <strong>Agent Dashboard</strong> (<kbd>Cmd+Shift+J</kbd>)</li>
+</ul>
+
+<hr>
+
+<!-- Settings -->
+<h2 id="settings">Settings</h2>
+<p>Open with <kbd>Cmd+,</kbd> or the gear icon in the sidebar.</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Setting</th><th>Description</th><th>Default</th></tr></thead>
+  <tbody>
+    <tr><td>Auto-resize width</td><td>Target width for split pane auto-resize</td><td><code>800px</code></td></tr>
+    <tr><td>Auto-resize height</td><td>Target height for horizontal splits</td><td><code>400px</code></td></tr>
+    <tr><td>Claude Code Native</td><td>Show Claude Code indicator at top of app</td><td>Off</td></tr>
+  </tbody>
+</table>
+</div>
+
+<hr>
+
+<!-- Articles -->
+<h2 id="articles">Articles</h2>
+<p>Understand Ocean from the perspective that matters to you:</p>
+
+<div class="articles-grid">
+  <div class="article-card">
+    <h4><a href="https://viveky259259.github.io/ocean-releases/articles/ocean-for-ai-developers">Ocean for AI Developers</a></h4>
+    <div class="for">For developers using Claude, Aider, Cursor</div>
+    <p>COW isolation, conflict detection, agent workflow, Claude context UI</p>
+  </div>
+  <div class="article-card">
+    <h4><a href="https://viveky259259.github.io/ocean-releases/articles/ocean-for-architects">Ocean for Architects</a></h4>
+    <div class="for">For tech leads &amp; solution architects</div>
+    <p>24 problems solved, system architecture, security model, performance budgets</p>
+  </div>
+  <div class="article-card">
+    <h4><a href="https://viveky259259.github.io/ocean-releases/articles/ocean-for-product-managers">Ocean for Product Managers</a></h4>
+    <div class="for">For non-technical stakeholders</div>
+    <p>Business impact, team visibility, cost comparison, ROI</p>
+  </div>
+  <div class="article-card">
+    <h4><a href="https://viveky259259.github.io/ocean-releases/articles/ocean-for-enterprises">Ocean for Enterprises</a></h4>
+    <div class="for">For IT, security &amp; engineering leadership</div>
+    <p>Governance, audit trail, managed config, deployment, ROI framework</p>
+  </div>
+</div>
+
+<hr>
+
+<!-- Use Cases -->
+<h2 id="use-cases">Use Cases</h2>
+
+<h3>Multi-Agent Development</h3>
+<p>Run Claude Code in one pane, Aider in another, and a manual shell in a third. Ocean tracks each agent with status badges.</p>
+
+<pre><code>&#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+&#x2502; &#x25CF; Claude Code  &#x2502; &#x25CF; Aider        &#x2502;
+&#x2502; Working on     &#x2502; Refactoring    &#x2502;
+&#x2502; auth module... &#x2502; tests...       &#x2502;
+&#x251C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2524;
+&#x2502; &#x25CF; Shell                         &#x2502;
+&#x2502; ~/project $ git status          &#x2502;
+&#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;</code></pre>
+
+<h3>Microservice Development</h3>
+<p>Create a workspace per service. Each workspace holds sessions for servers, logs, and tests.</p>
+
+<pre><code>&#x25BC; API Service       3 sessions
+  &#x25CF; Server  &#x25CF; Tests  &#x25CF; Logs
+&#x25BC; Frontend          2 sessions
+  &#x25CF; Dev Server  &#x25CF; Build
+&#x25BC; Database          1 session
+  &#x25CF; Migrations</code></pre>
+
+<h3>Feature Branch Workflow</h3>
+<ol>
+  <li>Create a repo workspace (click <strong>Repo</strong>)</li>
+  <li>Split panes for code + tests</li>
+  <li>Monitor git status in pane headers</li>
+  <li>Review changes in Git Visualizer (<kbd>Cmd+Shift+V</kbd>)</li>
+  <li>Ship to PR (<kbd>Cmd+Shift+S</kbd>)</li>
+</ol>
+
+<h3>Debugging with History</h3>
+<ol>
+  <li>Run your failing command</li>
+  <li>Open history (<kbd>Cmd+Shift+H</kbd>) to find previous runs</li>
+  <li>Compare exit codes and timing</li>
+  <li>Click to re-run from history</li>
+</ol>
+
+<hr>
+
+<!-- Data and Privacy -->
+<h2 id="data-and-privacy">Data and Privacy</h2>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>What</th><th>Where</th><th>Shared?</th></tr></thead>
+  <tbody>
+    <tr><td>Sessions and history</td><td>Local on your machine</td><td>Never</td></tr>
+    <tr><td>Settings</td><td>Local on your machine</td><td>Never</td></tr>
+    <tr><td>Terminal content</td><td>Never collected</td><td>Never</td></tr>
+    <tr><td>Crash reports</td><td>Optional, anonymous</td><td>Only if you opt in</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Ocean runs entirely on your machine. No terminal content or commands leave your device.</p>
+
+<hr>
+
+<!-- Troubleshooting -->
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p><strong>App won't open on macOS</strong></p>
+<pre><code>xattr -cr /Applications/Ocean.app</code></pre>
+
+<p><strong>Terminal shows blank screen</strong></p>
+<p>Quit and relaunch the app. If it persists, delete <code>~/.ocean/ocean.db</code> and restart.</p>
+
+<p><strong>Sessions missing after restart</strong></p>
+<p>Ocean respawns sessions automatically. If a session's directory was deleted, it won't respawn. Create a new session with <kbd>Cmd+T</kbd>.</p>
+
+<p><strong>Shortcut not working</strong></p>
+<p>Open <kbd>Cmd+Shift+P</kbd> and search for the action. Some shortcuts may conflict with macOS system shortcuts.</p>
+
+<hr>
+
+<!-- Downloads -->
+<h2 id="downloads">Downloads</h2>
+<p>Get the latest version from the <a href="https://github.com/viveky259259/ocean-releases/releases" target="_blank" rel="noopener">Releases page</a>.</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Version</th><th>Date</th><th>Highlights</th></tr></thead>
+  <tbody>
+    <tr><td><span class="version-badge">v0.7.0</span></td><td>2026-03-24</td><td>Conflict resolution (26 stories), AI merge, file locks, stash, heatmap, dependency graph, port forwarding, documentation</td></tr>
+    <tr><td><span class="version-badge">v0.6.0</span></td><td>2026-03-22</td><td>Git Visualizer, split indicators, 16 bug fixes</td></tr>
+    <tr><td><span class="version-badge">v0.5.0</span></td><td>2026-03-21</td><td>Ocean Sync backend, settings improvements</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div style="margin-top:48px; padding-top:32px; border-top:1px solid var(--border); text-align:center;">
+  <p style="color:var(--dim); font-size:13px;">
+    Ocean &mdash; Terminal for Agentic Development<br>
+    <a href="https://ocean-app.web.app" style="color:var(--accent);">ocean-app.web.app</a> &nbsp;&middot;&nbsp;
+    <a href="https://github.com/viveky259259/ocean-releases" style="color:var(--accent);">GitHub</a> &nbsp;&middot;&nbsp;
+    <a href="https://joinocean.web.app" style="color:var(--accent);">Join the Waitlist</a>
+  </p>
+</div>
+
+</main>
+</div>
+
+<script>
+// ── Sidebar toggle (mobile) ──
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('show');
+}
+
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('show');
+}
+
+// Close sidebar when a link is clicked (mobile)
+document.querySelectorAll('.sidebar a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 768) {
+      closeSidebar();
+    }
+  });
+});
+
+// ── Nav links toggle (mobile) ──
+document.querySelector('.hamburger').addEventListener('click', (e) => {
+  // Hamburger also toggles nav links on mobile
+});
+
+// ── Active section highlighting (intersection observer) ──
+const sections = document.querySelectorAll('h2[id]');
+const sidebarLinks = document.querySelectorAll('.sidebar a');
+
+const observerOptions = {
+  root: null,
+  rootMargin: '-80px 0px -70% 0px',
+  threshold: 0
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      sidebarLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + id) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+}, observerOptions);
+
+sections.forEach(section => observer.observe(section));
+
+// ── Set initial active on load ──
+window.addEventListener('load', () => {
+  if (!window.location.hash) {
+    const firstLink = document.querySelector('.sidebar a');
+    if (firstLink) firstLink.classList.add('active');
+  }
+});
+</script>
+</body>
+</html>
