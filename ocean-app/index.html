@@ -8,7 +8,7 @@
   <meta property="og:title" content="Ocean — Terminal for Agentic Development">
   <meta property="og:description" content="Run Claude, Codex, Aider, and Cursor in isolated sessions. Ocean detects conflicts, orchestrates merges, and ships your code.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ocean-app.web.app">
+  <meta property="og:url" content="https://ocean-terminal.web.app">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -471,6 +471,158 @@
 
     footer a:hover { color: var(--text); }
 
+    /* Releases */
+    .releases {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+    }
+
+    .release-entry {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .release-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .release-version {
+      font-family: var(--mono);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .release-date {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      font-family: var(--mono);
+    }
+
+    .release-tag {
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      font-family: var(--mono);
+      text-transform: uppercase;
+    }
+
+    .release-tag.latest {
+      background: rgba(34, 197, 94, 0.15);
+      color: var(--green);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    .release-summary {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .release-changes h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .release-changes h4 .change-icon {
+      display: inline-flex;
+      width: 20px;
+      height: 20px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      font-size: 0.7rem;
+    }
+
+    .change-icon.feat { background: rgba(6, 182, 212, 0.15); color: var(--accent); }
+    .change-icon.fix { background: rgba(34, 197, 94, 0.15); color: var(--green); }
+    .change-icon.infra { background: rgba(161, 161, 170, 0.15); color: var(--text-muted); }
+
+    .release-changes ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .release-changes li {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding: 0.3rem 0 0.3rem 1.5rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .release-changes li::before {
+      content: '·';
+      position: absolute;
+      left: 0.5rem;
+      color: var(--text-dim);
+    }
+
+    .release-changes code {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      background: var(--surface-2);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .release-stats {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .release-stat {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    .release-stat span { color: var(--text-muted); }
+
+    .release-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .release-download:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
     /* Mobile */
     @media (max-width: 768px) {
       .hero { padding: 8rem 1.5rem 4rem; }
@@ -537,6 +689,7 @@
   <div class="nav-links">
     <a href="#features">Features</a>
     <a href="#articles">Articles</a>
+    <a href="#releases">Releases</a>
     <a href="https://ocean-doc.web.app">Docs</a>
     <a href="https://joinocean.web.app" class="nav-cta">Waitlist</a>
   </div>
@@ -734,6 +887,154 @@
     </div>
 
   </div>
+</section>
+
+<!-- Releases -->
+<section class="releases" id="releases">
+  <div class="section-header">
+    <h2>Releases</h2>
+    <p>What shipped and when.</p>
+  </div>
+
+  <!-- v0.7.1 -->
+  <div class="release-entry">
+    <div class="release-header">
+      <span class="release-version">v0.7.1</span>
+      <span class="release-tag latest">latest</span>
+      <span class="release-date">March 25, 2026</span>
+    </div>
+    <p class="release-summary">Context menus across the app, major merge &amp; ship workflow expansion, E2E test suite, and significant Rust backend growth.</p>
+
+    <div class="release-changes">
+      <h4><span class="change-icon feat">+</span> Features</h4>
+      <ul>
+        <li>Context menus for workspace headers, session sidebar, and terminal pane headers</li>
+        <li>Session dirty detection with auto-WIP commit on close</li>
+        <li>Workspace health panel with aggregate conflict metrics</li>
+        <li><code>MergeDetailView</code> — new full merge detail component (1,125 lines)</li>
+        <li><code>AiConflictResolver</code> — dedicated AI conflict resolution UI (771 lines)</li>
+        <li>Ship dialog expanded with richer git translation workflow</li>
+        <li>Claude usage metrics display (<code>ClaudeUsageMetrics.tsx</code>)</li>
+        <li>Claude status store for real-time agent state tracking</li>
+        <li><code>dev-install.sh</code> script with <code>--debug</code> / <code>--release</code> flags</li>
+      </ul>
+
+      <h4><span class="change-icon fix">&#10003;</span> Fixes</h4>
+      <ul>
+        <li>Context menus not appearing in release builds on macOS</li>
+        <li>Ship PR auto-commits changes, resolved CLI paths, fixed conflict loop</li>
+        <li>Removed ocean-sync build artifacts from repo</li>
+      </ul>
+
+      <h4><span class="change-icon infra">&#9881;</span> Infrastructure</h4>
+      <ul>
+        <li>Playwright E2E test suite with CI workflow — smoke tests, terminal operations (755 lines), context menu tests</li>
+        <li>Rust backend: <code>lib.rs</code> +1,065 lines, <code>git_translate.rs</code> +463 lines, <code>filesystem/mod.rs</code> +437 lines</li>
+        <li>New session hooks system (<code>session/hooks.rs</code>, 170 lines)</li>
+        <li>PTY management expansion (+268 lines)</li>
+        <li>AI merge improvements (+252 lines)</li>
+      </ul>
+    </div>
+
+    <div class="release-stats">
+      <span class="release-stat"><span>66</span> files changed</span>
+      <span class="release-stat"><span>+10,819</span> additions</span>
+      <span class="release-stat"><span>-1,085</span> deletions</span>
+      <span class="release-stat"><span>31</span> commits</span>
+    </div>
+    <a href="https://github.com/viveky259259/ocean-releases/releases/tag/v0.7.1" target="_blank" rel="noopener" class="release-download">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download v0.7.1
+    </a>
+  </div>
+
+  <!-- v0.7.0 -->
+  <div class="release-entry">
+    <div class="release-header">
+      <span class="release-version">v0.7.0</span>
+      <span class="release-date">March 24, 2026</span>
+    </div>
+    <p class="release-summary">The conflict resolution release. 26 stories shipped: 3-way merge engine, AI-assisted merge, file locks, session stash, dependency graph, activity heatmap, health dashboard, and port forwarding.</p>
+
+    <div class="release-changes">
+      <h4><span class="change-icon feat">+</span> Features</h4>
+      <ul>
+        <li>3-way merge engine with per-hunk resolution (Accept A / B / Both / Base / Manual Edit)</li>
+        <li>AI-assisted merge via Claude API with confidence scoring</li>
+        <li>Real-time conflict detection with severity classification (clean, diverged, overlapping, conflicting)</li>
+        <li>Pre-conflict warnings when multiple sessions edit the same file</li>
+        <li>Merge queue with recommended order based on conflict complexity</li>
+        <li>Advisory file locks to prevent concurrent edits</li>
+        <li>Session stash — save and restore session state mid-merge</li>
+        <li>Merge undo with automatic pre-merge snapshots and one-click rollback</li>
+        <li>Session dependency graph with cycle detection (DFS + Kahn's algorithm)</li>
+        <li>File activity heatmap — bird's-eye view of which files are "hot"</li>
+        <li>Workspace health dashboard with aggregate conflict metrics</li>
+        <li>Port forwarding with one-click public tunneling via Bore and Cloudflared</li>
+        <li>Full developer documentation site</li>
+      </ul>
+
+      <h4><span class="change-icon fix">&#10003;</span> Fixes</h4>
+      <ul>
+        <li>Numerous stability improvements across merge workflow</li>
+      </ul>
+    </div>
+
+    <a href="https://github.com/viveky259259/ocean-releases/releases/tag/v0.7.0" target="_blank" rel="noopener" class="release-download">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download v0.7.0
+    </a>
+  </div>
+
+  <!-- v0.6.0 -->
+  <div class="release-entry">
+    <div class="release-header">
+      <span class="release-version">v0.6.0</span>
+      <span class="release-date">March 22, 2026</span>
+    </div>
+    <p class="release-summary">Git Visualizer with staging panel, split pane direction indicators, and 16 bug fixes.</p>
+
+    <div class="release-changes">
+      <h4><span class="change-icon feat">+</span> Features</h4>
+      <ul>
+        <li>Git Visualizer with staging panel — staged, modified, untracked files with inline diffs</li>
+        <li>Split pane direction-aware sidebar badges (&#9475;2 side-by-side, &#9473;2 stacked, &#9532;3 mixed)</li>
+      </ul>
+
+      <h4><span class="change-icon fix">&#10003;</span> Fixes</h4>
+      <ul>
+        <li>16 bug fixes across terminal, sidebar, and git integration</li>
+      </ul>
+    </div>
+
+    <a href="https://github.com/viveky259259/ocean-releases/releases/tag/v0.6.0" target="_blank" rel="noopener" class="release-download">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download v0.6.0
+    </a>
+  </div>
+
+  <!-- v0.5.0 -->
+  <div class="release-entry">
+    <div class="release-header">
+      <span class="release-version">v0.5.0</span>
+      <span class="release-date">March 21, 2026</span>
+    </div>
+    <p class="release-summary">Ocean Sync backend and settings improvements.</p>
+
+    <div class="release-changes">
+      <h4><span class="change-icon feat">+</span> Features</h4>
+      <ul>
+        <li>Ocean Sync backend for cross-device session state</li>
+        <li>Settings panel improvements</li>
+      </ul>
+    </div>
+
+    <a href="https://github.com/viveky259259/ocean-releases/releases/tag/v0.5.0" target="_blank" rel="noopener" class="release-download">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download v0.5.0
+    </a>
+  </div>
+
 </section>
 
 <!-- Bottom CTA -->
