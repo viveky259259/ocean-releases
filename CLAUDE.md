@@ -18,8 +18,12 @@ ocean-releases/
 ├── README.md                              # Repo landing page with download links
 ├── index.md                               # Full user documentation (GitHub Pages home)
 ├── _config.yml                            # Jekyll theme config
-├── website/                               # Standalone waitlist landing page (deployed via NetLaunch as joinocean)
+├── website/                               # Waitlist landing page (joinocean.web.app)
 │   └── index.html                         # Self-contained landing page with Google Forms waitlist
+├── ocean-app/                             # Marketing site (ocean-terminal.web.app)
+│   └── index.html                         # Features, articles, releases, waitlist CTA
+├── ocean-doc/                             # Documentation site (ocean-doc.web.app)
+│   └── index.html                         # Full docs with sidebar nav for external users
 └── articles/
     ├── ocean-for-ai-developers.md         # Hands-on guide for devs using AI agents
     ├── ocean-for-architects.md            # Technical deep-dive, problem-centric
@@ -102,10 +106,39 @@ Articles in `articles/` follow a consistent structure:
 - Body explains what changed and why
 - Co-Author trailer for AI-assisted commits
 
+## Deployed Sites
+
+| Site | URL | Source | Purpose |
+|------|-----|--------|---------|
+| GitHub Pages | viveky259259.github.io/ocean-releases | `index.md` | Documentation + waitlist link |
+| Waitlist | joinocean.web.app | `website/` | Standalone waitlist landing page |
+| Marketing | ocean-terminal.web.app | `ocean-app/` | Features, articles, release notes |
+| Docs | ocean-doc.web.app | `ocean-doc/` | Full docs with sidebar nav |
+
+- All NetLaunch sites deployed via `netlaunch deploy -s <name> -f <zip>`
+- Waitlist uses Google Forms: https://forms.gle/4RQFThD8KF6Vu1Su6
+- All sites share the same dark theme (Inter + JetBrains Mono, #09090b bg, #06b6d4 accent)
+
 ## GitHub Pages
 - Served from `main` branch root
 - Theme: `pages-themes/minimal@v0.2.0`
-- `index.md` is the documentation + waitlist at `viveky259259.github.io/ocean-releases`
-- `website/` folder deployed via NetLaunch as `joinocean` (joinocean.web.app)
-- Waitlist uses Google Forms: https://forms.gle/4RQFThD8KF6Vu1Su6
 - Articles are linked from docs page and can be shared directly via URL
+
+## Release Process
+
+Releases are created in the private `ocean` source repo and published here.
+
+```bash
+# In the ocean source repo:
+./scripts/release.sh patch     # or minor, major — builds, signs, tags
+# test the build
+./scripts/release.sh publish   # pushes, merges, creates GitHub Release here, installs
+```
+
+The `publish` command automates:
+1. Creates `.app.tar.gz` archive from signed build
+2. Pushes release branch and tag to `ocean` repo
+3. Merges release to main, restores dev identity, pushes main
+4. Creates tag on this `ocean-releases` repo
+5. Creates GitHub Release with binary and auto-generated release notes
+6. Installs to `/Applications` and launches
