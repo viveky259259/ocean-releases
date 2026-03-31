@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Articles — Ocean Terminal</title>
+  <meta name="description" content="Deep dives, release notes, and guides for Ocean — Terminal for Agentic Development.">
+  <meta property="og:title" content="Articles — Ocean Terminal">
+  <meta property="og:description" content="Deep dives, release notes, and guides for Ocean — Terminal for Agentic Development.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #09090b;
+      --surface: #111113;
+      --surface-2: #18181b;
+      --border: #27272a;
+      --text: #fafafa;
+      --text-muted: #a1a1aa;
+      --text-dim: #71717a;
+      --accent: #06b6d4;
+      --accent-glow: rgba(6, 182, 212, 0.15);
+      --accent-2: #0ea5e9;
+      --green: #22c55e;
+      --purple: #818cf8;
+      --orange: #f97316;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Ambient glow */
+    .glow-bg {
+      position: fixed;
+      top: -40%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80vw;
+      height: 60vh;
+      background: radial-gradient(ellipse, rgba(6, 182, 212, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(9, 9, 11, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo svg { width: 28px; height: 28px; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--accent); }
+
+    .nav-links .nav-cta {
+      color: #000;
+      background: var(--accent);
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .nav-links .nav-cta:hover { color: #000; background: #22d3ee; }
+
+    /* Page hero */
+    .page-hero {
+      position: relative;
+      z-index: 1;
+      padding: 8rem 2rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+    }
+
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    .page-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero h1 .gradient {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 50%, var(--purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-hero p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* Main layout */
+    .articles-page {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem 8rem;
+    }
+
+    /* Section labels */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .section-label span {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Featured card */
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      padding: 2rem 2.25rem;
+      border-radius: 16px;
+      border: 1px solid rgba(6, 182, 212, 0.25);
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.06) 0%, var(--surface) 60%);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+      margin-bottom: 1rem;
+    }
+
+    .featured-card:hover {
+      border-color: rgba(6, 182, 212, 0.5);
+      box-shadow: 0 0 40px rgba(6, 182, 212, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .featured-card .card-body { min-width: 0; }
+
+    .featured-card .tag-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.65rem;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .tag-release { color: var(--accent); background: var(--accent-glow); border: 1px solid rgba(6, 182, 212, 0.2); }
+    .tag-new { color: var(--green); background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2); }
+    .tag-dev { color: var(--accent); background: var(--accent-glow); border: 1px solid rgba(6, 182, 212, 0.2); }
+    .tag-arch { color: var(--purple); background: rgba(129, 140, 248, 0.1); border: 1px solid rgba(129, 140, 248, 0.2); }
+    .tag-pm { color: var(--orange); background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.2); }
+    .tag-ent { color: #a78bfa; background: rgba(167, 139, 250, 0.1); border: 1px solid rgba(167, 139, 250, 0.2); }
+
+    .featured-date {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    .featured-card h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 0.6rem;
+    }
+
+    .featured-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .featured-card .card-arrow {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--accent-glow);
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      color: var(--accent);
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .featured-card:hover .card-arrow {
+      background: rgba(6, 182, 212, 0.25);
+      transform: translateX(3px);
+    }
+
+    /* Audience grid */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .audience-card {
+      padding: 1.75rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+
+    .audience-card:hover {
+      border-color: rgba(6, 182, 212, 0.25);
+      box-shadow: 0 0 24px rgba(6, 182, 212, 0.07);
+      transform: translateY(-1px);
+    }
+
+    .audience-card .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    .audience-card .card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-dev { background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.15); }
+    .icon-arch { background: rgba(129, 140, 248, 0.1); border: 1px solid rgba(129, 140, 248, 0.15); }
+    .icon-pm { background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.15); }
+    .icon-ent { background: rgba(167, 139, 250, 0.1); border: 1px solid rgba(167, 139, 250, 0.15); }
+
+    .audience-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .audience-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .audience-card .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .read-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      transition: gap 0.2s;
+    }
+
+    .audience-card:hover .read-link { gap: 0.55rem; }
+
+    .read-time {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-dim);
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--text); }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .page-hero { padding: 7rem 1.25rem 3rem; }
+      .articles-page { padding: 0 1.25rem 6rem; }
+      .featured-card { grid-template-columns: 1fr; gap: 1.25rem; }
+      .featured-card .card-arrow { display: none; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="glow-bg"></div>
+
+<!-- Nav -->
+<nav>
+  <a href="https://ocean-app.web.app" class="nav-logo">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="32" height="32" rx="8" fill="#06b6d4" fill-opacity="0.15"/>
+      <path d="M8 22 L16 10 L24 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M11 18 L16 13 L21 18" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
+    </svg>
+    Ocean
+  </a>
+  <div class="nav-links">
+    <a href="https://ocean-app.web.app#features">Features</a>
+    <a href="https://ocean-app.web.app/articles.html" class="active">Articles</a>
+    <a href="https://ocean-app.web.app#releases">Releases</a>
+    <a href="https://ocean-doc.web.app">Docs</a>
+    <a href="https://forms.gle/4RQFThD8KF6Vu1Su6" target="_blank" rel="noopener" class="nav-cta">Waitlist</a>
+  </div>
+</nav>
+
+<!-- Page hero -->
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="https://ocean-app.web.app">Ocean</a>
+    <span>/</span>
+    <span>Articles</span>
+  </div>
+  <h1>Deep Dives &amp;<br><span class="gradient">Release Notes</span></h1>
+  <p>Technical guides, architecture walkthroughs, and release notes for Ocean — Terminal for Agentic Development.</p>
+</div>
+
+<!-- Articles -->
+<main class="articles-page">
+
+  <!-- Release Notes -->
+  <div class="section-label"><span>Latest Release</span></div>
+
+  <a href="https://viveky259259.github.io/ocean-releases/articles/ocean-v0-8-0-release" target="_blank" rel="noopener" class="featured-card">
+    <div class="card-body">
+      <div class="tag-row">
+        <span class="tag tag-release">Release Notes</span>
+        <span class="tag tag-new">v0.8.0</span>
+        <span class="featured-date">April 1, 2026</span>
+      </div>
+      <h2>What's New in Ocean v0.8.0</h2>
+      <p>Discard session changes, view per-session diffs from context menus, native file picker (Cmd+Option+F), git index auto-repair, and a full sweep of 10 conflict detection and merge workflow fixes.</p>
+    </div>
+    <div class="card-arrow">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </div>
+  </a>
+
+  <!-- Audience Articles -->
+  <div class="section-label"><span>Guides by Audience</span></div>
+
+  <div class="audience-grid">
+
+    <!-- AI Developers -->
+    <a href="https://viveky259259.github.io/ocean-releases/articles/ocean-for-ai-developers" target="_blank" rel="noopener" class="audience-card">
+      <div class="card-top">
+        <span class="tag tag-dev">For AI Developers</span>
+        <div class="card-icon icon-dev">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5"/>
+            <line x1="12" y1="19" x2="20" y2="19"/>
+          </svg>
+        </div>
+      </div>
+      <h3>Your terminal was built for humans typing commands. Your workflow isn't.</h3>
+      <p>Hands-on walkthrough of COW isolation, conflict detection, the agent dashboard, and shipping sessions to PRs. For Claude, Aider, and Cursor users.</p>
+      <div class="card-footer">
+        <span class="read-link">Read guide <span>&rarr;</span></span>
+        <span class="read-time">~8 min</span>
+      </div>
+    </a>
+
+    <!-- Architects -->
+    <a href="https://viveky259259.github.io/ocean-releases/articles/ocean-for-architects" target="_blank" rel="noopener" class="audience-card">
+      <div class="card-top">
+        <span class="tag tag-arch">For Architects</span>
+        <div class="card-icon icon-arch">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+      </div>
+      <h3>A technical deep-dive into how Ocean solves multi-agent orchestration at the systems level.</h3>
+      <p>Architecture decisions, performance budgets, security model, competitive positioning. 24 problems solved.</p>
+      <div class="card-footer">
+        <span class="read-link">Read guide <span>&rarr;</span></span>
+        <span class="read-time">~12 min</span>
+      </div>
+    </a>
+
+    <!-- Product Managers -->
+    <a href="https://viveky259259.github.io/ocean-releases/articles/ocean-for-product-managers" target="_blank" rel="noopener" class="audience-card">
+      <div class="card-top">
+        <span class="tag tag-pm">For Product Managers</span>
+        <div class="card-icon icon-pm">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+      </div>
+      <h3>What it is, why it matters, and how it changes the way software gets built.</h3>
+      <p>Business impact, team visibility, cost comparison &mdash; no technical jargon required.</p>
+      <div class="card-footer">
+        <span class="read-link">Read guide <span>&rarr;</span></span>
+        <span class="read-time">~6 min</span>
+      </div>
+    </a>
+
+    <!-- Enterprises -->
+    <a href="https://viveky259259.github.io/ocean-releases/articles/ocean-for-enterprises" target="_blank" rel="noopener" class="audience-card">
+      <div class="card-top">
+        <span class="tag tag-ent">For Enterprises</span>
+        <div class="card-icon icon-ent">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+      </div>
+      <h3>How Ocean addresses operational, security, and governance challenges at scale.</h3>
+      <p>Audit trail, managed config, ROI framework, deployment guide. For IT and engineering leadership.</p>
+      <div class="card-footer">
+        <span class="read-link">Read guide <span>&rarr;</span></span>
+        <span class="read-time">~10 min</span>
+      </div>
+    </a>
+
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <p>
+    Ocean &mdash; Terminal for Agentic Development &middot;
+    <a href="https://ocean-doc.web.app">Docs</a> &middot;
+    <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a> &middot;
+    <a href="https://github.com/viveky259259/ocean-releases/releases" target="_blank" rel="noopener">Releases</a>
+  </p>
+</footer>
+
+</body>
+</html>
