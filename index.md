@@ -304,6 +304,7 @@ Understand Ocean from the perspective that matters to you:
 
 | Article | For | What You'll Learn |
 |---------|-----|-------------------|
+| [What's New in v0.8.0](articles/ocean-v0-8-0-release.md) | Everyone | Discard changes, file picker, 10 conflict fixes, git index repair |
 | [Ocean for AI Developers](articles/ocean-for-ai-developers.md) | Developers using Claude, Aider, Cursor | COW isolation, conflict detection, agent workflow, Claude context UI |
 | [Ocean for Architects](articles/ocean-for-architects.md) | Tech leads & solution architects | 24 problems solved, system architecture, security model, performance budgets |
 | [Ocean for Product Managers](articles/ocean-for-product-managers.md) | Non-technical stakeholders | Business impact, team visibility, cost comparison, ROI |
@@ -395,6 +396,8 @@ Get the latest version from the [Releases page](https://github.com/viveky259259/
 
 | Version | Date | Highlights |
 |---------|------|------------|
+| v0.8.0 | 2026-04-01 | Discard session changes, view per-session diffs, file picker, git index auto-repair, 10 conflict/merge fixes |
+| v0.7.1 | 2026-03-25 | Context menus, merge & ship workflow expansion, E2E test suite, Rust backend growth |
 | v0.7.0 | 2026-03-24 | Conflict resolution (26 stories), AI merge, file locks, stash, heatmap, dependency graph, port forwarding, documentation |
 | v0.6.0 | 2026-03-22 | Git Visualizer, split indicators, 16 bug fixes |
 | v0.5.0 | 2026-03-21 | Ocean Sync backend, settings improvements |

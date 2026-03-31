@@ -896,11 +896,64 @@
     <p>What shipped and when.</p>
   </div>
 
+  <!-- v0.8.0 -->
+  <div class="release-entry">
+    <div class="release-header">
+      <span class="release-version">v0.8.0</span>
+      <span class="release-tag latest">latest</span>
+      <span class="release-date">April 1, 2026</span>
+    </div>
+    <p class="release-summary">Discard session changes, view per-session diffs, file picker, workspace path copy, git index auto-repair, and a full sweep of conflict detection and merge workflow fixes.</p>
+
+    <div class="release-changes">
+      <h4><span class="change-icon feat">+</span> Features</h4>
+      <ul>
+        <li><strong>Discard Session Changes</strong> — right-click any session to reset it back to the workspace base, with confirmation</li>
+        <li><strong>View Changes</strong> — right-click any session to open the merge panel showing all file diffs</li>
+        <li><strong>File Picker</strong> (Cmd+Option+F) — native file picker; selected paths are pasted shell-escaped into the focused terminal</li>
+        <li><strong>Copy Workspace Path</strong> — right-click a workspace header to copy the Ocean workspace directory path</li>
+        <li><strong>Shortcut Error Notifications</strong> — all keyboard shortcuts now show a notification when they can't execute</li>
+        <li><strong>Git Index Auto-Repair</strong> — corrupt <code>.git/index</code> auto-detected on commit; shows dialog with one-click "Fix" button</li>
+      </ul>
+
+      <h4><span class="change-icon fix">&#10003;</span> Fixes</h4>
+      <ul>
+        <li>Fix: <code>.git/index</code> symlink — workspace base no longer shares git index with the original project</li>
+        <li>Fix: False conflicts from identical sessions cloned from a dirty repo</li>
+        <li>Fix: Phantom conflicts from completed/merged sessions with stale overlays</li>
+        <li>Fix: Closed session context menu used wrong workspace ID, hiding Merge/View/Discard options</li>
+        <li>Fix: Circular conflict resolution loop when closing the flow unconditionally retried merge</li>
+        <li>Fix: Empty diff viewer — undefined file versions crashed the diff viewer</li>
+        <li>Fix: Merge panel state now refreshes after Ship as PR and Sync to Project</li>
+        <li>Fix: Auto-commit hash now correctly persisted after session merge</li>
+        <li>Fix: File drop broken in production builds (missing <code>dragDropEnabled</code> in tauri.conf.json)</li>
+        <li>Fix: Cmd+Option+F on macOS — Option key remapping caused keybinding to read <code>ƒ</code> instead of <code>F</code></li>
+      </ul>
+
+      <h4><span class="change-icon infra">&#9881;</span> Infrastructure</h4>
+      <ul>
+        <li>Conflict poll interval reduced from 10s to 5s for faster detection</li>
+        <li>13 new Playwright E2E tests for conflict resolution flow</li>
+        <li>322 Rust unit tests, 878 frontend tests</li>
+      </ul>
+    </div>
+
+    <div class="release-stats">
+      <span class="release-stat"><span>30</span> files changed</span>
+      <span class="release-stat"><span>13</span> new E2E tests</span>
+      <span class="release-stat"><span>10</span> bug fixes</span>
+      <span class="release-stat"><span>6</span> new features</span>
+    </div>
+    <a href="https://github.com/viveky259259/ocean-releases/releases/tag/v0.8.0" target="_blank" rel="noopener" class="release-download">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download v0.8.0
+    </a>
+  </div>
+
   <!-- v0.7.1 -->
   <div class="release-entry">
     <div class="release-header">
       <span class="release-version">v0.7.1</span>
-      <span class="release-tag latest">latest</span>
       <span class="release-date">March 25, 2026</span>
     </div>
     <p class="release-summary">Context menus across the app, major merge &amp; ship workflow expansion, E2E test suite, and significant Rust backend growth.</p>
