@@ -4,13 +4,19 @@
 
 Ocean is a desktop terminal built for developers working with AI coding agents. Run multiple agents in isolated sessions, resolve conflicts automatically, and ship clean PRs.
 
+## Websites
+
+| Site | URL | Purpose |
+|------|-----|---------|
+| Main website | [ocean-terminal.web.app](https://ocean-terminal.web.app) | Marketing landing page — features, waitlist |
+| Vision | [ocean-terminal.web.app/vision.html](https://ocean-terminal.web.app/vision.html) | Mission & long-term thinking |
+| Feature blog | [ocean-app.web.app](https://ocean-app.web.app) | Feature highlights & release announcements |
+| Technical docs | [ocean-doc.web.app](https://ocean-doc.web.app) | Documentation for external users |
+| GitHub Pages | [viveky259259.github.io/ocean-releases](https://viveky259259.github.io/ocean-releases) | Full developer reference (install, API, architecture) |
+
 ## Waitlist
 
-**[Join the waitlist](https://forms.gle/4RQFThD8KF6Vu1Su6)** for early access. Or visit the waitlist site at **[joinocean.web.app](https://joinocean.web.app)**.
-
-## Documentation
-
-Read the full developer documentation at **[viveky259259.github.io/ocean-releases](https://viveky259259.github.io/ocean-releases)**
+**[Join the waitlist](https://forms.gle/4RQFThD8KF6Vu1Su6)** for early access.
 
 ## Download
 
