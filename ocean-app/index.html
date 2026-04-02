@@ -854,6 +854,14 @@
   </div>
   <div class="articles-grid">
 
+    <!-- v0.9.1 Release -->
+    <div class="article-card">
+      <span class="article-tag">Release Notes</span>
+      <h3>What's New in v0.9.1 — Claude usage panel, PTY deadlock fix.</h3>
+      <p class="article-desc">Real-time Claude OAuth quota in the status bar, PTY deadlock fix for concurrent agent sessions, and OAuth poller guard fixes.</p>
+      <a href="https://viveky259259.github.io/ocean-releases/articles/ocean-v0-9-1-release" class="article-link">Read notes <span>&rarr;</span></a>
+    </div>
+
     <!-- v0.8.0 Release -->
     <div class="article-card">
       <span class="article-tag">Release Notes</span>
@@ -909,11 +917,54 @@
     <p>What shipped and when.</p>
   </div>
 
+  <!-- v0.9.1 -->
+  <div class="release-entry">
+    <div class="release-header">
+      <span class="release-version">v0.9.1</span>
+      <span class="release-tag latest">latest</span>
+      <span class="release-date">April 2, 2026</span>
+    </div>
+    <p class="release-summary">Claude OAuth usage panel in the status bar, PTY deadlock fix for concurrent agent sessions, OAuth poller guard fixes, and E2E test suite restored.</p>
+
+    <div class="release-changes">
+      <h4><span class="change-icon feat">+</span> Features</h4>
+      <ul>
+        <li><strong>Claude OAuth Usage Panel</strong> — real-time 5-hour and 7-day quota with reset timers in the status bar (requires Claude Code Native mode)</li>
+        <li><strong>PTY Deadlock Fix</strong> — eliminated a deadlock in the PTY read loop that silently hung sessions under concurrent agent workloads</li>
+      </ul>
+
+      <h4><span class="change-icon fix">&#10003;</span> Fixes</h4>
+      <ul>
+        <li>Fix: OAuth poller now skips IPC when Claude Code Native mode is disabled</li>
+        <li>Fix: OAuth null propagation on keychain errors keeps the usage UI in a consistent state</li>
+        <li>Fix: All Playwright E2E tests restored across smoke, terminal, and conflict resolution suites</li>
+        <li>Fix: Session lifecycle and PTY teardown edge cases from real-world agent sessions</li>
+      </ul>
+
+      <h4><span class="change-icon infra">&#9881;</span> Infrastructure</h4>
+      <ul>
+        <li>Plugin development and troubleshooting guides added to docs</li>
+        <li>498 Rust unit tests (up from 322), 918 frontend tests (up from 878)</li>
+        <li>48 files changed, 2434 insertions</li>
+      </ul>
+    </div>
+
+    <div class="release-stats">
+      <span class="release-stat"><span>48</span> files changed</span>
+      <span class="release-stat"><span>918</span> frontend tests</span>
+      <span class="release-stat"><span>4</span> bug fixes</span>
+      <span class="release-stat"><span>2</span> new features</span>
+    </div>
+    <a href="https://github.com/viveky259259/ocean-releases/releases/tag/v0.9.1" target="_blank" rel="noopener" class="release-download">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download v0.9.1
+    </a>
+  </div>
+
   <!-- v0.8.0 -->
   <div class="release-entry">
     <div class="release-header">
       <span class="release-version">v0.8.0</span>
-      <span class="release-tag latest">latest</span>
       <span class="release-date">April 1, 2026</span>
     </div>
     <p class="release-summary">Discard session changes, view per-session diffs, file picker, workspace path copy, git index auto-repair, and a full sweep of conflict detection and merge workflow fixes.</p>
