@@ -925,11 +925,44 @@
     <p>What shipped and when.</p>
   </div>
 
+  <!-- v0.9.4 -->
+  <div class="release-entry">
+    <div class="release-header">
+      <span class="release-version">v0.9.4</span>
+      <span class="release-tag latest">latest</span>
+      <span class="release-date">April 3, 2026</span>
+    </div>
+    <p class="release-summary">Build reliability: vendored OpenSSL to eliminate Team ID mismatch crashes on signed builds, plus release pipeline hardening.</p>
+
+    <div class="release-changes">
+      <h4><span class="change-icon fix">&#10003;</span> Fixes</h4>
+      <ul>
+        <li><strong>Vendor OpenSSL</strong> — eliminates Team ID mismatch crash that occurred on signed production builds</li>
+        <li>Release pipeline improvements: pre-flight checks, build script hardening</li>
+      </ul>
+
+      <h4><span class="change-icon infra">&#9881;</span> Infrastructure</h4>
+      <ul>
+        <li>Install script updated for vendored OpenSSL dependency</li>
+        <li>Build and release checks refactored into reusable library scripts</li>
+      </ul>
+    </div>
+
+    <div class="release-stats">
+      <span class="release-stat"><span>6</span> files changed</span>
+      <span class="release-stat"><span>174</span> insertions</span>
+      <span class="release-stat"><span>1</span> critical fix</span>
+    </div>
+    <a href="https://github.com/viveky259259/ocean-releases/releases/tag/v0.9.4" target="_blank" rel="noopener" class="release-download">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download v0.9.4
+    </a>
+  </div>
+
   <!-- v0.9.2 -->
   <div class="release-entry">
     <div class="release-header">
       <span class="release-version">v0.9.2</span>
-      <span class="release-tag latest">latest</span>
       <span class="release-date">April 3, 2026</span>
     </div>
     <p class="release-summary">Shell passthrough while Claude waits, Ocean Agent API (MCP server), git fetch_remote for pre-push sync, sync commands, security hardening, and 660 Rust / 1034 frontend tests.</p>
