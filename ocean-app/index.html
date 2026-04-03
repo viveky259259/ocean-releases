@@ -854,6 +854,14 @@
   </div>
   <div class="articles-grid">
 
+    <!-- v0.9.2 Release -->
+    <div class="article-card">
+      <span class="article-tag">Release Notes</span>
+      <h3>What's New in v0.9.2 — Shell passthrough, Agent API, security hardening.</h3>
+      <p class="article-desc">Type in the terminal while Claude thinks. Ocean Agent API (MCP server) for programmatic access. Git fetch_remote, sync commands, and a security audit sweep.</p>
+      <a href="https://viveky259259.github.io/ocean-releases/articles/ocean-v0-9-2-release" class="article-link">Read notes <span>&rarr;</span></a>
+    </div>
+
     <!-- v0.9.1 Release -->
     <div class="article-card">
       <span class="article-tag">Release Notes</span>
@@ -917,11 +925,57 @@
     <p>What shipped and when.</p>
   </div>
 
+  <!-- v0.9.2 -->
+  <div class="release-entry">
+    <div class="release-header">
+      <span class="release-version">v0.9.2</span>
+      <span class="release-tag latest">latest</span>
+      <span class="release-date">April 3, 2026</span>
+    </div>
+    <p class="release-summary">Shell passthrough while Claude waits, Ocean Agent API (MCP server), git fetch_remote for pre-push sync, sync commands, security hardening, and 660 Rust / 1034 frontend tests.</p>
+
+    <div class="release-changes">
+      <h4><span class="change-icon feat">+</span> Features</h4>
+      <ul>
+        <li><strong>Shell Passthrough</strong> — type in the terminal while Claude Code is thinking or waiting for input</li>
+        <li><strong>Ocean Agent API</strong> — MCP server exposing session state, merges, and conflict data for external AI tools</li>
+        <li><strong>Git Fetch Remote</strong> — automatic remote sync before push to prevent diverged-history failures</li>
+        <li><strong>Sync Commands</strong> — sync-from-source and sync-base-to-session context menu options for workspace management</li>
+      </ul>
+
+      <h4><span class="change-icon fix">&#10003;</span> Fixes</h4>
+      <ul>
+        <li>Fix: dismissed conflicts no longer reappear on next poll cycle</li>
+        <li>Fix: sidebar session click correctly switches terminal for ungrouped sessions</li>
+        <li>Fix: Apple notarization added to release signing flow</li>
+        <li>Fix: token safety, path validation, failure logging, and session dirty-check hardening</li>
+      </ul>
+
+      <h4><span class="change-icon infra">&#9881;</span> Infrastructure</h4>
+      <ul>
+        <li>Security audit: critical and high severity issues from comprehensive code review</li>
+        <li>660 Rust unit tests (up from 498), 1034 frontend tests (up from 918)</li>
+        <li>test-all.sh with detailed per-suite reporting</li>
+        <li>Plugin development guide with lifecycle streams and contribution points</li>
+      </ul>
+    </div>
+
+    <div class="release-stats">
+      <span class="release-stat"><span>86</span> files changed</span>
+      <span class="release-stat"><span>1034</span> frontend tests</span>
+      <span class="release-stat"><span>4</span> bug fixes</span>
+      <span class="release-stat"><span>4</span> new features</span>
+    </div>
+    <a href="https://github.com/viveky259259/ocean-releases/releases/tag/v0.9.2" target="_blank" rel="noopener" class="release-download">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download v0.9.2
+    </a>
+  </div>
+
   <!-- v0.9.1 -->
   <div class="release-entry">
     <div class="release-header">
       <span class="release-version">v0.9.1</span>
-      <span class="release-tag latest">latest</span>
       <span class="release-date">April 2, 2026</span>
     </div>
     <p class="release-summary">Claude OAuth usage panel in the status bar, PTY deadlock fix for concurrent agent sessions, OAuth poller guard fixes, and E2E test suite restored.</p>

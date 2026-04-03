@@ -304,6 +304,7 @@ Understand Ocean from the perspective that matters to you:
 
 | Article | For | What You'll Learn |
 |---------|-----|-------------------|
+| [What's New in v0.9.2](articles/ocean-v0-9-2-release.md) | Everyone | Shell passthrough, Agent API, git fetch_remote, security hardening |
 | [What's New in v0.9.1](articles/ocean-v0-9-1-release.md) | Everyone | Claude OAuth usage panel, PTY deadlock fix, poller guard fixes |
 | [What's New in v0.8.0](articles/ocean-v0-8-0-release.md) | Everyone | Discard changes, file picker, 10 conflict fixes, git index repair |
 | [Ocean for AI Developers](articles/ocean-for-ai-developers.md) | Developers using Claude, Aider, Cursor | COW isolation, conflict detection, agent workflow, Claude context UI |
@@ -397,6 +398,7 @@ Get the latest version from the [Releases page](https://github.com/viveky259259/
 
 | Version | Date | Highlights |
 |---------|------|------------|
+| v0.9.2 | 2026-04-03 | Shell passthrough, Ocean Agent API (MCP), git fetch_remote, sync commands, security hardening, 660 Rust / 1034 frontend tests |
 | v0.9.1 | 2026-04-02 | Claude OAuth usage panel, PTY deadlock fix, OAuth poller guard fixes, E2E test suite restored |
 | v0.8.0 | 2026-04-01 | Discard session changes, view per-session diffs, file picker, git index auto-repair, 10 conflict/merge fixes |
 | v0.7.1 | 2026-03-25 | Context menus, merge & ship workflow expansion, E2E test suite, Rust backend growth |
