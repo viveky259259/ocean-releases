@@ -1,3 +1,8 @@
+---
+title: Ocean Documentation
+description: Terminal built for developers working with AI coding agents. Session isolation, conflict resolution, multi-agent orchestration.
+image: website/home.png
+---
 # Ocean Documentation
 
 **Ocean** is a desktop terminal built for developers who work with AI coding agents. It organizes your terminal sessions into workspaces, tracks what each agent is doing, and gives you split panes, git integration, and command history — all in one window.
