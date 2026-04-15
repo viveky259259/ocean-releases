@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404: Page Not Found — Ocean</title>
+  <meta name="description" content="The page you're looking for was not found. Return to Ocean — Terminal for Agentic Development.">
+  <meta property="og:title" content="404: Page Not Found — Ocean">
+  <meta property="og:description" content="Return to Ocean — Terminal for Agentic Development.">
+  <meta property="og:image" content="https://getocean.dev/home.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://getocean.dev/home.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090b;
+      --surface: #111113;
+      --border: #27272a;
+      --text: #fafafa;
+      --text-muted: #a1a1aa;
+      --accent: #06b6d4;
+      --sans: 'Inter', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    #message {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      border-radius: 16px;
+      max-width: 480px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    h2 {
+      font-family: var(--mono);
+      color: var(--accent);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.1em;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    a {
+      display: inline-block;
+      background: var(--accent);
+      color: #000;
+      text-decoration: none;
+      padding: 0.85rem 2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    a:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div id="message">
+    <h2>404</h2>
+    <h1>Page Not Found</h1>
+    <p>The specified file was not found. Please check the URL for mistakes or return to the home page.</p>
+    <a href="https://getocean.dev/">Go Home</a>
+  </div>
+</body>
+</html>

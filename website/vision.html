@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vision — Ocean</title>
-  <meta name="description" content="Why we are building Ocean and our belief in the future of multi-agent software development.">
-  <meta property="og:title" content="Vision — Ocean">
-  <meta property="og:description" content="Software development is about to change fundamentally. Ocean is building the infrastructure for multi-agent development.">
+  <meta name="description"
+    content="Why we are building Ocean and our belief in the future of multi-agent software development.">
+  <meta name="keywords" content="Ocean vision, multi-agent development, AI agents coordination, software development future, AI orchestration">
+  <meta name="author" content="Ocean Team">
+
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://getocean.dev/vision.html">
+  <meta property="og:title" content="Vision — Ocean">
+  <meta property="og:description"
+    content="Software development is about to change fundamentally. Ocean is building the infrastructure for multi-agent development.">
+  <meta property="og:image" content="https://getocean.dev/home.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://getocean.dev/vision.html">
+  <meta name="twitter:title" content="Vision — Ocean">
+  <meta name="twitter:description"
+    content="Software development is about to change fundamentally. Ocean is building the infrastructure for multi-agent development.">
+  <meta name="twitter:image" content="https://getocean.dev/home.png">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://getocean.dev/vision.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
       --bg: #09090b;
@@ -29,7 +58,9 @@
       --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: var(--sans);
@@ -78,7 +109,11 @@
       text-decoration: none;
     }
 
-    .nav-logo svg { width: 28px; height: 28px; }
+    .nav-logo img {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+    }
 
     .nav-links {
       display: flex;
@@ -94,8 +129,13 @@
       transition: color 0.2s;
     }
 
-    .nav-links a:hover { color: var(--text); }
-    .nav-links a.active { color: var(--accent); }
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a.active {
+      color: var(--accent);
+    }
 
     /* Page */
     .page {
@@ -164,7 +204,9 @@
       margin-bottom: 1.25rem;
     }
 
-    .section p:last-child { margin-bottom: 0; }
+    .section p:last-child {
+      margin-bottom: 0;
+    }
 
     .callout {
       margin: 3rem 0;
@@ -208,86 +250,113 @@
       transition: color 0.2s;
     }
 
-    footer a:hover { color: var(--text); }
+    footer a:hover {
+      color: var(--text);
+    }
 
     @media (max-width: 640px) {
-      .page { padding: 7rem 1.5rem 5rem; }
-      .page h1 { font-size: 1.75rem; }
-      .page .lead { font-size: 1rem; }
-      .nav-links { gap: 1rem; }
+      .page {
+        padding: 7rem 1.5rem 5rem;
+      }
+
+      .page h1 {
+        font-size: 1.75rem;
+      }
+
+      .page .lead {
+        font-size: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<div class="glow-bg"></div>
+  <div class="glow-bg"></div>
 
-<nav>
-  <a href="index.html" class="nav-logo">
-    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="32" height="32" rx="8" fill="#06b6d4" fill-opacity="0.15"/>
-      <path d="M8 22 L16 10 L24 22" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <path d="M11 18 L16 13 L21 18" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
-    </svg>
-    Ocean
-  </a>
-  <div class="nav-links">
-    <a href="index.html#features">Features</a>
-    <a href="vision.html" class="active">Vision</a>
-    <a href="https://viveky259259.github.io/ocean-releases">Docs</a>
-    <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a>
-  </div>
-</nav>
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="favicon.png" alt="Ocean Logo" />
+      Ocean
+    </a>
+    <div class="nav-links">
+      <a href="index.html#features">Features</a>
+      <a href="vision.html" class="active">Vision</a>
+      <a href="https://viveky259259.github.io/ocean-releases">Docs</a>
+      <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </nav>
 
-<article class="page">
-  <div class="page-label">Our Thinking</div>
-  <h1>The future of development is<br><span class="gradient">multi-agent</span></h1>
-  <p class="lead">
-    Software development is about to change fundamentally. In the near future, developers will not write most code themselves — they will manage teams of AI agents writing code in parallel. The bottleneck will no longer be code generation, but coordination: isolating agent work, preventing conflicts, merging changes safely, and shipping clean code.
-  </p>
-
-  <div class="section">
-    <h2>What we are building</h2>
-    <p>
-      We are building Ocean — a terminal designed for agentic software development, where multiple AI coding agents work in parallel on the same codebase. As AI-assisted development becomes the default way software is built, the biggest unsolved problem is not code generation, but coordination: isolation, conflicts, merging, visibility, and shipping AI-generated work safely.
+  <article class="page">
+    <div class="page-label">Our Thinking</div>
+    <h1>The future of development is<br><span class="gradient">multi-agent</span></h1>
+    <p class="lead">
+      Software development is about to change fundamentally. In the near future, developers will not write most code
+      themselves — they will manage teams of AI agents writing code in parallel. The bottleneck will no longer be code
+      generation, but coordination: isolating agent work, preventing conflicts, merging changes safely, and shipping
+      clean code.
     </p>
+
+    <div class="section">
+      <h2>What we are building</h2>
+      <p>
+        We are building Ocean — a terminal designed for agentic software development, where multiple AI coding agents
+        work in parallel on the same codebase. As AI-assisted development becomes the default way software is built, the
+        biggest unsolved problem is not code generation, but coordination: isolation, conflicts, merging, visibility,
+        and shipping AI-generated work safely.
+      </p>
+      <p>
+        Ocean focuses on the infrastructure layer for AI development workflows. Instead of replacing IDEs or editors, we
+        are building the orchestration layer that sits underneath AI agents and manages sessions, detects conflicts in
+        real time, assists with merges, and converts parallel AI work into clean commits and pull requests.
+      </p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <h2>The shift we see coming</h2>
+      <p>
+        Our long-term vision is that software development will move from "one developer, one branch" to "one developer,
+        many agents," and teams will need tools to manage dozens of AI workers safely and predictably. Ocean is being
+        built as the terminal and orchestration environment for that future.
+      </p>
+      <p>
+        Our belief is that the future of software development is not one developer per branch, but one developer
+        managing many agents. Ocean is building the infrastructure and workflow layer for multi-agent software
+        development.
+      </p>
+    </div>
+
+    <div class="callout">
+      <p>If AI code generation is the new compiler, Ocean aims to be the operating system for AI-assisted development.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Where we are today</h2>
+      <p>
+        We are currently in private beta on macOS and actively building the core systems around session isolation,
+        conflict detection, merge orchestration, and agent-aware workflows. The goal is to give developers and teams the
+        tools to adopt multi-agent development workflows safely and predictably — starting now, and scaling as AI agents
+        become central to how software gets built.
+      </p>
+    </div>
+  </article>
+
+  <footer>
     <p>
-      Ocean focuses on the infrastructure layer for AI development workflows. Instead of replacing IDEs or editors, we are building the orchestration layer that sits underneath AI agents and manages sessions, detects conflicts in real time, assists with merges, and converts parallel AI work into clean commits and pull requests.
+      Ocean &mdash; Terminal for Agentic Development &middot;
+      <a href="https://viveky259259.github.io/ocean-releases">Docs</a> &middot;
+      <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a> &middot;
+      <a href="https://github.com/viveky259259/ocean-releases/releases" target="_blank" rel="noopener">Releases</a>
     </p>
-  </div>
-
-  <hr class="divider">
-
-  <div class="section">
-    <h2>The shift we see coming</h2>
-    <p>
-      Our long-term vision is that software development will move from "one developer, one branch" to "one developer, many agents," and teams will need tools to manage dozens of AI workers safely and predictably. Ocean is being built as the terminal and orchestration environment for that future.
-    </p>
-    <p>
-      Our belief is that the future of software development is not one developer per branch, but one developer managing many agents. Ocean is building the infrastructure and workflow layer for multi-agent software development.
-    </p>
-  </div>
-
-  <div class="callout">
-    <p>If AI code generation is the new compiler, Ocean aims to be the operating system for AI-assisted development.</p>
-  </div>
-
-  <div class="section">
-    <h2>Where we are today</h2>
-    <p>
-      We are currently in private beta on macOS and actively building the core systems around session isolation, conflict detection, merge orchestration, and agent-aware workflows. The goal is to give developers and teams the tools to adopt multi-agent development workflows safely and predictably — starting now, and scaling as AI agents become central to how software gets built.
-    </p>
-  </div>
-</article>
-
-<footer>
-  <p>
-    Ocean &mdash; Terminal for Agentic Development &middot;
-    <a href="https://viveky259259.github.io/ocean-releases">Docs</a> &middot;
-    <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a> &middot;
-    <a href="https://github.com/viveky259259/ocean-releases/releases" target="_blank" rel="noopener">Releases</a>
-  </p>
-</footer>
+  </footer>
 
 </body>
+
 </html>
