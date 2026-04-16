@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ocean for Developers — Your Agents Deserve a Real Platform</title>
+  <meta name="description"
+    content="Run Claude, Codex, Aider, Cursor, and Copilot in parallel with copy-on-write isolation. Ocean detects agents, merges their work, and ships to PR.">
+  <meta name="keywords"
+    content="Ocean developer, AI coding agent, Claude Code terminal, Aider terminal, Codex terminal, copy-on-write sessions, multi-agent development, macOS developer tool">
+  <meta name="author" content="Ocean Team">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://getocean.dev/for-developers.html">
+  <meta property="og:title" content="Ocean for Developers — Your Agents Deserve a Real Platform">
+  <meta property="og:description" content="Stop context-switching between terminals. Run every AI agent in one app with filesystem isolation.">
+  <meta property="og:image" content="https://getocean.dev/home.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ocean for Developers — Your Agents Deserve a Real Platform">
+  <meta name="twitter:description" content="Stop context-switching between terminals. Run every AI agent in one app with filesystem isolation.">
+  <meta name="twitter:image" content="https://getocean.dev/home.png">
+
+  <link rel="canonical" href="https://getocean.dev/for-developers.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #09090b;
+      --surface: #111113;
+      --surface-2: #18181b;
+      --surface-3: #1f1f23;
+      --border: #1e1e22;
+      --border-hover: #2e2e35;
+      --text: #f4f4f5;
+      --text-muted: #94949e;
+      --text-dim: #5c5c66;
+      --accent: #06b6d4;
+      --accent-hover: #22d3ee;
+      --accent-glow: rgba(6, 182, 212, 0.08);
+      --accent-glow-strong: rgba(6, 182, 212, 0.16);
+      --accent-2: #0ea5e9;
+      --green: #34d399;
+      --amber: #fbbf24;
+      --red: #f87171;
+      --purple: #a78bfa;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --max-w: 1200px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+    .section { position: relative; z-index: 1; padding: 8rem 0; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 2rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: var(--sans);
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--text); color: var(--bg); }
+    .btn-primary:hover { background: #fff; box-shadow: 0 4px 24px rgba(255,255,255,0.08); transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--border-hover); background: var(--surface); }
+    .btn:active { transform: scale(0.97); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0.85rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(9, 9, 11, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-bottom-color: var(--border); }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-weight: 700; font-size: 1.1rem; color: var(--text); text-decoration: none;
+    }
+    .nav-logo img { width: 28px; height: 28px; border-radius: 6px; }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--accent); }
+    .nav-cta {
+      padding: 0.45rem 1.15rem !important;
+      font-size: 0.8rem !important;
+      border-radius: 8px !important;
+      background: var(--text) !important;
+      color: var(--bg) !important;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover {
+      background: #fff !important;
+      box-shadow: 0 2px 12px rgba(255,255,255,0.1) !important;
+    }
+    .mobile-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 0.5rem; }
+
+    /* Hero */
+    .dev-hero {
+      position: relative; z-index: 1;
+      padding: 11rem 2rem 5rem;
+      max-width: var(--max-w); margin: 0 auto;
+    }
+    .dev-hero .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.3rem 0.9rem; border-radius: 100px;
+      background: var(--accent-glow); border: 1px solid rgba(6,182,212,0.2);
+      font-size: 0.75rem; font-weight: 500; color: var(--accent);
+      margin-bottom: 1.5rem; font-family: var(--mono);
+    }
+    .dev-hero h1 {
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      font-weight: 800; line-height: 1.1; letter-spacing: -0.035em;
+      margin-bottom: 1.5rem; max-width: 700px;
+    }
+    .dev-hero h1 .gradient {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 60%, #818cf8 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .dev-hero .hero-desc {
+      font-size: 1.15rem; color: var(--text-muted); line-height: 1.75;
+      margin-bottom: 2.5rem; max-width: 640px;
+    }
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* Pain/Solution */
+    .narrative { border-top: 1px solid var(--border); }
+    .narrative-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
+    }
+    .narrative-block h2 {
+      font-size: 1.5rem; font-weight: 700; margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    .narrative-block p {
+      font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem;
+    }
+    .pain-label { color: var(--red); }
+    .solution-label { color: var(--green); }
+
+    /* Feature deep-dive */
+    .deep-dive { border-top: 1px solid var(--border); }
+    .dd-item {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      padding: 4rem 0; border-bottom: 1px solid var(--border);
+    }
+    .dd-item:last-child { border-bottom: none; }
+    .dd-item.reverse .dd-content { order: 2; }
+    .dd-item.reverse .dd-visual { order: 1; }
+    .dd-content h3 {
+      font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.02em;
+    }
+    .dd-content p {
+      font-size: 0.95rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1rem;
+    }
+    .dd-tag {
+      display: inline-block;
+      font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim);
+      padding: 0.2rem 0.6rem; border-radius: 6px;
+      background: var(--surface-2); border: 1px solid var(--border);
+      margin-right: 0.5rem; margin-top: 0.5rem;
+    }
+    .dd-visual {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3), 0 0 1px rgba(255,255,255,0.05) inset;
+    }
+    .dd-visual-header {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1rem; background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+      font-family: var(--mono); font-size: 0.7rem; color: var(--text-dim);
+    }
+    .dd-visual-header .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dd-visual-header .dot.r { background: #ef4444; }
+    .dd-visual-header .dot.y { background: #eab308; }
+    .dd-visual-header .dot.g { background: #22c55e; }
+    .dd-visual-body {
+      padding: 1.25rem; font-family: var(--mono); font-size: 0.75rem; line-height: 1.85;
+    }
+    .t-prompt { color: var(--accent); }
+    .t-cmd { color: var(--text); }
+    .t-out { color: var(--text-muted); }
+    .t-ok { color: var(--green); }
+    .t-dim { color: var(--text-dim); }
+    .t-warn { color: var(--amber); }
+    .t-agent { color: var(--purple); }
+    .t-red { color: var(--red); }
+    .t-badge { display: inline-block; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.63rem; font-weight: 600; }
+    .t-b-claude { background: rgba(167,139,250,0.15); color: #a78bfa; }
+    .t-b-codex { background: rgba(245,158,11,0.15); color: #f59e0b; }
+    .t-b-aider { background: rgba(34,197,94,0.15); color: #22c55e; }
+
+    /* Proof points */
+    .proof { border-top: 1px solid var(--border); }
+    .proof-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .proof-card {
+      padding: 2.5rem; border-radius: 14px; border: 1px solid var(--border);
+      background: var(--surface); text-align: center;
+    }
+    .proof-value {
+      font-size: 2.25rem; font-weight: 700; font-family: var(--mono);
+      color: var(--accent); line-height: 1;
+    }
+    .proof-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
+    .proof-detail { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.25rem; }
+
+    /* CTA */
+    .cta-section {
+      text-align: center; padding: 6rem 2rem; border-top: 1px solid var(--border);
+    }
+    .cta-section h2 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700;
+      letter-spacing: -0.02em; margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--text-muted); font-size: 1rem; margin-bottom: 2rem;
+      max-width: 480px; margin-left: auto; margin-right: auto;
+    }
+    .cta-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+    footer {
+      padding: 2rem; text-align: center; border-top: 1px solid var(--border);
+    }
+    footer p { font-size: 0.8rem; color: var(--text-dim); }
+    footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 1024px) {
+      .narrative-grid, .dd-item { grid-template-columns: 1fr; gap: 2rem; }
+      .dd-item.reverse .dd-content { order: 1; }
+      .dd-item.reverse .dd-visual { order: 2; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column; position: absolute;
+        top: 100%; left: 0; right: 0; background: var(--bg);
+        border-bottom: 1px solid var(--border); padding: 1rem 2rem; gap: 1rem;
+      }
+      .mobile-toggle { display: block; }
+      .dev-hero { padding: 8rem 1.5rem 3rem; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .section { padding: 4rem 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <nav id="nav">
+    <a href="/" class="nav-logo"><img src="favicon.png" alt="Ocean" /> Ocean</a>
+    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="for-developers.html" class="active">Developers</a>
+      <a href="for-enterprise.html">Enterprise</a>
+      <a href="vision.html">Vision</a>
+      <a href="https://viveky259259.github.io/ocean-releases" target="_blank" rel="noopener">Docs</a>
+      <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/viveky259259/ocean-releases/releases" class="btn btn-primary nav-cta">Download</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="dev-hero">
+    <div class="hero-badge">For Developers</div>
+    <h1>Your agents deserve<br>a <span class="gradient">real platform</span></h1>
+    <p class="hero-desc">Stop context-switching between terminals, platforms, and agents. Ocean gives every AI agent its own isolated workspace and merges the results back automatically. One app. Every agent. Zero interference.</p>
+    <div class="hero-actions">
+      <a href="https://github.com/viveky259259/ocean-releases/releases" class="btn btn-primary">Download for macOS</a>
+      <a href="#deep-dive" class="btn btn-secondary">See how it works</a>
+    </div>
+  </section>
+
+  <!-- Pain / Solution -->
+  <section class="section narrative">
+    <div class="container">
+      <div class="narrative-grid reveal">
+        <div class="narrative-block">
+          <h2><span class="pain-label">You pay the context-switching cost</span></h2>
+          <p>You're running Claude Code in one terminal, Aider in another window, Codex on a completely different platform. Every time you jump between them, you &mdash; the developer &mdash; lose your train of thought. Where did that agent leave off? What files did it change? Is it still running?</p>
+          <p>Worse: when you hand a task from one agent to another, the new agent starts with zero context. It doesn't know what the previous agent decided, what patterns it followed, or what state it left behind. Every agent handoff is a context loss that you have to bridge manually.</p>
+          <p>The tools you use today &mdash; iTerm, tmux, VS Code &mdash; can't help. They were built before AI agents existed. They show you terminals, not agent workflows.</p>
+        </div>
+        <div class="narrative-block">
+          <h2><span class="solution-label">One platform, zero switching</span></h2>
+          <p>Ocean keeps all your agents in one place. Every session is visible with agent status, file changes, and activity timeline side by side. You stop switching between windows and start orchestrating.</p>
+          <p>Copy-on-write isolation gives each agent its own filesystem snapshot via APFS clonefile. They work in parallel without interference. The Session DAG tracks what each agent did and how sessions relate &mdash; so when you hand work off or merge results, the context is preserved in the tool, not just in your head.</p>
+          <p>When you're done, hit <strong>Cmd+Shift+S</strong>. Ocean merges sessions, resolves conflicts with its 3-way merge engine, and opens a pull request. Three agents, one clean PR, no context lost.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature deep-dives -->
+  <section class="section deep-dive" id="deep-dive">
+    <div class="container">
+      <span class="section-label reveal">How it works</span>
+
+      <!-- COW Isolation -->
+      <div class="dd-item reveal">
+        <div class="dd-content">
+          <h3>Copy-on-Write Session Isolation</h3>
+          <p>Each session gets an APFS clone of your project. Spawning a new session takes ~50ms and costs near-zero disk space &mdash; only bytes that actually change get written.</p>
+          <p>This means you can run Claude Code, Codex, and Aider on the same codebase simultaneously. They can't step on each other's files because they're each working on their own filesystem snapshot.</p>
+          <div>
+            <span class="dd-tag">APFS clonefile</span>
+            <span class="dd-tag">~50ms spawn</span>
+            <span class="dd-tag">~KB per session</span>
+            <span class="dd-tag">no Docker</span>
+          </div>
+        </div>
+        <div class="dd-visual">
+          <div class="dd-visual-header">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span style="flex:1;text-align:center">Session isolation</span>
+          </div>
+          <div class="dd-visual-body">
+            <div><span class="t-dim">SESSION 1 (COW clone #1)</span></div>
+            <div><span class="t-prompt">~/api $</span> <span class="t-cmd">claude "refactor auth"</span></div>
+            <div><span class="t-ok">  Writing: auth.ts, middleware.ts</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-dim">SESSION 2 (COW clone #2)</span></div>
+            <div><span class="t-prompt">~/api $</span> <span class="t-cmd">codex "add rate limit"</span></div>
+            <div><span class="t-ok">  Writing: middleware.ts, config.ts</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-dim">SESSION 3 (COW clone #3)</span></div>
+            <div><span class="t-prompt">~/api $</span> <span class="t-cmd">aider "add logging"</span></div>
+            <div><span class="t-ok">  Writing: logger.ts, middleware.ts</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-out">  3 sessions, 3 isolated clones</span></div>
+            <div><span class="t-out">  No file conflicts during work</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agent Detection + A2UI -->
+      <div class="dd-item reverse reveal">
+        <div class="dd-content">
+          <h3>Agent Detection + Claude Native</h3>
+          <p>Ocean automatically detects 8 AI coding agents &mdash; Claude Code, Codex, Aider, Cursor, Copilot, Cody, Gemini, and Devin. Each gets a status badge, health metrics, and waiting notifications.</p>
+          <p>Claude Code gets special treatment: <strong>Claude Native (A2UI)</strong> renders rich interactive UI components &mdash; buttons, cards, forms, tables, code diffs, progress bars &mdash; directly inline in the terminal via OSC escape sequences. No separate app needed.</p>
+          <div>
+            <span class="dd-tag">8 agents detected</span>
+            <span class="dd-tag">A2UI protocol</span>
+            <span class="dd-tag">inline rendering</span>
+            <span class="dd-tag">voice alerts</span>
+          </div>
+        </div>
+        <div class="dd-visual">
+          <div class="dd-visual-header">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span style="flex:1;text-align:center">Agent dashboard</span>
+          </div>
+          <div class="dd-visual-body">
+            <div><span class="t-dim">ACTIVE AGENTS</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-badge t-b-claude">Claude</span> <span class="t-ok">active</span> <span class="t-dim">12.4k tokens &middot; $0.08</span></div>
+            <div><span class="t-out">  auth.ts refactored, tests passing</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-badge t-b-codex">Codex</span> <span class="t-warn">working</span> <span class="t-dim">8.1k tokens &middot; $0.04</span></div>
+            <div><span class="t-out">  rate limiter added, configuring</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-badge t-b-aider">Aider</span> <span class="t-ok">done</span> <span class="t-dim">5.2k tokens &middot; $0.02</span></div>
+            <div><span class="t-out">  logging middleware complete</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-dim">TOTAL: 25.7k tokens &middot; $0.14</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Merge + Conflict resolution -->
+      <div class="dd-item reveal">
+        <div class="dd-content">
+          <h3>3-Way Merge + AI Resolution</h3>
+          <p>When sessions produce conflicting changes, Ocean's 26-step conflict resolution pipeline kicks in. You get base/ours/theirs comparison with inline hunk-level editing.</p>
+          <p>For complex conflicts, the <strong>AI Merge</strong> button sends the conflict to Claude for intelligent resolution. The merge queue lets you batch-resolve 20 conflicts as fast as 1. File locks let you prevent conflicts before they start.</p>
+          <div>
+            <span class="dd-tag">3-way diff</span>
+            <span class="dd-tag">AI merge</span>
+            <span class="dd-tag">hunk-level</span>
+            <span class="dd-tag">merge queue</span>
+            <span class="dd-tag">file locks</span>
+          </div>
+        </div>
+        <div class="dd-visual">
+          <div class="dd-visual-header">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span style="flex:1;text-align:center">Conflict resolution</span>
+          </div>
+          <div class="dd-visual-body">
+            <div><span class="t-warn">  CONFLICT: middleware.ts</span></div>
+            <div><span class="t-dim">  Lines 42-58 modified by 2 sessions</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-red">&lt;&lt;&lt; SESSION 1 (Claude)</span></div>
+            <div><span class="t-out">  export const auth = jwt({</span></div>
+            <div><span class="t-out">    secret: process.env.JWT_KEY,</span></div>
+            <div><span class="t-out">    algorithms: ['HS256']</span></div>
+            <div><span class="t-out">  });</span></div>
+            <div><span class="t-dim">===</span></div>
+            <div><span class="t-ok">&gt;&gt;&gt; SESSION 3 (Aider)</span></div>
+            <div><span class="t-out">  export const logger = winston({</span></div>
+            <div><span class="t-out">    level: 'info',</span></div>
+            <div><span class="t-out">    transports: [console, file]</span></div>
+            <div><span class="t-out">  });</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-ok">  [AI Merge] Resolved: both additions kept</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workflow Engine -->
+      <div class="dd-item reverse reveal">
+        <div class="dd-content">
+          <h3>Workflow Engine</h3>
+          <p>Build multi-step task pipelines with a visual DAG editor. Define workflows in TOML with task dependencies, event triggers, and model selection per step.</p>
+          <p>Trigger workflows on <code style="color:var(--accent);background:var(--surface-2);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.85em">git.push</code>, <code style="color:var(--accent);background:var(--surface-2);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.85em">pr.opened</code>, or <code style="color:var(--accent);background:var(--surface-2);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.85em">schedule.daily</code>. Drag Claude Skills directly onto the DAG. Live execution timers show progress per task.</p>
+          <div>
+            <span class="dd-tag">visual DAG editor</span>
+            <span class="dd-tag">TOML-based</span>
+            <span class="dd-tag">event triggers</span>
+            <span class="dd-tag">execution dashboard</span>
+          </div>
+        </div>
+        <div class="dd-visual">
+          <div class="dd-visual-header">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span style="flex:1;text-align:center">workflow.toml</span>
+          </div>
+          <div class="dd-visual-body">
+            <div><span class="t-dim">[workflow]</span></div>
+            <div><span class="t-out">name = </span><span class="t-ok">"deploy-pipeline"</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-dim">[[tasks]]</span></div>
+            <div><span class="t-out">id = </span><span class="t-ok">"lint"</span></div>
+            <div><span class="t-out">command = </span><span class="t-ok">"npm run lint"</span></div>
+            <div><span class="t-out">events = [</span><span class="t-ok">"git.push"</span><span class="t-out">]</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-dim">[[tasks]]</span></div>
+            <div><span class="t-out">id = </span><span class="t-ok">"test"</span></div>
+            <div><span class="t-out">command = </span><span class="t-ok">"npm test"</span></div>
+            <div><span class="t-out">depends_on = [</span><span class="t-ok">"lint"</span><span class="t-out">]</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-dim">[[tasks]]</span></div>
+            <div><span class="t-out">id = </span><span class="t-ok">"review"</span></div>
+            <div><span class="t-out">prompt = </span><span class="t-ok">"Review the changes"</span></div>
+            <div><span class="t-out">model = </span><span class="t-ok">"claude-sonnet"</span></div>
+            <div><span class="t-out">depends_on = [</span><span class="t-ok">"test"</span><span class="t-out">]</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plugin System -->
+      <div class="dd-item reveal">
+        <div class="dd-content">
+          <h3>Plugin System</h3>
+          <p>Three-tier extensibility: <strong>MCP servers</strong> for tool integration, <strong>WASM sandbox</strong> for safe third-party code, and <strong>native Rust</strong> for performance-critical plugins.</p>
+          <p>Plugins declare capabilities in <code style="color:var(--accent);background:var(--surface-2);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.85em">ocean-plugin.toml</code>. Permission-based access control. Install from the built-in plugin store or load from disk. Themes, tools, and workflow extensions &mdash; all plugins.</p>
+          <div>
+            <span class="dd-tag">MCP servers</span>
+            <span class="dd-tag">WASM sandbox</span>
+            <span class="dd-tag">native Rust</span>
+            <span class="dd-tag">plugin store</span>
+          </div>
+        </div>
+        <div class="dd-visual">
+          <div class="dd-visual-header">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span style="flex:1;text-align:center">ocean-plugin.toml</span>
+          </div>
+          <div class="dd-visual-body">
+            <div><span class="t-dim">[plugin]</span></div>
+            <div><span class="t-out">name = </span><span class="t-ok">"ocean-dark-pro"</span></div>
+            <div><span class="t-out">version = </span><span class="t-ok">"1.0.0"</span></div>
+            <div><span class="t-out">type = </span><span class="t-ok">"theme"</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-dim">[permissions]</span></div>
+            <div><span class="t-out">read_settings = </span><span class="t-ok">true</span></div>
+            <div><span class="t-out">write_settings = </span><span class="t-ok">false</span></div>
+            <div><span class="t-out">terminal_access = </span><span class="t-ok">false</span></div>
+            <div>&nbsp;</div>
+            <div><span class="t-dim">[theme]</span></div>
+            <div><span class="t-out">background = </span><span class="t-ok">"#0a0a0f"</span></div>
+            <div><span class="t-out">foreground = </span><span class="t-ok">"#e4e4ef"</span></div>
+            <div><span class="t-out">accent = </span><span class="t-ok">"#06b6d4"</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof points -->
+  <section class="section proof">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Under the hood</span>
+        <h2 style="font-size:1.75rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem">Built for developers who read source code</h2>
+        <p style="font-size:1rem;color:var(--text-muted)">Ocean is not a wrapper. It's 65,000 lines of Rust and TypeScript with a real architecture.</p>
+      </div>
+      <div class="proof-grid reveal">
+        <div class="proof-card">
+          <div class="proof-value">2,937</div>
+          <div class="proof-label">Tests</div>
+          <div class="proof-detail">977 Rust + 1,960 frontend + E2E</div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-value">101</div>
+          <div class="proof-label">IPC commands</div>
+          <div class="proof-detail">Every operation is scriptable</div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-value">65K</div>
+          <div class="proof-label">Lines of code</div>
+          <div class="proof-detail">210 source files, 17 Rust modules</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:2rem;justify-content:center" class="reveal">
+        <span class="dd-tag">Tauri 2 (Rust)</span>
+        <span class="dd-tag">SolidJS</span>
+        <span class="dd-tag">xterm.js WebGL</span>
+        <span class="dd-tag">SQLite WAL</span>
+        <span class="dd-tag">libgit2</span>
+        <span class="dd-tag">APFS clonefile</span>
+        <span class="dd-tag">&lt;100MB idle memory</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Start building with agents the right way</h2>
+    <p>Ocean is free during beta. Download now and see what multi-agent development feels like on a real platform.</p>
+    <div class="cta-actions">
+      <a href="https://github.com/viveky259259/ocean-releases/releases" class="btn btn-primary">Download for macOS</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      Ocean &mdash; The Native Platform for AI Agents &middot;
+      <a href="/">Home</a> &middot;
+      <a href="for-enterprise.html">Enterprise</a> &middot;
+      <a href="vision.html">Vision</a> &middot;
+      <a href="https://viveky259259.github.io/ocean-releases">Docs</a> &middot;
+      <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a>
+    </p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+
+</html>
