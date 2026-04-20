@@ -124,7 +124,12 @@
       position: relative; z-index: 1;
       padding: 11rem 2rem 5rem;
       max-width: var(--max-w); margin: 0 auto;
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 3rem; align-items: center;
     }
+    .ent-hero-copy { min-width: 0; }
+    .ent-hero-art { min-width: 0; }
+    .ent-hero-art svg { width: 100%; height: auto; display: block; }
     .ent-hero .hero-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.3rem 0.9rem; border-radius: 100px;
@@ -272,6 +277,8 @@
       .cap-grid { grid-template-columns: 1fr; }
       .sec-grid { grid-template-columns: 1fr; }
       .proof-grid { grid-template-columns: repeat(2, 1fr); }
+      .ent-hero { grid-template-columns: 1fr; gap: 2.5rem; }
+      .ent-hero-art { max-width: 520px; margin: 0 auto; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -314,12 +321,144 @@
 
   <!-- Hero -->
   <section class="ent-hero">
-    <div class="hero-badge">For Enterprise</div>
-    <h1>Scale AI agents<br>across your team <span class="gradient">without the chaos</span></h1>
-    <p class="hero-desc">Your developers are already using AI coding agents. Ocean gives you the platform to make that productive, auditable, and safe &mdash; without slowing anyone down.</p>
-    <div class="hero-actions">
-      <a href="mailto:vivek.ocean@gmail.com?subject=Ocean%20Team%20Demo%20Request" class="btn btn-primary">Request a Team Demo</a>
-      <a href="#capabilities" class="btn btn-secondary">See enterprise features</a>
+    <div class="ent-hero-copy">
+      <div class="hero-badge">For Enterprise</div>
+      <h1>Scale AI agents<br>across your team <span class="gradient">without the chaos</span></h1>
+      <p class="hero-desc">Your developers are already using AI coding agents. Ocean gives you the platform to make that productive, auditable, and safe &mdash; without slowing anyone down.</p>
+      <div class="hero-actions">
+        <a href="mailto:vivek.ocean@gmail.com?subject=Ocean%20Team%20Demo%20Request" class="btn btn-primary">Request a Team Demo</a>
+        <a href="#capabilities" class="btn btn-secondary">See enterprise features</a>
+      </div>
+    </div>
+    <div class="ent-hero-art" aria-hidden="true">
+      <svg viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Audit stream flowing through a compliance gate into SIEM illustration">
+        <defs>
+          <linearGradient id="entBg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0f0d08" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="#07090d"/>
+          </linearGradient>
+          <linearGradient id="amberGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#f59e0b"/>
+            <stop offset="100%" stop-color="#fb923c"/>
+          </linearGradient>
+          <filter id="entGlow" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="10" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <circle cx="420" cy="80" r="70" fill="rgba(245,158,11,0.08)" filter="url(#entGlow)"/>
+        <circle cx="120" cy="340" r="60" fill="rgba(245,158,11,0.06)" filter="url(#entGlow)"/>
+
+        <!-- frame -->
+        <rect x="20" y="20" width="480" height="380" rx="16" fill="url(#entBg)" stroke="#1e1e22" stroke-width="1"/>
+        <rect x="20" y="20" width="480" height="32" rx="16" fill="#100c06"/>
+        <rect x="20" y="36" width="480" height="16" fill="#100c06"/>
+        <line x1="20" y1="52" x2="500" y2="52" stroke="#1e1e22"/>
+        <text x="260" y="40" font-family="Inter, sans-serif" font-size="10" fill="#6b5b34" text-anchor="middle" font-weight="500">audit &middot; workspace: platform-team</text>
+
+        <!-- left column: incoming session events -->
+        <text x="40" y="76" font-family="JetBrains Mono, monospace" font-size="9" fill="#6b5b34" letter-spacing="0.08em">SESSIONS</text>
+
+        <!-- session event cards -->
+        <rect x="36" y="88" width="148" height="46" rx="8" fill="#130f08" stroke="#2a2217"/>
+        <rect x="44" y="96" width="26" height="10" rx="3" fill="rgba(167,139,250,0.15)"/>
+        <text x="57" y="104" font-family="JetBrains Mono, monospace" font-size="7" fill="#a78bfa" text-anchor="middle" font-weight="600">Claude</text>
+        <text x="78" y="104" font-family="JetBrains Mono, monospace" font-size="8" fill="#94949e">sess_9f4c</text>
+        <text x="44" y="120" font-family="JetBrains Mono, monospace" font-size="8" fill="#f4f4f5">edit auth.ts L42</text>
+        <text x="44" y="130" font-family="JetBrains Mono, monospace" font-size="7" fill="#6b5b34">14:02:48Z</text>
+
+        <rect x="36" y="142" width="148" height="46" rx="8" fill="#130f08" stroke="#2a2217"/>
+        <rect x="44" y="150" width="22" height="10" rx="3" fill="rgba(245,158,11,0.15)"/>
+        <text x="55" y="158" font-family="JetBrains Mono, monospace" font-size="7" fill="#f59e0b" text-anchor="middle" font-weight="600">Codex</text>
+        <text x="72" y="158" font-family="JetBrains Mono, monospace" font-size="8" fill="#94949e">sess_1b07</text>
+        <text x="44" y="174" font-family="JetBrains Mono, monospace" font-size="8" fill="#f4f4f5">git push origin feat</text>
+        <text x="44" y="184" font-family="JetBrains Mono, monospace" font-size="7" fill="#6b5b34">14:03:12Z</text>
+
+        <rect x="36" y="196" width="148" height="46" rx="8" fill="#130f08" stroke="#2a2217"/>
+        <rect x="44" y="204" width="22" height="10" rx="3" fill="rgba(34,197,94,0.15)"/>
+        <text x="55" y="212" font-family="JetBrains Mono, monospace" font-size="7" fill="#22c55e" text-anchor="middle" font-weight="600">Aider</text>
+        <text x="72" y="212" font-family="JetBrains Mono, monospace" font-size="8" fill="#94949e">sess_3e81</text>
+        <text x="44" y="228" font-family="JetBrains Mono, monospace" font-size="8" fill="#f4f4f5">npm test &middot; 84 pass</text>
+        <text x="44" y="238" font-family="JetBrains Mono, monospace" font-size="7" fill="#6b5b34">14:05:09Z</text>
+
+        <rect x="36" y="250" width="148" height="46" rx="8" fill="#130f08" stroke="#2a2217"/>
+        <rect x="44" y="258" width="22" height="10" rx="3" fill="rgba(167,139,250,0.15)"/>
+        <text x="55" y="266" font-family="JetBrains Mono, monospace" font-size="7" fill="#a78bfa" text-anchor="middle" font-weight="600">Claude</text>
+        <text x="72" y="266" font-family="JetBrains Mono, monospace" font-size="8" fill="#94949e">sess_9f4c</text>
+        <text x="44" y="282" font-family="JetBrains Mono, monospace" font-size="8" fill="#f4f4f5">commit a3f2c1</text>
+        <text x="44" y="292" font-family="JetBrains Mono, monospace" font-size="7" fill="#6b5b34">14:05:55Z</text>
+
+        <!-- flow lines into gate -->
+        <line x1="184" y1="111" x2="236" y2="190" stroke="#3a2d14" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <line x1="184" y1="165" x2="236" y2="198" stroke="#3a2d14" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <line x1="184" y1="219" x2="236" y2="206" stroke="#3a2d14" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <line x1="184" y1="273" x2="236" y2="214" stroke="#3a2d14" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+        <!-- compliance gate diamond -->
+        <g transform="translate(286,202)">
+          <polygon points="0,-48 52,0 0,48 -52,0" fill="rgba(245,158,11,0.10)" stroke="url(#amberGrad)" stroke-width="2"/>
+          <text x="0" y="-12" font-family="JetBrains Mono, monospace" font-size="8" fill="#f59e0b" text-anchor="middle" letter-spacing="0.06em">POLICY</text>
+          <text x="0" y="2" font-family="Inter, sans-serif" font-size="11" fill="#f4f4f5" text-anchor="middle" font-weight="700">Compliance</text>
+          <text x="0" y="16" font-family="Inter, sans-serif" font-size="11" fill="#f4f4f5" text-anchor="middle" font-weight="700">Gate</text>
+          <text x="0" y="30" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#94949e" text-anchor="middle">workflow engine</text>
+        </g>
+
+        <!-- output arrow -->
+        <line x1="342" y1="202" x2="380" y2="202" stroke="url(#amberGrad)" stroke-width="2.2" marker-end="url(#entArrow)"/>
+        <defs>
+          <marker id="entArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#f59e0b"/>
+          </marker>
+        </defs>
+
+        <!-- right column: audit log export destinations -->
+        <text x="384" y="76" font-family="JetBrains Mono, monospace" font-size="9" fill="#6b5b34" letter-spacing="0.08em">AUDIT LOG</text>
+
+        <rect x="380" y="88" width="104" height="34" rx="8" fill="#130f08" stroke="#2a2217"/>
+        <rect x="388" y="96" width="6" height="18" rx="2" fill="#f59e0b"/>
+        <text x="400" y="102" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6b5b34">LOCAL</text>
+        <text x="400" y="114" font-family="Inter, sans-serif" font-size="10" fill="#f4f4f5" font-weight="600">ocean.db</text>
+
+        <rect x="380" y="132" width="104" height="34" rx="8" fill="#130f08" stroke="rgba(245,158,11,0.4)"/>
+        <rect x="388" y="140" width="6" height="18" rx="2" fill="#f59e0b"/>
+        <text x="400" y="146" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6b5b34">EXPORT</text>
+        <text x="400" y="158" font-family="Inter, sans-serif" font-size="10" fill="#f4f4f5" font-weight="600">audit.jsonl</text>
+
+        <rect x="380" y="176" width="104" height="34" rx="8" fill="#130f08" stroke="#2a2217"/>
+        <rect x="388" y="184" width="6" height="18" rx="2" fill="#f59e0b"/>
+        <text x="400" y="190" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6b5b34">SIEM</text>
+        <text x="400" y="202" font-family="Inter, sans-serif" font-size="10" fill="#f4f4f5" font-weight="600">Splunk / Datadog</text>
+
+        <rect x="380" y="220" width="104" height="34" rx="8" fill="#130f08" stroke="#2a2217"/>
+        <rect x="388" y="228" width="6" height="18" rx="2" fill="#f59e0b"/>
+        <text x="400" y="234" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6b5b34">REPLAY</text>
+        <text x="400" y="246" font-family="Inter, sans-serif" font-size="10" fill="#f4f4f5" font-weight="600">post-mortem</text>
+
+        <!-- vertical connectors from gate to outputs -->
+        <path d="M 380 202 L 432 122" stroke="#3a2d14" stroke-width="1" fill="none"/>
+        <path d="M 380 202 L 432 166" stroke="url(#amberGrad)" stroke-width="1.5" fill="none"/>
+        <path d="M 380 202 L 432 210" stroke="#3a2d14" stroke-width="1" fill="none"/>
+        <path d="M 380 202 L 432 254" stroke="#3a2d14" stroke-width="1" fill="none"/>
+
+        <!-- bottom stats bar -->
+        <line x1="36" y1="316" x2="484" y2="316" stroke="#1e1e22"/>
+        <text x="36" y="336" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b5b34">IMMUTABLE</text>
+        <text x="36" y="352" font-family="Inter, sans-serif" font-size="11" fill="#f4f4f5" font-weight="700">12,847</text>
+        <text x="36" y="366" font-family="JetBrains Mono, monospace" font-size="8" fill="#94949e">events today</text>
+
+        <text x="172" y="336" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b5b34">BUDGET</text>
+        <text x="172" y="352" font-family="Inter, sans-serif" font-size="11" fill="#f4f4f5" font-weight="700">$42 / $500</text>
+        <text x="172" y="366" font-family="JetBrains Mono, monospace" font-size="8" fill="#94949e">8% of monthly cap</text>
+
+        <text x="308" y="336" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b5b34">DATA FLOW</text>
+        <text x="308" y="352" font-family="Inter, sans-serif" font-size="11" fill="#f4f4f5" font-weight="700">100% local</text>
+        <text x="308" y="366" font-family="JetBrains Mono, monospace" font-size="8" fill="#94949e">no vendor cloud</text>
+
+        <!-- progress bar on budget -->
+        <rect x="172" y="370" width="120" height="3" rx="1.5" fill="#2a2217"/>
+        <rect x="172" y="370" width="10" height="3" rx="1.5" fill="#f59e0b"/>
+      </svg>
     </div>
   </section>
 
@@ -501,6 +640,88 @@
             <li>File modification heatmap</li>
             <li>Per-agent cost estimation in USD</li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Managed Config Hierarchy diagram -->
+  <section class="section" style="border-top:1px solid var(--border); padding-top:6rem; padding-bottom:6rem">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">How policy flows</span>
+        <h2 style="font-size:1.75rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem">Four-tier configuration, one source of truth</h2>
+        <p style="font-size:1rem;color:var(--text-muted);max-width:640px;margin-bottom:2.5rem">System-tier values win. Developers get full control over the settings IT didn't lock down, and zero ability to override the ones it did.</p>
+      </div>
+      <div class="reveal" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:2.25rem; overflow:hidden">
+        <svg viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block" role="img" aria-label="Four-tier managed configuration hierarchy">
+          <defs>
+            <linearGradient id="tierSys" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.22"/>
+              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.06"/>
+            </linearGradient>
+            <linearGradient id="tierUser" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#fb923c" stop-opacity="0.18"/>
+              <stop offset="100%" stop-color="#fb923c" stop-opacity="0.04"/>
+            </linearGradient>
+            <linearGradient id="tierWs" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#f97316" stop-opacity="0.14"/>
+              <stop offset="100%" stop-color="#f97316" stop-opacity="0.03"/>
+            </linearGradient>
+            <linearGradient id="tierSess" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#ea580c" stop-opacity="0.10"/>
+              <stop offset="100%" stop-color="#ea580c" stop-opacity="0.02"/>
+            </linearGradient>
+            <marker id="hierArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b5b34"/>
+            </marker>
+          </defs>
+
+          <!-- left: precedence arrow -->
+          <text x="30" y="40" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b5b34" letter-spacing="0.08em">PRECEDENCE</text>
+          <line x1="50" y1="60" x2="50" y2="280" stroke="#6b5b34" stroke-width="1.5" marker-end="url(#hierArrow)"/>
+          <text x="28" y="160" font-family="JetBrains Mono, monospace" font-size="9" fill="#94949e" transform="rotate(-90 28 160)" text-anchor="middle">overrides below</text>
+
+          <!-- Tier 1: System -->
+          <g>
+            <rect x="110" y="40" width="820" height="62" rx="10" fill="url(#tierSys)" stroke="rgba(245,158,11,0.55)" stroke-width="1.3"/>
+            <rect x="128" y="54" width="60" height="18" rx="5" fill="rgba(245,158,11,0.25)"/>
+            <text x="158" y="67" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#f59e0b" text-anchor="middle" font-weight="700">SYSTEM</text>
+            <text x="210" y="67" font-family="Inter, sans-serif" font-size="13" fill="#f4f4f5" font-weight="600">IT-managed &mdash; written by MDM or installer</text>
+            <text x="128" y="88" font-family="JetBrains Mono, monospace" font-size="10" fill="#94949e">model.allowlist = ["claude-*", "gpt-4-*"] &middot; plugins.allowlist = [...] &middot; telemetry = off</text>
+          </g>
+
+          <!-- Tier 2: User -->
+          <g>
+            <rect x="110" y="116" width="820" height="58" rx="10" fill="url(#tierUser)" stroke="rgba(251,146,60,0.45)" stroke-width="1.3"/>
+            <rect x="128" y="128" width="50" height="18" rx="5" fill="rgba(251,146,60,0.25)"/>
+            <text x="153" y="141" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fb923c" text-anchor="middle" font-weight="700">USER</text>
+            <text x="200" y="141" font-family="Inter, sans-serif" font-size="13" fill="#f4f4f5" font-weight="600">per developer &mdash; preferences that don't touch policy</text>
+            <text x="128" y="160" font-family="JetBrains Mono, monospace" font-size="10" fill="#94949e">theme = "dark" &middot; keybindings = {...} &middot; default_agent = "claude-code"</text>
+          </g>
+
+          <!-- Tier 3: Workspace -->
+          <g>
+            <rect x="110" y="188" width="820" height="58" rx="10" fill="url(#tierWs)" stroke="rgba(249,115,22,0.35)" stroke-width="1.3"/>
+            <rect x="128" y="200" width="90" height="18" rx="5" fill="rgba(249,115,22,0.22)"/>
+            <text x="173" y="213" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#f97316" text-anchor="middle" font-weight="700">WORKSPACE</text>
+            <text x="238" y="213" font-family="Inter, sans-serif" font-size="13" fill="#f4f4f5" font-weight="600">per project &mdash; team-agreed defaults</text>
+            <text x="128" y="232" font-family="JetBrains Mono, monospace" font-size="10" fill="#94949e">workflow.on_pr_opened = "review.toml" &middot; budget.monthly = 500</text>
+          </g>
+
+          <!-- Tier 4: Session -->
+          <g>
+            <rect x="110" y="260" width="820" height="58" rx="10" fill="url(#tierSess)" stroke="rgba(234,88,12,0.28)" stroke-width="1.3"/>
+            <rect x="128" y="272" width="70" height="18" rx="5" fill="rgba(234,88,12,0.2)"/>
+            <text x="163" y="285" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#ea580c" text-anchor="middle" font-weight="700">SESSION</text>
+            <text x="216" y="285" font-family="Inter, sans-serif" font-size="13" fill="#f4f4f5" font-weight="600">per run &mdash; ephemeral overrides for one agent</text>
+            <text x="128" y="304" font-family="JetBrains Mono, monospace" font-size="10" fill="#94949e">model = "claude-opus" &middot; permissions = ["read_only"]</text>
+          </g>
+        </svg>
+        <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:1.5rem; justify-content:center">
+          <span style="font-family:var(--mono); font-size:0.75rem; color:var(--text-dim); padding:0.35rem 0.75rem; background:var(--surface-2); border:1px solid var(--border); border-radius:999px">IT ships system-tier &mdash; devs can't override</span>
+          <span style="font-family:var(--mono); font-size:0.75rem; color:var(--text-dim); padding:0.35rem 0.75rem; background:var(--surface-2); border:1px solid var(--border); border-radius:999px">conflicts resolved at the higher tier</span>
+          <span style="font-family:var(--mono); font-size:0.75rem; color:var(--text-dim); padding:0.35rem 0.75rem; background:var(--surface-2); border:1px solid var(--border); border-radius:999px">every change lands in the audit log</span>
         </div>
       </div>
     </div>
