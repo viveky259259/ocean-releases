@@ -344,8 +344,70 @@
     <div class="container">
       <span class="section-label reveal">How it works</span>
 
-      <!-- COW Isolation -->
+      <!-- Session DAG -->
       <div class="dd-item reveal">
+        <div class="dd-content">
+          <h3>Session DAG &mdash; the primitive that holds it all together</h3>
+          <p>Every session is a node in a directed acyclic graph. Fork an agent off another agent's branch, experiment on top of a teammate's session, or roll back a whole subtree without touching the rest. <strong>Cmd+Shift+G</strong> opens the visualizer.</p>
+          <p>Your parallel work has a <em>shape</em>, and Ocean shows you that shape. When you're three agents deep and trying to figure out "where did this come from?", you answer it by looking &mdash; not by running <code style="color:var(--accent);background:var(--surface-2);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.85em">git reflog</code>.</p>
+          <div>
+            <span class="dd-tag">fork &amp; branch</span>
+            <span class="dd-tag">rollback subtree</span>
+            <span class="dd-tag">Cmd+Shift+G</span>
+            <span class="dd-tag">parent links persisted</span>
+          </div>
+        </div>
+        <div class="dd-visual">
+          <div class="dd-visual-header">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span style="flex:1;text-align:center">Session graph</span>
+          </div>
+          <div class="dd-visual-body" style="padding:1.5rem 1.25rem">
+            <svg viewBox="0 0 360 240" width="100%" height="auto" style="max-height:260px" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#5c5c66"/>
+                </marker>
+              </defs>
+              <!-- edges -->
+              <line x1="62" y1="42" x2="130" y2="100" stroke="#5c5c66" stroke-width="1.4" marker-end="url(#arrow)"/>
+              <line x1="62" y1="42" x2="130" y2="180" stroke="#5c5c66" stroke-width="1.4" marker-end="url(#arrow)"/>
+              <line x1="180" y1="100" x2="260" y2="60" stroke="#5c5c66" stroke-width="1.4" marker-end="url(#arrow)"/>
+              <line x1="180" y1="100" x2="260" y2="140" stroke="#5c5c66" stroke-width="1.4" marker-end="url(#arrow)"/>
+              <!-- main node -->
+              <rect x="10" y="22" width="100" height="40" rx="8" fill="#18181b" stroke="#2e2e35" stroke-width="1"/>
+              <text x="60" y="40" font-family="JetBrains Mono, monospace" font-size="10" fill="#94949e" text-anchor="middle">main</text>
+              <text x="60" y="54" font-family="JetBrains Mono, monospace" font-size="9" fill="#5c5c66" text-anchor="middle">origin</text>
+              <!-- Claude refactor-auth -->
+              <rect x="128" y="80" width="108" height="42" rx="8" fill="#18181b" stroke="rgba(167,139,250,0.5)" stroke-width="1"/>
+              <rect x="136" y="86" width="40" height="12" rx="3" fill="rgba(167,139,250,0.15)"/>
+              <text x="156" y="95" font-family="JetBrains Mono, monospace" font-size="8" fill="#a78bfa" text-anchor="middle" font-weight="600">Claude</text>
+              <text x="182" y="113" font-family="JetBrains Mono, monospace" font-size="10" fill="#f4f4f5" text-anchor="middle">refactor-auth</text>
+              <!-- Cursor landing-copy -->
+              <rect x="128" y="160" width="108" height="42" rx="8" fill="#18181b" stroke="rgba(6,182,212,0.5)" stroke-width="1"/>
+              <rect x="136" y="166" width="40" height="12" rx="3" fill="rgba(6,182,212,0.15)"/>
+              <text x="156" y="175" font-family="JetBrains Mono, monospace" font-size="8" fill="#06b6d4" text-anchor="middle" font-weight="600">Cursor</text>
+              <text x="182" y="193" font-family="JetBrains Mono, monospace" font-size="10" fill="#f4f4f5" text-anchor="middle">landing-copy</text>
+              <!-- Aider add-tests -->
+              <rect x="258" y="40" width="96" height="42" rx="8" fill="#18181b" stroke="rgba(34,197,94,0.5)" stroke-width="1"/>
+              <rect x="266" y="46" width="36" height="12" rx="3" fill="rgba(34,197,94,0.15)"/>
+              <text x="284" y="55" font-family="JetBrains Mono, monospace" font-size="8" fill="#22c55e" text-anchor="middle" font-weight="600">Aider</text>
+              <text x="306" y="73" font-family="JetBrains Mono, monospace" font-size="10" fill="#f4f4f5" text-anchor="middle">add-tests</text>
+              <!-- Codex rate-limit -->
+              <rect x="258" y="120" width="96" height="42" rx="8" fill="#18181b" stroke="rgba(245,158,11,0.5)" stroke-width="1"/>
+              <rect x="266" y="126" width="36" height="12" rx="3" fill="rgba(245,158,11,0.15)"/>
+              <text x="284" y="135" font-family="JetBrains Mono, monospace" font-size="8" fill="#f59e0b" text-anchor="middle" font-weight="600">Codex</text>
+              <text x="306" y="153" font-family="JetBrains Mono, monospace" font-size="10" fill="#f4f4f5" text-anchor="middle">rate-limit</text>
+            </svg>
+            <div style="margin-top:0.75rem; font-family:var(--mono); font-size:0.68rem; color:var(--text-dim); text-align:center">
+              4 sessions &middot; 3 agents &middot; 1 graph
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COW Isolation -->
+      <div class="dd-item reverse reveal">
         <div class="dd-content">
           <h3>Copy-on-Write Session Isolation</h3>
           <p>Each session gets an APFS clone of your project. Spawning a new session takes ~50ms and costs near-zero disk space &mdash; only bytes that actually change get written.</p>
@@ -382,7 +444,7 @@
       </div>
 
       <!-- Agent Detection + A2UI -->
-      <div class="dd-item reverse reveal">
+      <div class="dd-item reveal">
         <div class="dd-content">
           <h3>Agent Detection + Claude Native</h3>
           <p>Ocean automatically detects 8 AI coding agents &mdash; Claude Code, Codex, Aider, Cursor, Copilot, Cody, Gemini, and Devin. Each gets a status badge, health metrics, and waiting notifications.</p>
@@ -417,7 +479,7 @@
       </div>
 
       <!-- Merge + Conflict resolution -->
-      <div class="dd-item reveal">
+      <div class="dd-item reverse reveal">
         <div class="dd-content">
           <h3>3-Way Merge + AI Resolution</h3>
           <p>When sessions produce conflicting changes, Ocean's 26-step conflict resolution pipeline kicks in. You get base/ours/theirs comparison with inline hunk-level editing.</p>
@@ -457,7 +519,7 @@
       </div>
 
       <!-- Workflow Engine -->
-      <div class="dd-item reverse reveal">
+      <div class="dd-item reveal">
         <div class="dd-content">
           <h3>Workflow Engine</h3>
           <p>Build multi-step task pipelines with a visual DAG editor. Define workflows in TOML with task dependencies, event triggers, and model selection per step.</p>
@@ -498,7 +560,7 @@
       </div>
 
       <!-- Plugin System -->
-      <div class="dd-item reveal">
+      <div class="dd-item reverse reveal">
         <div class="dd-content">
           <h3>Plugin System</h3>
           <p>Three-tier extensibility: <strong>MCP servers</strong> for tool integration, <strong>WASM sandbox</strong> for safe third-party code, and <strong>native Rust</strong> for performance-critical plugins.</p>
@@ -531,6 +593,63 @@
             <div><span class="t-out">foreground = </span><span class="t-ok">"#e4e4ef"</span></div>
             <div><span class="t-out">accent = </span><span class="t-ok">"#06b6d4"</span></div>
           </div>
+        </div>
+      </div>
+
+      <!-- Session Recording -->
+      <div class="dd-item reveal">
+        <div class="dd-content">
+          <h3>Session Recording &amp; Replay</h3>
+          <p>Every session captures terminal output, commands, agent activity, and timing. When an agent shipped a bug three days ago, you don't reconstruct what happened &mdash; you scrub the timeline and watch.</p>
+          <p>Replay any session at adjustable speed, jump to a specific event, or export the transcript for a post-mortem. The same stream powers debugging on Monday and forensics on Friday.</p>
+          <div>
+            <span class="dd-tag">timeline scrubber</span>
+            <span class="dd-tag">variable-speed replay</span>
+            <span class="dd-tag">event jump</span>
+            <span class="dd-tag">transcript export</span>
+          </div>
+        </div>
+        <div class="dd-visual">
+          <div class="dd-visual-header">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span style="flex:1;text-align:center">session-replay &middot; refactor-auth</span>
+          </div>
+          <div class="dd-visual-body">
+            <div><span class="t-dim">[14:02:11]</span> <span class="t-badge t-b-claude">Claude</span> <span class="t-out">spawn session</span></div>
+            <div><span class="t-dim">[14:02:14]</span> <span class="t-prompt">~/api $</span> <span class="t-cmd">claude "refactor auth"</span></div>
+            <div><span class="t-dim">[14:02:48]</span> <span class="t-out">  read auth.ts (124 lines)</span></div>
+            <div><span class="t-dim">[14:03:02]</span> <span class="t-out">  read middleware.ts (87 lines)</span></div>
+            <div><span class="t-dim">[14:04:20]</span> <span class="t-warn">  edit auth.ts &mdash; line 42-58</span></div>
+            <div><span class="t-dim">[14:04:21]</span> <span class="t-red">  edit auth.ts &mdash; removed JWT_SECRET fallback</span></div>
+            <div><span class="t-dim">[14:05:09]</span> <span class="t-out">  npm test &mdash; 84 passed, 0 failed</span></div>
+            <div><span class="t-dim">[14:05:55]</span> <span class="t-ok">  session committed</span></div>
+            <div>&nbsp;</div>
+            <div style="display:flex; align-items:center; gap:0.5rem; margin-top:0.25rem">
+              <span class="t-dim">&laquo;</span>
+              <div style="flex:1; height:4px; background:var(--surface-3); border-radius:2px; position:relative">
+                <div style="position:absolute; left:0; top:0; width:62%; height:100%; background:var(--accent); border-radius:2px"></div>
+                <div style="position:absolute; left:62%; top:-3px; width:10px; height:10px; background:var(--accent); border-radius:50%; transform:translateX(-50%)"></div>
+              </div>
+              <span class="t-dim">&raquo;</span>
+              <span class="t-dim" style="font-size:0.65rem">2.1x</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Power-user moves -->
+      <div class="reveal" style="padding: 4rem 0 2rem; border-top: 1px solid var(--border)">
+        <h3 style="font-size:1.1rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.75rem">Built for keyboards, not menus</h3>
+        <p style="font-size:0.95rem;color:var(--text-muted);max-width:640px;margin-bottom:1.5rem">Every action in Ocean is reachable from the keyboard. The mouse is optional.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.6rem">
+          <span class="dd-tag" style="font-size:0.78rem;padding:0.4rem 0.75rem"><strong style="color:var(--text)">Cmd+T</strong> &nbsp;new session</span>
+          <span class="dd-tag" style="font-size:0.78rem;padding:0.4rem 0.75rem"><strong style="color:var(--text)">Cmd+Shift+P</strong> &nbsp;command palette</span>
+          <span class="dd-tag" style="font-size:0.78rem;padding:0.4rem 0.75rem"><strong style="color:var(--text)">Cmd+P</strong> &nbsp;quick-switch sessions</span>
+          <span class="dd-tag" style="font-size:0.78rem;padding:0.4rem 0.75rem"><strong style="color:var(--text)">Cmd+Shift+G</strong> &nbsp;session graph</span>
+          <span class="dd-tag" style="font-size:0.78rem;padding:0.4rem 0.75rem"><strong style="color:var(--text)">Cmd+Shift+S</strong> &nbsp;ship to PR</span>
+          <span class="dd-tag" style="font-size:0.78rem;padding:0.4rem 0.75rem">click any path or URL in agent output</span>
+          <span class="dd-tag" style="font-size:0.78rem;padding:0.4rem 0.75rem">click any stack-trace line</span>
+          <span class="dd-tag" style="font-size:0.78rem;padding:0.4rem 0.75rem">fully customizable bindings</span>
         </div>
       </div>
     </div>
