@@ -137,6 +137,32 @@
       color: var(--accent);
     }
 
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1.15rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+    }
+    .btn-primary { background: var(--text); color: var(--bg); }
+    .btn-primary:hover { background: #fff; box-shadow: 0 2px 12px rgba(255,255,255,0.1); }
+    .nav-cta { color: var(--bg) !important; }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
     /* Page */
     .page {
       position: relative;
@@ -268,8 +294,22 @@
       }
 
       .nav-links {
+        display: none;
         gap: 1rem;
       }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 2rem;
+        gap: 1rem;
+      }
+      .mobile-toggle { display: block; }
     }
   </style>
 </head>
@@ -278,16 +318,21 @@
 
   <div class="glow-bg"></div>
 
-  <nav>
-    <a href="index.html" class="nav-logo">
-      <img src="favicon.png" alt="Ocean Logo" />
+  <nav id="nav">
+    <a href="/" class="nav-logo">
+      <img src="favicon.png" alt="Ocean" />
       Ocean
     </a>
+    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
     <div class="nav-links">
-      <a href="index.html#features">Features</a>
+      <a href="for-developers.html">Developers</a>
+      <a href="for-enterprise.html">Enterprise</a>
       <a href="vision.html" class="active">Vision</a>
-      <a href="https://viveky259259.github.io/ocean-releases">Docs</a>
+      <a href="https://viveky259259.github.io/ocean-releases" target="_blank" rel="noopener">Docs</a>
       <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/viveky259259/ocean-releases/releases" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Download</a>
     </div>
   </nav>
 

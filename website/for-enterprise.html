@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ocean for Enterprise — Scale AI Agents Across Your Team</title>
+  <meta name="description"
+    content="Give your engineering team a platform for AI agents that's productive, auditable, and safe. Audit logs, usage quotas, RBAC, SSO, and 100% local by default.">
+  <meta name="keywords"
+    content="Ocean enterprise, AI agent management, developer tool governance, audit log, usage quota, team collaboration, RBAC, SSO, compliance, engineering manager">
+  <meta name="author" content="Ocean Team">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://getocean.dev/for-enterprise.html">
+  <meta property="og:title" content="Ocean for Enterprise — Scale AI Agents Across Your Team">
+  <meta property="og:description" content="Your devs use AI agents. Ocean makes that productive, auditable, and safe.">
+  <meta property="og:image" content="https://getocean.dev/home.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ocean for Enterprise — Scale AI Agents Across Your Team">
+  <meta name="twitter:description" content="Your devs use AI agents. Ocean makes that productive, auditable, and safe.">
+  <meta name="twitter:image" content="https://getocean.dev/home.png">
+
+  <link rel="canonical" href="https://getocean.dev/for-enterprise.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #09090b;
+      --surface: #111113;
+      --surface-2: #18181b;
+      --surface-3: #1f1f23;
+      --border: #1e1e22;
+      --border-hover: #2e2e35;
+      --text: #f4f4f5;
+      --text-muted: #94949e;
+      --text-dim: #5c5c66;
+      --accent: #06b6d4;
+      --accent-hover: #22d3ee;
+      --accent-glow: rgba(6, 182, 212, 0.08);
+      --accent-glow-strong: rgba(6, 182, 212, 0.16);
+      --green: #34d399;
+      --amber: #fbbf24;
+      --amber-glow: rgba(251, 191, 36, 0.08);
+      --red: #f87171;
+      --purple: #a78bfa;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --max-w: 1200px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+    .section { position: relative; z-index: 1; padding: 8rem 0; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--amber); margin-bottom: 1.25rem;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.8rem 2rem; border-radius: 10px;
+      font-size: 0.95rem; font-weight: 600; font-family: var(--sans);
+      text-decoration: none; cursor: pointer; border: none; transition: all 0.2s;
+    }
+    .btn-primary { background: var(--text); color: var(--bg); }
+    .btn-primary:hover { background: #fff; box-shadow: 0 4px 24px rgba(255,255,255,0.08); transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--border-hover); background: var(--surface); }
+    .btn:active { transform: scale(0.97); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0.85rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(9, 9, 11, 0.85); backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent; transition: border-color 0.3s;
+    }
+    nav.scrolled { border-bottom-color: var(--border); }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-weight: 700; font-size: 1.1rem; color: var(--text); text-decoration: none;
+    }
+    .nav-logo img { width: 28px; height: 28px; border-radius: 6px; }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--amber); }
+    .nav-cta {
+      padding: 0.45rem 1.15rem !important;
+      font-size: 0.8rem !important;
+      border-radius: 8px !important;
+      background: var(--text) !important;
+      color: var(--bg) !important;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover {
+      background: #fff !important;
+      box-shadow: 0 2px 12px rgba(255,255,255,0.1) !important;
+    }
+    .mobile-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 0.5rem; }
+
+    /* Hero */
+    .ent-hero {
+      position: relative; z-index: 1;
+      padding: 11rem 2rem 5rem;
+      max-width: var(--max-w); margin: 0 auto;
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 3rem; align-items: center;
+    }
+    .ent-hero-copy { min-width: 0; }
+    .ent-hero-art { min-width: 0; }
+    .ent-hero-art svg { width: 100%; height: auto; display: block; }
+    .ent-hero .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.3rem 0.9rem; border-radius: 100px;
+      background: var(--amber-glow); border: 1px solid rgba(245,158,11,0.2);
+      font-size: 0.75rem; font-weight: 500; color: var(--amber);
+      margin-bottom: 1.5rem; font-family: var(--mono);
+    }
+    .ent-hero h1 {
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      font-weight: 800; line-height: 1.1; letter-spacing: -0.035em;
+      margin-bottom: 1.5rem; max-width: 700px;
+    }
+    .ent-hero h1 .gradient {
+      background: linear-gradient(135deg, var(--amber) 0%, #f59e0b 60%, #fb923c 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .ent-hero .hero-desc {
+      font-size: 1.15rem; color: var(--text-muted); line-height: 1.75;
+      margin-bottom: 2.5rem; max-width: 640px;
+    }
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    /* Narrative */
+    .narrative { border-top: 1px solid var(--border); }
+    .narrative-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
+    }
+    .narrative-block h2 {
+      font-size: 1.5rem; font-weight: 700; margin-bottom: 1.25rem; letter-spacing: -0.02em;
+    }
+    .narrative-block p {
+      font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem;
+    }
+    .pain-label { color: var(--red); }
+    .solution-label { color: var(--green); }
+
+    /* Capability cards */
+    .capabilities { border-top: 1px solid var(--border); }
+    .cap-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem;
+    }
+    .cap-card {
+      padding: 2.5rem;
+      border-radius: 14px; border: 1px solid var(--border);
+      background: var(--surface); transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+    }
+    .cap-card:hover { border-color: var(--border-hover); box-shadow: 0 8px 40px rgba(0,0,0,0.2); transform: translateY(-2px); }
+    .cap-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      background: var(--amber-glow); border: 1px solid rgba(245,158,11,0.15);
+    }
+    .cap-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .cap-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
+    .cap-detail {
+      margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);
+    }
+    .cap-detail li {
+      font-size: 0.82rem; color: var(--text-dim); padding: 0.25rem 0;
+      padding-left: 1rem; position: relative; list-style: none;
+    }
+    .cap-detail li::before {
+      content: ''; position: absolute; left: 0; top: 0.55rem;
+      width: 5px; height: 5px; border-radius: 50%; background: var(--amber);
+    }
+    .cap-roadmap-badge {
+      display: inline-block;
+      font-family: var(--mono); font-size: 0.62rem; font-weight: 600;
+      padding: 0.15rem 0.5rem; border-radius: 999px;
+      background: rgba(120, 113, 198, 0.12);
+      color: #8b88e6;
+      border: 1px solid rgba(120, 113, 198, 0.25);
+      margin-left: 0.5rem; vertical-align: middle;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+
+    /* Security section */
+    .security { border-top: 1px solid var(--border); }
+    .sec-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem;
+    }
+    .sec-card {
+      padding: 2.25rem; border-radius: 14px;
+      border: 1px solid var(--border); background: var(--surface);
+    }
+    .sec-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .sec-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* Data table */
+    .data-table {
+      width: 100%; border-collapse: collapse; margin-top: 2rem; font-size: 0.875rem;
+    }
+    .data-table th, .data-table td {
+      padding: 0.85rem 1.25rem; text-align: left; border-bottom: 1px solid var(--border);
+    }
+    .data-table thead th {
+      font-weight: 600; font-size: 0.78rem; color: var(--text-dim);
+      text-transform: uppercase; letter-spacing: 0.05em; background: var(--surface);
+    }
+    .data-table thead th:first-child { border-radius: 8px 0 0 0; }
+    .data-table thead th:last-child { border-radius: 0 8px 0 0; }
+    .data-table tbody td { color: var(--text-muted); }
+    .data-table tbody td:first-child { color: var(--text); font-weight: 500; }
+    .data-table .never { color: var(--green); font-weight: 500; }
+    .data-table .opt-in { color: var(--amber); font-weight: 500; }
+
+    /* Proof */
+    .proof-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 2.5rem;
+    }
+    .proof-card {
+      padding: 2rem; border-radius: 14px; border: 1px solid var(--border);
+      background: var(--surface); text-align: center;
+    }
+    .proof-value {
+      font-size: 1.75rem; font-weight: 700; font-family: var(--mono);
+      color: var(--amber); line-height: 1;
+    }
+    .proof-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+    /* CTA */
+    .cta-section {
+      text-align: center; padding: 6rem 2rem; border-top: 1px solid var(--border);
+    }
+    .cta-section h2 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700;
+      letter-spacing: -0.02em; margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--text-muted); font-size: 1rem; margin-bottom: 2rem;
+      max-width: 520px; margin-left: auto; margin-right: auto;
+    }
+    .cta-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+
+    footer {
+      padding: 2rem; text-align: center; border-top: 1px solid var(--border);
+    }
+    footer p { font-size: 0.8rem; color: var(--text-dim); }
+    footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 1024px) {
+      .narrative-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .cap-grid { grid-template-columns: 1fr; }
+      .sec-grid { grid-template-columns: 1fr; }
+      .proof-grid { grid-template-columns: repeat(2, 1fr); }
+      .ent-hero { grid-template-columns: 1fr; gap: 2.5rem; }
+      .ent-hero-art { max-width: 520px; margin: 0 auto; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column; position: absolute;
+        top: 100%; left: 0; right: 0; background: var(--bg);
+        border-bottom: 1px solid var(--border); padding: 1rem 2rem; gap: 1rem;
+      }
+      .mobile-toggle { display: block; }
+      .ent-hero { padding: 8rem 1.5rem 3rem; }
+      .section { padding: 4rem 0; }
+      .data-table { font-size: 0.8rem; }
+      .data-table th, .data-table td { padding: 0.6rem 0.75rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <nav id="nav">
+    <a href="/" class="nav-logo"><img src="favicon.png" alt="Ocean" /> Ocean</a>
+    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="nav-links">
+      <a href="for-developers.html">Developers</a>
+      <a href="for-enterprise.html" class="active">Enterprise</a>
+      <a href="vision.html">Vision</a>
+      <a href="https://viveky259259.github.io/ocean-releases" target="_blank" rel="noopener">Docs</a>
+      <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/viveky259259/ocean-releases/releases" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Download</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="ent-hero">
+    <div class="ent-hero-copy">
+      <div class="hero-badge">For Enterprise</div>
+      <h1>Scale AI agents<br>across your team <span class="gradient">without the chaos</span></h1>
+      <p class="hero-desc">Your developers are already using AI coding agents. Ocean gives you the platform to make that productive, auditable, and safe &mdash; without slowing anyone down.</p>
+      <div class="hero-actions">
+        <a href="mailto:vivek.ocean@gmail.com?subject=Ocean%20Team%20Demo%20Request" class="btn btn-primary">Request a Team Demo</a>
+        <a href="#capabilities" class="btn btn-secondary">See enterprise features</a>
+      </div>
+    </div>
+    <div class="ent-hero-art" aria-hidden="true">
+      <svg viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Audit stream flowing through a compliance gate into SIEM illustration">
+        <defs>
+          <linearGradient id="entBg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0f0d08" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="#07090d"/>
+          </linearGradient>
+          <linearGradient id="amberGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#f59e0b"/>
+            <stop offset="100%" stop-color="#fb923c"/>
+          </linearGradient>
+          <filter id="entGlow" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="10" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <circle cx="420" cy="80" r="70" fill="rgba(245,158,11,0.08)" filter="url(#entGlow)"/>
+        <circle cx="120" cy="340" r="60" fill="rgba(245,158,11,0.06)" filter="url(#entGlow)"/>
+
+        <!-- frame -->
+        <rect x="20" y="20" width="480" height="380" rx="16" fill="url(#entBg)" stroke="#1e1e22" stroke-width="1"/>
+        <rect x="20" y="20" width="480" height="32" rx="16" fill="#100c06"/>
+        <rect x="20" y="36" width="480" height="16" fill="#100c06"/>
+        <line x1="20" y1="52" x2="500" y2="52" stroke="#1e1e22"/>
+        <text x="260" y="40" font-family="Inter, sans-serif" font-size="10" fill="#6b5b34" text-anchor="middle" font-weight="500">audit &middot; workspace: platform-team</text>
+
+        <!-- left column: incoming session events -->
+        <text x="40" y="76" font-family="JetBrains Mono, monospace" font-size="9" fill="#6b5b34" letter-spacing="0.08em">SESSIONS</text>
+
+        <!-- session event cards -->
+        <rect x="36" y="88" width="148" height="46" rx="8" fill="#130f08" stroke="#2a2217"/>
+        <rect x="44" y="96" width="26" height="10" rx="3" fill="rgba(167,139,250,0.15)"/>
+        <text x="57" y="104" font-family="JetBrains Mono, monospace" font-size="7" fill="#a78bfa" text-anchor="middle" font-weight="600">Claude</text>
+        <text x="78" y="104" font-family="JetBrains Mono, monospace" font-size="8" fill="#94949e">sess_9f4c</text>
+        <text x="44" y="120" font-family="JetBrains Mono, monospace" font-size="8" fill="#f4f4f5">edit auth.ts L42</text>
+        <text x="44" y="130" font-family="JetBrains Mono, monospace" font-size="7" fill="#6b5b34">14:02:48Z</text>
+
+        <rect x="36" y="142" width="148" height="46" rx="8" fill="#130f08" stroke="#2a2217"/>
+        <rect x="44" y="150" width="22" height="10" rx="3" fill="rgba(245,158,11,0.15)"/>
+        <text x="55" y="158" font-family="JetBrains Mono, monospace" font-size="7" fill="#f59e0b" text-anchor="middle" font-weight="600">Codex</text>
+        <text x="72" y="158" font-family="JetBrains Mono, monospace" font-size="8" fill="#94949e">sess_1b07</text>
+        <text x="44" y="174" font-family="JetBrains Mono, monospace" font-size="8" fill="#f4f4f5">git push origin feat</text>
+        <text x="44" y="184" font-family="JetBrains Mono, monospace" font-size="7" fill="#6b5b34">14:03:12Z</text>
+
+        <rect x="36" y="196" width="148" height="46" rx="8" fill="#130f08" stroke="#2a2217"/>
+        <rect x="44" y="204" width="22" height="10" rx="3" fill="rgba(34,197,94,0.15)"/>
+        <text x="55" y="212" font-family="JetBrains Mono, monospace" font-size="7" fill="#22c55e" text-anchor="middle" font-weight="600">Aider</text>
+        <text x="72" y="212" font-family="JetBrains Mono, monospace" font-size="8" fill="#94949e">sess_3e81</text>
+        <text x="44" y="228" font-family="JetBrains Mono, monospace" font-size="8" fill="#f4f4f5">npm test &middot; 84 pass</text>
+        <text x="44" y="238" font-family="JetBrains Mono, monospace" font-size="7" fill="#6b5b34">14:05:09Z</text>
+
+        <rect x="36" y="250" width="148" height="46" rx="8" fill="#130f08" stroke="#2a2217"/>
+        <rect x="44" y="258" width="22" height="10" rx="3" fill="rgba(167,139,250,0.15)"/>
+        <text x="55" y="266" font-family="JetBrains Mono, monospace" font-size="7" fill="#a78bfa" text-anchor="middle" font-weight="600">Claude</text>
+        <text x="72" y="266" font-family="JetBrains Mono, monospace" font-size="8" fill="#94949e">sess_9f4c</text>
+        <text x="44" y="282" font-family="JetBrains Mono, monospace" font-size="8" fill="#f4f4f5">commit a3f2c1</text>
+        <text x="44" y="292" font-family="JetBrains Mono, monospace" font-size="7" fill="#6b5b34">14:05:55Z</text>
+
+        <!-- flow lines into gate -->
+        <line x1="184" y1="111" x2="236" y2="190" stroke="#3a2d14" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <line x1="184" y1="165" x2="236" y2="198" stroke="#3a2d14" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <line x1="184" y1="219" x2="236" y2="206" stroke="#3a2d14" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <line x1="184" y1="273" x2="236" y2="214" stroke="#3a2d14" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+        <!-- compliance gate diamond -->
+        <g transform="translate(286,202)">
+          <polygon points="0,-48 52,0 0,48 -52,0" fill="rgba(245,158,11,0.10)" stroke="url(#amberGrad)" stroke-width="2"/>
+          <text x="0" y="-12" font-family="JetBrains Mono, monospace" font-size="8" fill="#f59e0b" text-anchor="middle" letter-spacing="0.06em">POLICY</text>
+          <text x="0" y="2" font-family="Inter, sans-serif" font-size="11" fill="#f4f4f5" text-anchor="middle" font-weight="700">Compliance</text>
+          <text x="0" y="16" font-family="Inter, sans-serif" font-size="11" fill="#f4f4f5" text-anchor="middle" font-weight="700">Gate</text>
+          <text x="0" y="30" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#94949e" text-anchor="middle">workflow engine</text>
+        </g>
+
+        <!-- output arrow -->
+        <line x1="342" y1="202" x2="380" y2="202" stroke="url(#amberGrad)" stroke-width="2.2" marker-end="url(#entArrow)"/>
+        <defs>
+          <marker id="entArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#f59e0b"/>
+          </marker>
+        </defs>
+
+        <!-- right column: audit log export destinations -->
+        <text x="384" y="76" font-family="JetBrains Mono, monospace" font-size="9" fill="#6b5b34" letter-spacing="0.08em">AUDIT LOG</text>
+
+        <rect x="380" y="88" width="104" height="34" rx="8" fill="#130f08" stroke="#2a2217"/>
+        <rect x="388" y="96" width="6" height="18" rx="2" fill="#f59e0b"/>
+        <text x="400" y="102" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6b5b34">LOCAL</text>
+        <text x="400" y="114" font-family="Inter, sans-serif" font-size="10" fill="#f4f4f5" font-weight="600">ocean.db</text>
+
+        <rect x="380" y="132" width="104" height="34" rx="8" fill="#130f08" stroke="rgba(245,158,11,0.4)"/>
+        <rect x="388" y="140" width="6" height="18" rx="2" fill="#f59e0b"/>
+        <text x="400" y="146" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6b5b34">EXPORT</text>
+        <text x="400" y="158" font-family="Inter, sans-serif" font-size="10" fill="#f4f4f5" font-weight="600">audit.jsonl</text>
+
+        <rect x="380" y="176" width="104" height="34" rx="8" fill="#130f08" stroke="#2a2217"/>
+        <rect x="388" y="184" width="6" height="18" rx="2" fill="#f59e0b"/>
+        <text x="400" y="190" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6b5b34">SIEM</text>
+        <text x="400" y="202" font-family="Inter, sans-serif" font-size="10" fill="#f4f4f5" font-weight="600">Splunk / Datadog</text>
+
+        <rect x="380" y="220" width="104" height="34" rx="8" fill="#130f08" stroke="#2a2217"/>
+        <rect x="388" y="228" width="6" height="18" rx="2" fill="#f59e0b"/>
+        <text x="400" y="234" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6b5b34">REPLAY</text>
+        <text x="400" y="246" font-family="Inter, sans-serif" font-size="10" fill="#f4f4f5" font-weight="600">post-mortem</text>
+
+        <!-- vertical connectors from gate to outputs -->
+        <path d="M 380 202 L 432 122" stroke="#3a2d14" stroke-width="1" fill="none"/>
+        <path d="M 380 202 L 432 166" stroke="url(#amberGrad)" stroke-width="1.5" fill="none"/>
+        <path d="M 380 202 L 432 210" stroke="#3a2d14" stroke-width="1" fill="none"/>
+        <path d="M 380 202 L 432 254" stroke="#3a2d14" stroke-width="1" fill="none"/>
+
+        <!-- bottom stats bar -->
+        <line x1="36" y1="316" x2="484" y2="316" stroke="#1e1e22"/>
+        <text x="36" y="336" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b5b34">IMMUTABLE</text>
+        <text x="36" y="352" font-family="Inter, sans-serif" font-size="11" fill="#f4f4f5" font-weight="700">12,847</text>
+        <text x="36" y="366" font-family="JetBrains Mono, monospace" font-size="8" fill="#94949e">events today</text>
+
+        <text x="172" y="336" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b5b34">BUDGET</text>
+        <text x="172" y="352" font-family="Inter, sans-serif" font-size="11" fill="#f4f4f5" font-weight="700">$42 / $500</text>
+        <text x="172" y="366" font-family="JetBrains Mono, monospace" font-size="8" fill="#94949e">8% of monthly cap</text>
+
+        <text x="308" y="336" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b5b34">DATA FLOW</text>
+        <text x="308" y="352" font-family="Inter, sans-serif" font-size="11" fill="#f4f4f5" font-weight="700">100% local</text>
+        <text x="308" y="366" font-family="JetBrains Mono, monospace" font-size="8" fill="#94949e">no vendor cloud</text>
+
+        <!-- progress bar on budget -->
+        <rect x="172" y="370" width="120" height="3" rx="1.5" fill="#2a2217"/>
+        <rect x="172" y="370" width="10" height="3" rx="1.5" fill="#f59e0b"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Pain / Solution -->
+  <section class="section narrative">
+    <div class="container">
+      <div class="narrative-grid reveal">
+        <div class="narrative-block">
+          <h2><span class="pain-label">What you can't see can't be managed</span></h2>
+          <p>Every developer on your team is running AI agents differently. Different terminals, different workflows, no shared context. Some use Claude Code, others use Cursor or Codex. None of their tools talk to each other.</p>
+          <p>When two agents edit the same file, someone loses work. You have no visibility into what agents are doing, how many tokens they're burning, or what code AI actually wrote. Shipping AI-generated code means trusting a process you can't see or audit.</p>
+          <p>You need to enable AI-assisted development &mdash; it's a competitive advantage &mdash; but you also need governance, cost control, and a clear audit trail.</p>
+        </div>
+        <div class="narrative-block">
+          <h2><span class="solution-label">A managed platform, not ad-hoc experimentation</span></h2>
+          <p>Ocean turns AI-agent development into a managed capability. Every agent session is a node in a persistent DAG &mdash; every unit of work has a stable identity that an audit entry can point at. Copy-on-write isolation prevents agents from corrupting shared state.</p>
+          <p>A four-tier managed configuration hierarchy gives IT a real policy surface: pin models, restrict endpoints, lock down plugins, and seed workspace defaults at the system level without developers being able to silently override. The immutable audit log and session-level replay turn "what did that agent do?" from an interview into a timestamped record.</p>
+          <p>All data stays on the developer's machine by default. No terminal content, commands, or session data leaves the device. Telemetry is opt-in with PII redaction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities -->
+  <section class="section capabilities" id="capabilities">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Enterprise capabilities</span>
+        <h2 style="font-size:1.75rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem">Governance that enables, not restricts</h2>
+        <p style="font-size:1rem;color:var(--text-muted);max-width:560px">Every feature is designed to give teams more power while giving managers more visibility.</p>
+      </div>
+
+      <div class="cap-grid">
+        <!-- Session DAG -->
+        <div class="cap-card reveal">
+          <div class="cap-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="7" y1="8" x2="7" y2="16"/><line x1="9" y1="17" x2="15" y2="9"/></svg>
+          </div>
+          <h3>Session DAG</h3>
+          <p>Every agent session is a node in a persistent directed acyclic graph. Every unit of agent work has a stable identity &mdash; which means every audit entry, every forensic question, and every policy decision can point at a specific node instead of a fuzzy "the terminal".</p>
+          <ul class="cap-detail">
+            <li>Persistent parent/child links across restarts</li>
+            <li>Fork, branch, and subtree rollback as first-class ops</li>
+            <li>Visualizer with Cmd+Shift+G (per-user, not shared)</li>
+            <li>Stable session IDs referenced by audit entries</li>
+          </ul>
+        </div>
+
+        <!-- Audit Log -->
+        <div class="cap-card reveal">
+          <div class="cap-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Audit Log</h3>
+          <p>Immutable record of every terminal operation, file change, git action, and configuration update. Filter by session, workspace, or event category. Export to JSONL for compliance pipelines.</p>
+          <ul class="cap-detail">
+            <li>Session, workspace, filesystem, git, and config event categories</li>
+            <li>Full metadata logging with timestamps</li>
+            <li>JSONL export for SIEM and compliance tools</li>
+            <li>Paginated viewer with filtering</li>
+          </ul>
+        </div>
+
+        <!-- Session Recording & Replay -->
+        <div class="cap-card reveal">
+          <div class="cap-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          </div>
+          <h3>Session Recording &amp; Replay</h3>
+          <p>Per-session capture of terminal output, commands, and agent activity. When an incident lands, forensics is no longer an interview with the developer &mdash; it's a timestamped replay of the exact session, scrubbable and exportable.</p>
+          <ul class="cap-detail">
+            <li>Full terminal + agent-event capture per session</li>
+            <li>Variable-speed playback with event jump</li>
+            <li>Transcript export for post-mortems and regulators</li>
+            <li>Local-only storage &mdash; no vendor cloud required</li>
+          </ul>
+        </div>
+
+        <!-- Managed Configuration -->
+        <div class="cap-card reveal">
+          <div class="cap-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          </div>
+          <h3>Managed Configuration</h3>
+          <p>A four-tier hierarchy &mdash; system &rarr; user &rarr; workspace &rarr; session &mdash; gives IT a real policy surface. Pin model choice, restrict remote endpoints, gate plugins, and seed workspace defaults at the system level. Developers cannot silently override system-tier values.</p>
+          <ul class="cap-detail">
+            <li>System-tier precedence over user overrides</li>
+            <li>Model pinning and remote-endpoint restriction</li>
+            <li>Plugin allowlist/denylist via permission declarations</li>
+            <li>Workspace templates for standardized team setup</li>
+          </ul>
+        </div>
+
+        <!-- Workflow Engine as Compliance Gate -->
+        <div class="cap-card reveal">
+          <div class="cap-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3>Workflow Engine as a Policy Gate</h3>
+          <p>TOML-defined multi-step agent pipelines with event triggers (<code style="color:var(--amber);font-family:var(--mono);font-size:0.85em">git.push</code>, <code style="color:var(--amber);font-family:var(--mono);font-size:0.85em">pr.opened</code>, <code style="color:var(--amber);font-family:var(--mono);font-size:0.85em">schedule.daily</code>) and a visual DAG editor. Use it as a compliance gate &mdash; run a secret-scan on every push, block merges that fail, log both outcomes to the audit stream.</p>
+          <ul class="cap-detail">
+            <li>Event-triggered pipelines on git and schedule events</li>
+            <li>Per-step model selection and permission scoping</li>
+            <li>Outcomes recorded in the audit log by default</li>
+            <li>Visual DAG editor for non-command-line reviewers</li>
+          </ul>
+        </div>
+
+        <!-- Usage Quotas -->
+        <div class="cap-card reveal">
+          <div class="cap-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <h3>Usage Quotas &amp; Budget Controls</h3>
+          <p>Track token spend per session with configurable budget limits. Alerts at 50%, 75%, and 100% thresholds. Daily and monthly period tracking. Voice notifications for budget events so developers stay aware without checking dashboards.</p>
+          <ul class="cap-detail">
+            <li>Per-session cost tracking in real time</li>
+            <li>Configurable budget ceilings (daily, monthly)</li>
+            <li>Graduated alerts at 50%, 75%, 100% thresholds</li>
+            <li>Claude API quota monitoring (5h, 7d windows)</li>
+          </ul>
+        </div>
+
+        <!-- Teams & Relay -->
+        <div class="cap-card reveal">
+          <div class="cap-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3>Teams &amp; Relay <span class="cap-roadmap-badge">V1.x</span></h3>
+          <p>Real-time team synchronization via a relay server you can self-host. Shared workspaces with role-based access control (read, write, admin). WebSocket presence shows who's working where. JWT tokens secured in macOS Keychain.</p>
+          <ul class="cap-detail">
+            <li>RBAC with read, write, and admin tiers</li>
+            <li>Real-time WebSocket presence with auto-reconnect</li>
+            <li>Shared workspaces across team members</li>
+            <li>Self-hostable relay server for air-gapped environments</li>
+          </ul>
+        </div>
+
+        <!-- SSO -->
+        <div class="cap-card reveal">
+          <div class="cap-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <h3>SSO via WorkOS <span class="cap-roadmap-badge">V1.x</span></h3>
+          <p>Enterprise single sign-on through WorkOS AuthKit (Google, GitHub, Microsoft). OAuth flow with browser redirect. Session persistence across app restarts. SAML / SCIM are on the V2 track and prioritized on customer demand.</p>
+          <ul class="cap-detail">
+            <li>WorkOS AuthKit integration</li>
+            <li>Session restoration and deep-link handling</li>
+            <li>User profile management</li>
+            <li>Backend session persistence in SQLite</li>
+          </ul>
+        </div>
+
+        <!-- File Locks -->
+        <div class="cap-card reveal">
+          <div class="cap-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4M12 16h.01"/></svg>
+          </div>
+          <h3>Conflict Prevention</h3>
+          <p>Cooperative file locks prevent two agents from editing the same critical file simultaneously. Pre-conflict warnings alert developers before edit paths collide. Prevention is always cheaper than resolution.</p>
+          <ul class="cap-detail">
+            <li>Cooperative file locking across sessions</li>
+            <li>Pre-conflict warnings when paths overlap</li>
+            <li>Conflict heatmap identifies hotspot files</li>
+            <li>Force-break locks for admin override</li>
+          </ul>
+        </div>
+
+        <!-- Health Dashboard -->
+        <div class="cap-card reveal">
+          <div class="cap-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3>Workspace Health Dashboard</h3>
+          <p>Aggregate view of workspace health. Health score from 0-100 based on session activity, conflict severity, and resolution metrics. File modification heatmap. Agent dashboard with per-agent token usage and estimated costs.</p>
+          <ul class="cap-detail">
+            <li>Workspace health score (0-100)</li>
+            <li>Conflict severity tracking</li>
+            <li>File modification heatmap</li>
+            <li>Per-agent cost estimation in USD</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Managed Config Hierarchy diagram -->
+  <section class="section" style="border-top:1px solid var(--border); padding-top:6rem; padding-bottom:6rem">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">How policy flows</span>
+        <h2 style="font-size:1.75rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem">Four-tier configuration, one source of truth</h2>
+        <p style="font-size:1rem;color:var(--text-muted);max-width:640px;margin-bottom:2.5rem">System-tier values win. Developers get full control over the settings IT didn't lock down, and zero ability to override the ones it did.</p>
+      </div>
+      <div class="reveal" style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:2.25rem; overflow:hidden">
+        <svg viewBox="0 0 960 340" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block" role="img" aria-label="Four-tier managed configuration hierarchy">
+          <defs>
+            <linearGradient id="tierSys" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.22"/>
+              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.06"/>
+            </linearGradient>
+            <linearGradient id="tierUser" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#fb923c" stop-opacity="0.18"/>
+              <stop offset="100%" stop-color="#fb923c" stop-opacity="0.04"/>
+            </linearGradient>
+            <linearGradient id="tierWs" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#f97316" stop-opacity="0.14"/>
+              <stop offset="100%" stop-color="#f97316" stop-opacity="0.03"/>
+            </linearGradient>
+            <linearGradient id="tierSess" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#ea580c" stop-opacity="0.10"/>
+              <stop offset="100%" stop-color="#ea580c" stop-opacity="0.02"/>
+            </linearGradient>
+            <marker id="hierArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b5b34"/>
+            </marker>
+          </defs>
+
+          <!-- left: precedence arrow -->
+          <text x="30" y="40" font-family="JetBrains Mono, monospace" font-size="10" fill="#6b5b34" letter-spacing="0.08em">PRECEDENCE</text>
+          <line x1="50" y1="60" x2="50" y2="280" stroke="#6b5b34" stroke-width="1.5" marker-end="url(#hierArrow)"/>
+          <text x="28" y="160" font-family="JetBrains Mono, monospace" font-size="9" fill="#94949e" transform="rotate(-90 28 160)" text-anchor="middle">overrides below</text>
+
+          <!-- Tier 1: System -->
+          <g>
+            <rect x="110" y="40" width="820" height="62" rx="10" fill="url(#tierSys)" stroke="rgba(245,158,11,0.55)" stroke-width="1.3"/>
+            <rect x="128" y="54" width="60" height="18" rx="5" fill="rgba(245,158,11,0.25)"/>
+            <text x="158" y="67" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#f59e0b" text-anchor="middle" font-weight="700">SYSTEM</text>
+            <text x="210" y="67" font-family="Inter, sans-serif" font-size="13" fill="#f4f4f5" font-weight="600">IT-managed &mdash; written by MDM or installer</text>
+            <text x="128" y="88" font-family="JetBrains Mono, monospace" font-size="10" fill="#94949e">model.allowlist = ["claude-*", "gpt-4-*"] &middot; plugins.allowlist = [...] &middot; telemetry = off</text>
+          </g>
+
+          <!-- Tier 2: User -->
+          <g>
+            <rect x="110" y="116" width="820" height="58" rx="10" fill="url(#tierUser)" stroke="rgba(251,146,60,0.45)" stroke-width="1.3"/>
+            <rect x="128" y="128" width="50" height="18" rx="5" fill="rgba(251,146,60,0.25)"/>
+            <text x="153" y="141" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fb923c" text-anchor="middle" font-weight="700">USER</text>
+            <text x="200" y="141" font-family="Inter, sans-serif" font-size="13" fill="#f4f4f5" font-weight="600">per developer &mdash; preferences that don't touch policy</text>
+            <text x="128" y="160" font-family="JetBrains Mono, monospace" font-size="10" fill="#94949e">theme = "dark" &middot; keybindings = {...} &middot; default_agent = "claude-code"</text>
+          </g>
+
+          <!-- Tier 3: Workspace -->
+          <g>
+            <rect x="110" y="188" width="820" height="58" rx="10" fill="url(#tierWs)" stroke="rgba(249,115,22,0.35)" stroke-width="1.3"/>
+            <rect x="128" y="200" width="90" height="18" rx="5" fill="rgba(249,115,22,0.22)"/>
+            <text x="173" y="213" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#f97316" text-anchor="middle" font-weight="700">WORKSPACE</text>
+            <text x="238" y="213" font-family="Inter, sans-serif" font-size="13" fill="#f4f4f5" font-weight="600">per project &mdash; team-agreed defaults</text>
+            <text x="128" y="232" font-family="JetBrains Mono, monospace" font-size="10" fill="#94949e">workflow.on_pr_opened = "review.toml" &middot; budget.monthly = 500</text>
+          </g>
+
+          <!-- Tier 4: Session -->
+          <g>
+            <rect x="110" y="260" width="820" height="58" rx="10" fill="url(#tierSess)" stroke="rgba(234,88,12,0.28)" stroke-width="1.3"/>
+            <rect x="128" y="272" width="70" height="18" rx="5" fill="rgba(234,88,12,0.2)"/>
+            <text x="163" y="285" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#ea580c" text-anchor="middle" font-weight="700">SESSION</text>
+            <text x="216" y="285" font-family="Inter, sans-serif" font-size="13" fill="#f4f4f5" font-weight="600">per run &mdash; ephemeral overrides for one agent</text>
+            <text x="128" y="304" font-family="JetBrains Mono, monospace" font-size="10" fill="#94949e">model = "claude-opus" &middot; permissions = ["read_only"]</text>
+          </g>
+        </svg>
+        <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:1.5rem; justify-content:center">
+          <span style="font-family:var(--mono); font-size:0.75rem; color:var(--text-dim); padding:0.35rem 0.75rem; background:var(--surface-2); border:1px solid var(--border); border-radius:999px">IT ships system-tier &mdash; devs can't override</span>
+          <span style="font-family:var(--mono); font-size:0.75rem; color:var(--text-dim); padding:0.35rem 0.75rem; background:var(--surface-2); border:1px solid var(--border); border-radius:999px">conflicts resolved at the higher tier</span>
+          <span style="font-family:var(--mono); font-size:0.75rem; color:var(--text-dim); padding:0.35rem 0.75rem; background:var(--surface-2); border:1px solid var(--border); border-radius:999px">every change lands in the audit log</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data & Privacy -->
+  <section class="section security" id="security">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Security &amp; Privacy</span>
+        <h2 style="font-size:1.75rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem">100% local by default</h2>
+        <p style="font-size:1rem;color:var(--text-muted);max-width:560px">Ocean runs entirely on the developer's machine. No terminal data leaves the device unless the developer opts in.</p>
+      </div>
+
+      <table class="data-table reveal">
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>Storage</th>
+            <th>Shared Externally?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sessions &amp; history</td>
+            <td>Local SQLite (~/.ocean/ocean.db)</td>
+            <td class="never">Never</td>
+          </tr>
+          <tr>
+            <td>Terminal content</td>
+            <td>In-memory only</td>
+            <td class="never">Never</td>
+          </tr>
+          <tr>
+            <td>Settings &amp; preferences</td>
+            <td>Local (localStorage + SQLite)</td>
+            <td class="never">Never</td>
+          </tr>
+          <tr>
+            <td>Auth tokens (relay)</td>
+            <td>macOS Keychain (encrypted)</td>
+            <td class="never">Never stored in plaintext</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="sec-grid reveal" style="margin-top:3rem">
+        <div class="sec-card">
+          <h3>Local-First Architecture</h3>
+          <p>All persistent state lives in a local SQLite database with WAL mode for performance. No cloud dependency for core functionality. Relay sync is optional.</p>
+        </div>
+        <div class="sec-card">
+          <h3>Secure Token Storage</h3>
+          <p>JWT and refresh tokens are stored in the macOS Keychain using the apple-native backend. Keychain access is lazy &mdash; tokens are only read when explicitly needed, never at app startup.</p>
+        </div>
+        <div class="sec-card">
+          <h3>Self-Hostable Relay</h3>
+          <p>The relay server URL is configurable. Teams can run their own relay instance in air-gapped or restricted environments. No data flows through Ocean's infrastructure unless you choose it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready to make AI agents a managed capability?</h2>
+    <p>See Ocean in action with your team. We'll walk through audit logging, usage controls, team sync, and how Ocean fits into your existing development workflow.</p>
+    <p style="color:var(--amber);font-size:0.92rem;margin-top:-0.5rem;margin-bottom:2rem"><strong>Beta pilots keep Ocean Platform free forever</strong> for the team's current seats &mdash; including enterprise pilots started during beta.</p>
+    <div class="cta-actions">
+      <a href="mailto:vivek.ocean@gmail.com?subject=Ocean%20Team%20Demo%20Request" class="btn btn-primary">Request a Team Demo</a>
+      <a href="https://github.com/viveky259259/ocean-releases/releases" class="btn btn-secondary">Download and Try</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      Ocean &mdash; The Native Platform for AI Agents &middot;
+      <a href="/">Home</a> &middot;
+      <a href="for-developers.html">Developers</a> &middot;
+      <a href="vision.html">Vision</a> &middot;
+      <a href="https://viveky259259.github.io/ocean-releases">Docs</a> &middot;
+      <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a>
+    </p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+
+</html>
