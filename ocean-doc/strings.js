@@ -35,6 +35,7 @@ const AppStrings = {
   tipEnvTitle: "Custom Environments",
   tipEnvDesc: "Define per-workspace environment variables in a .ocean.env file. These are automatically loaded into every session within that workspace.",
 
+  release0_15_0: "Persistent sessions, production Mastra evals, configured AI providers, release hardening",
   release0_13_2: "Key verification before build, fundraising memo, restoration of dev identifiers",
   release0_13_1: "Parallel Claudes: batch spawn, broadcast, N-way diff, promote winner, infra hardening",
   release0_13_0: "Save Session as Agent, Smollm plugin, software-review skill, workflow tool",
@@ -66,6 +67,14 @@ const AppArticles = [
     title: "Don't Ship What You Can't Measure",
     desc: "Gate agentic workflows on Mastra-backed evals: score an agent's output and fail the run unless it clears a bar — with a worked faithfulness example.",
     date: "Featured",
+  },
+  {
+    id: "ocean-v0-15-0-release",
+    tag: "Release Notes",
+    title: "What's New in Ocean v0.15.0",
+    version: "0.15.0",
+    desc: "Persistent sessions, production Mastra evals, configured AI providers, and release hardening.",
+    date: "July 3, 2026",
   },
   {
     id: "ocean-v0-13-2-release",

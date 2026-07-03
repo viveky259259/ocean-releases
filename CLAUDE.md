@@ -43,7 +43,7 @@ ocean-releases/
 - **Never include source code or internal architecture details that aren't already public.** This repo is public. The Rust backend, IPC layer, store internals, and component code belong in the private repo.
 - **Never include API keys, internal URLs, Slack links, or team-specific information.**
 - **Feature claims must reflect shipped features**, not the roadmap. If a feature is planned but not shipped, label it as "coming in V1.x" or "V2 roadmap" — never present it as available.
-- **Keep download links pointing to**: `https://github.com/viveky259259/ocean-releases/releases`
+- **Keep download links pointing to**: `https://github.com/Ocean-AI-Platform/ocean-releases/releases`
 - **Keep docs link pointing to**: `https://docs.getocean.dev`
 
 ### Article Format

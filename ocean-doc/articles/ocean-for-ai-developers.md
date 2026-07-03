@@ -137,7 +137,7 @@ Ocean is not an IDE. It doesn't replace VS Code or Cursor. It's your terminal â€
 
 ## Get Started
 
-1. Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/viveky259259/ocean-releases/releases)
+1. Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/Ocean-AI-Platform/ocean-releases/releases)
 2. Docs: [docs.getocean.dev](https://docs.getocean.dev)
 3. Spawn child sessions for each agent
 4. Watch conflicts get caught in real-time

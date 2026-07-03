@@ -416,4 +416,4 @@ Session recordings are stored as JSONL files — timestamped PTY events that can
 
 ---
 
-*Private software. Local-first. Built with Rust + Tauri + SolidJS. [GitHub](https://github.com/viveky259259/ocean-releases)*
+*Private software. Local-first. Built with Rust + Tauri + SolidJS. [GitHub](https://github.com/Ocean-AI-Platform/ocean-releases)*

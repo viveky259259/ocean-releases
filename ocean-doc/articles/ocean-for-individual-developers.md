@@ -62,7 +62,7 @@ Ocean is free during the beta. **If you download and use Ocean during the beta, 
 
 ## Get it
 
-- Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/viveky259259/ocean-releases/releases)
+- Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/Ocean-AI-Platform/ocean-releases/releases)
 - Docs: [docs.getocean.dev](https://docs.getocean.dev)
 
 Ocean runs on macOS (Apple Silicon and Intel) today. Windows and Linux are on the roadmap.

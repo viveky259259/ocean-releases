@@ -148,7 +148,7 @@ Ocean is designed for three types of users on your team:
 
 Ocean is a desktop application for macOS (Apple Silicon). It's free during the beta and takes about 2 minutes to install:
 
-1. Download from the [Releases page](https://github.com/viveky259259/ocean-releases/releases)
+1. Download from the [Releases page](https://github.com/Ocean-AI-Platform/ocean-releases/releases)
 2. Drag to Applications
 3. Open and start using it as a regular terminal
 

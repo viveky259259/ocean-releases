@@ -280,4 +280,4 @@ At $100/hour fully loaded developer cost: **~$358,000/year** in recovered produc
 
 ---
 
-*Ocean is private software (all rights reserved). For enterprise inquiries, deployment support, or custom integration discussions, contact the Ocean team via [GitHub](https://github.com/viveky259259/ocean-releases).*
+*Ocean is private software (all rights reserved). For enterprise inquiries, deployment support, or custom integration discussions, contact the Ocean team via [GitHub](https://github.com/Ocean-AI-Platform/ocean-releases).*

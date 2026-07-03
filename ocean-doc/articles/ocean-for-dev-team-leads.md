@@ -70,7 +70,7 @@ Ocean is free during the beta. **Beta teams keep Ocean Platform free forever.** 
 
 ## Get it
 
-- Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/viveky259259/ocean-releases/releases)
+- Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/Ocean-AI-Platform/ocean-releases/releases)
 - Docs: [docs.getocean.dev](https://docs.getocean.dev)
 - Talk to us about team pilots: open an issue or reach out via the website.
 

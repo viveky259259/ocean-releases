@@ -87,7 +87,7 @@ For enterprise pilots, we'll set up a direct line: a named engineer from our sid
 
 - **Pilot**: Pick a team of 5–15 developers, install Ocean, run for two weeks. We'll help you set up workspace templates and audit export.
 - **Evaluation kit**: We can provide a security whitepaper, data-flow diagram, and audit-log schema on request.
-- **Download and try first**: [github.com/viveky259259/ocean-releases/releases](https://github.com/viveky259259/ocean-releases/releases)
+- **Download and try first**: [github.com/viveky259259/ocean-releases/releases](https://github.com/Ocean-AI-Platform/ocean-releases/releases)
 - **Docs**: [docs.getocean.dev](https://docs.getocean.dev)
 - **Contact**: open an issue on the releases repo, or reach out via the enterprise page.
 

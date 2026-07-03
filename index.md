@@ -19,7 +19,7 @@ Ocean is in private beta for macOS (Apple Silicon). **[Join the waitlist](https:
 
 ### macOS (Apple Silicon)
 
-1. Download the latest release from the [Releases page](https://github.com/viveky259259/ocean-releases/releases)
+1. Download the latest release from the [Releases page](https://github.com/Ocean-AI-Platform/ocean-releases/releases)
 2. Extract the archive:
    ```bash
    tar -xzf Ocean_*_aarch64.app.tar.gz
@@ -309,6 +309,7 @@ Understand Ocean from the perspective that matters to you:
 
 | Article | For | What You'll Learn |
 |---------|-----|-------------------|
+| [What's New in v0.15.0](articles/ocean-v0-15-0-release.md) | Everyone | Persistent sessions, production Mastra evals, configured AI providers |
 | [What's New in v0.13.2](articles/ocean-v0-13-2-release.md) | Everyone | Key verification before build, fundraising memo, restoration of dev identifiers |
 | [What's New in v0.13.1](articles/ocean-v0-13-1-release.md) | Everyone | Parallel Claudes: batch spawn, broadcast, N-way diff, promote winner |
 | [What's New in v0.13.0](articles/ocean-v0-13-0-release.md) | Everyone | Save Session as Agent, Smollm plugin, software-review skill |
@@ -403,10 +404,11 @@ Open **Cmd+Shift+P** and search for the action. Some shortcuts may conflict with
 
 ## Downloads
 
-Get the latest version from the [Releases page](https://github.com/viveky259259/ocean-releases/releases).
+Get the latest version from the [Releases page](https://github.com/Ocean-AI-Platform/ocean-releases/releases).
 
 | Version | Date | Highlights |
 |---------|------|------------|
+| v0.15.0 | 2026-07-03 | Persistent sessions, production Mastra evals, configured AI providers, release hardening |
 | v0.13.2 | 2026-04-27 | Key verification before build, fundraising memo, restoration of dev identifiers |
 | v0.13.1 | 2026-04-25 | Parallel Claudes: batch spawn, broadcast, N-way diff, promote winner |
 | v0.13.0 | 2026-04-20 | Save Session as Agent, Smollm plugin, software-review skill, workflow tool |

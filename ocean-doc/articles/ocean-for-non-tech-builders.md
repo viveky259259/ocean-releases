@@ -65,7 +65,7 @@ Ocean is free during the beta. **If you join during the beta, you keep Ocean Pla
 
 ## Get it
 
-- Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/viveky259259/ocean-releases/releases)
+- Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/Ocean-AI-Platform/ocean-releases/releases)
 - Docs: [docs.getocean.dev](https://docs.getocean.dev)
 
 macOS today (Apple Silicon and Intel). Windows and Linux are coming soon.

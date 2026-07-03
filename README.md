@@ -20,11 +20,13 @@ Ocean is a desktop terminal built for developers working with AI coding agents. 
 
 ## Download
 
-Download the latest release from the [Releases page](https://github.com/viveky259259/ocean-releases/releases).
+Latest release: **v0.15.0** (July 3, 2026).
+
+Download the latest release from the [Releases page](https://github.com/Ocean-AI-Platform/ocean-releases/releases).
 
 | Platform | Download |
 |----------|----------|
-| macOS (Apple Silicon) | [Ocean.app.tar.gz](https://github.com/viveky259259/ocean-releases/releases/latest) |
+| macOS (Apple Silicon) | [Ocean.app.tar.gz](https://github.com/Ocean-AI-Platform/ocean-releases/releases/latest) |
 
 ## Features
 
