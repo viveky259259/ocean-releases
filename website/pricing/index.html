@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08090b">
+  <meta name="color-scheme" content="dark light">
   <script>
     (function () {
       try {
@@ -11,714 +13,159 @@
       } catch (e) { }
     })();
   </script>
-  <title>Pricing - Ocean</title>
+  <title>Pricing - Ocean Agentic Development Platform</title>
   <meta name="description"
-    content="Ocean pricing for individuals, teams, and enterprises building with AI coding agents.">
-  <meta name="keywords"
-    content="Ocean pricing, AI agent platform pricing, developer tool pricing, team collaboration pricing">
-  <meta name="author" content="Ocean Team">
-
+    content="Pricing for Ocean, the agentic development platform for isolated coding agents, validation evidence, AI spend control, and safe merges.">
+  <meta name="keywords" content="Ocean pricing, AI agent platform pricing, agentic development pricing">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://getocean.dev/pricing/">
-  <meta property="og:title" content="Pricing - Ocean">
-  <meta property="og:description" content="Simple pricing for Ocean: Free, Pro, Teams, and Enterprise.">
+  <meta property="og:title" content="Pricing - Ocean Agentic Development Platform">
+  <meta property="og:description" content="Start free during beta, then grow into team controls when agent usage matters.">
   <meta property="og:image" content="https://getocean.dev/home.png">
-
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Pricing - Ocean">
-  <meta name="twitter:description" content="Simple pricing for Ocean: Free, Pro, Teams, and Enterprise.">
   <meta name="twitter:image" content="https://getocean.dev/home.png">
-
   <link rel="canonical" href="https://getocean.dev/pricing/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"
     rel="stylesheet">
   <link rel="icon" type="image/png" href="../favicon.png">
-  <style>
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg: #09090b;
-      --surface: #111113;
-      --surface-2: #18181b;
-      --surface-3: #1f1f23;
-      --border: #1e1e22;
-      --border-hover: #2e2e35;
-      --text: #f4f4f5;
-      --text-muted: #94949e;
-      --text-dim: #5c5c66;
-      --accent: #06b6d4;
-      --accent-hover: #22d3ee;
-      --accent-glow: rgba(6, 182, 212, 0.08);
-      --green: #34d399;
-      --amber: #fbbf24;
-      --purple: #a78bfa;
-      --mono: 'JetBrains Mono', monospace;
-      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --max-w: 1200px;
-      --nav-bg: rgba(9, 9, 11, 0.85);
-      --btn-primary-hover: #ffffff;
-    }
-
-    [data-theme="light"] {
-      --bg: #ffffff;
-      --surface: #fafafa;
-      --surface-2: #f4f4f5;
-      --surface-3: #e4e4e7;
-      --border: #e4e4e7;
-      --border-hover: #d4d4d8;
-      --text: #09090b;
-      --text-muted: #52525b;
-      --text-dim: #a1a1aa;
-      --accent: #0891b2;
-      --accent-hover: #0e7490;
-      --accent-glow: rgba(8, 145, 178, 0.08);
-      --green: #059669;
-      --amber: #d97706;
-      --purple: #7c3aed;
-      --nav-bg: rgba(255, 255, 255, 0.85);
-      --btn-primary-hover: #27272a;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: var(--sans);
-      background:
-        radial-gradient(circle at 50% -20%, rgba(6, 182, 212, 0.16), transparent 30rem),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    .container {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.4rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      font-family: var(--sans);
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: all 0.25s ease;
-      letter-spacing: 0;
-    }
-
-    .btn-primary {
-      background: var(--text);
-      color: var(--bg);
-    }
-
-    .btn-primary:hover {
-      background: var(--btn-primary-hover);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--border-hover);
-      background: var(--surface);
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 0.85rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--nav-bg);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.3s;
-    }
-
-    nav.scrolled {
-      border-bottom-color: var(--border);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .nav-logo img {
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--text);
-    }
-
-    .nav-cta {
-      padding: 0.45rem 1.15rem !important;
-      font-size: 0.8rem !important;
-      border-radius: 8px !important;
-      background: var(--text) !important;
-      color: var(--bg) !important;
-      font-weight: 600 !important;
-    }
-
-    .mobile-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text);
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-
-    .theme-toggle {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 34px;
-      height: 34px;
-      border-radius: 8px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
-    }
-
-    .theme-toggle:hover {
-      color: var(--text);
-      border-color: var(--border-hover);
-    }
-
-    .theme-toggle .icon-sun {
-      display: none;
-    }
-
-    .theme-toggle .icon-moon {
-      display: block;
-    }
-
-    [data-theme="light"] .theme-toggle .icon-sun {
-      display: block;
-    }
-
-    [data-theme="light"] .theme-toggle .icon-moon {
-      display: none;
-    }
-
-    .hero {
-      padding: 10rem 0 4rem;
-      text-align: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid rgba(6, 182, 212, 0.24);
-      background: var(--accent-glow);
-      color: var(--accent);
-      border-radius: 999px;
-      padding: 0.35rem 0.8rem;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 1.4rem;
-    }
-
-    h1 {
-      max-width: 840px;
-      margin: 0 auto 1.25rem;
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      line-height: 0.98;
-      letter-spacing: 0;
-      font-weight: 800;
-    }
-
-    .hero p {
-      max-width: 690px;
-      margin: 0 auto;
-      color: var(--text-muted);
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      line-height: 1.75;
-    }
-
-    .pricing-section {
-      padding: 2rem 0 7rem;
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1rem;
-      align-items: stretch;
-    }
-
-    .pricing-card {
-      display: flex;
-      min-height: 100%;
-      flex-direction: column;
-      border: 1px solid var(--border);
-      background: rgba(17, 17, 19, 0.82);
-      border-radius: 8px;
-      padding: 1.35rem;
-      transition: border-color 0.2s, transform 0.2s, background 0.2s;
-    }
-
-    [data-theme="light"] .pricing-card {
-      background: rgba(250, 250, 250, 0.92);
-    }
-
-    .pricing-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-2px);
-      background: var(--surface);
-    }
-
-    .pricing-card.featured {
-      border-color: rgba(6, 182, 212, 0.5);
-      box-shadow: 0 24px 80px rgba(6, 182, 212, 0.12);
-    }
-
-    .plan-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .plan-name {
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: 0;
-    }
-
-    .plan-badge {
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      padding: 0.24rem 0.55rem;
-      white-space: nowrap;
-    }
-
-    .featured .plan-badge {
-      border-color: rgba(6, 182, 212, 0.36);
-      color: var(--accent);
-      background: var(--accent-glow);
-    }
-
-    .price {
-      display: flex;
-      align-items: baseline;
-      gap: 0.45rem;
-      margin-bottom: 1rem;
-    }
-
-    .price strong {
-      font-size: clamp(2.1rem, 5vw, 3.2rem);
-      line-height: 1;
-      letter-spacing: 0;
-    }
-
-    .price span {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .plan-description {
-      min-height: 4.7rem;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.65;
-      margin-bottom: 1.4rem;
-    }
-
-    .feature-list {
-      display: grid;
-      gap: 0.8rem;
-      list-style: none;
-      margin-bottom: 1.5rem;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .feature-list li {
-      display: grid;
-      grid-template-columns: 1rem 1fr;
-      gap: 0.55rem;
-      align-items: start;
-    }
-
-    .feature-list li::before {
-      content: "";
-      width: 0.45rem;
-      height: 0.45rem;
-      margin-top: 0.48rem;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
-    .pricing-card:nth-child(1) .feature-list li::before {
-      background: var(--green);
-    }
-
-    .pricing-card:nth-child(3) .feature-list li::before {
-      background: var(--amber);
-    }
-
-    .pricing-card:nth-child(4) .feature-list li::before {
-      background: var(--purple);
-    }
-
-    .pricing-card .btn {
-      width: 100%;
-      margin-top: auto;
-    }
-
-    .pricing-note {
-      max-width: 780px;
-      margin: 2rem auto 0;
-      color: var(--text-muted);
-      text-align: center;
-      font-size: 0.92rem;
-    }
-
-    .cta-section {
-      border-top: 1px solid var(--border);
-      padding: 4rem 0 5rem;
-      text-align: center;
-    }
-
-    .cta-section h2 {
-      font-size: clamp(1.75rem, 4vw, 2.7rem);
-      line-height: 1.12;
-      letter-spacing: 0;
-      margin-bottom: 1rem;
-    }
-
-    .cta-section p {
-      max-width: 640px;
-      margin: 0 auto 1.8rem;
-      color: var(--text-muted);
-      line-height: 1.75;
-    }
-
-    .cta-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.8rem;
-    }
-
-    footer {
-      padding: 2.5rem 2rem;
-      text-align: center;
-      border-top: 1px solid var(--border);
-      color: var(--text-dim);
-      font-size: 0.85rem;
-    }
-
-    footer a {
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    footer a:hover {
-      color: var(--text);
-    }
-
-    @media (max-width: 1080px) {
-      .pricing-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        padding: 0.75rem 1rem;
-      }
-
-      .mobile-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
-        padding: 1rem;
-        background: var(--nav-bg);
-        backdrop-filter: blur(16px);
-        border-bottom: 1px solid var(--border);
-        display: none;
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .nav-links a,
-      .nav-links button {
-        width: 100%;
-        padding: 0.75rem 0;
-      }
-
-      .nav-cta {
-        margin-top: 0.5rem;
-        justify-content: center;
-      }
-
-      .container {
-        padding: 0 1rem;
-      }
-
-      .hero {
-        padding-top: 8rem;
-      }
-
-      .pricing-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .plan-description {
-        min-height: 0;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="../platform-pages.css">
 </head>
 
 <body>
-  <nav id="nav">
-    <a href="../" class="nav-logo">
-      <img src="../favicon.png" alt="Ocean" />
-      Ocean
-    </a>
-    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"
-      aria-label="Toggle navigation">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="3" y1="6" x2="21" y2="6" />
-        <line x1="3" y1="12" x2="21" y2="12" />
-        <line x1="3" y1="18" x2="21" y2="18" />
-      </svg>
-    </button>
-    <div class="nav-links">
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <a href="../index.html" class="brand" aria-label="Ocean home"><img src="../favicon.png" alt=""><span>Ocean</span></a>
+    <div class="nav-links" id="nav-links">
       <a href="../for-developers.html">Developers</a>
       <a href="../for-enterprise.html">Enterprise</a>
       <a href="../pricing/" class="active">Pricing</a>
       <a href="../vision.html">Vision</a>
-      <a href="https://docs.getocean.dev">Documentation</a>
-      <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a>
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle theme">
-        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      <a href="https://docs.getocean.dev" target="_blank" rel="noopener">Documentation</a>
+      <a href="https://github.com/Ocean-AI-Platform/ocean-releases" target="_blank" rel="noopener">GitHub</a>
+    </div>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">
+        <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A8.5 8.5 0 1111.2 3 6.5 6.5 0 0021 12.8z" />
         </svg>
-        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="4" />
-          <path
-            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
         </svg>
       </button>
-      <a href="https://github.com/viveky259259/ocean-releases/releases" target="_blank" rel="noopener"
-        class="btn btn-primary nav-cta">Download</a>
+      <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank" rel="noopener"
+        class="btn btn-primary">Download</a>
+      <button class="nav-menu" id="nav-menu" type="button" aria-label="Open navigation menu" aria-expanded="false"
+        aria-controls="nav-links">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
     </div>
   </nav>
 
   <main>
-    <section class="hero">
+    <section class="hero" data-watermark="PRICING">
       <div class="container">
-        <div class="eyebrow">Pricing</div>
-        <h1>Plans for individuals, teams, and enterprises.</h1>
-        <p>
-          Start with Ocean locally, then add collaboration, shared workflows, and governance as your team grows.
-        </p>
+        <a class="eyebrow" href="#plans"><span class="pulse" aria-hidden="true"></span>Free during beta</a>
+        <h1>Platform pricing for teams adopting coding agents.</h1>
+        <p class="hero-copy">Start with the local Ocean app, then add team controls when agent usage, validation,
+          budget, and audit become shared responsibilities.</p>
+        <div class="hero-actions">
+          <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank" rel="noopener"
+            class="btn btn-primary">Download</a>
+          <a href="../for-enterprise.html" class="btn btn-secondary">Evaluate for teams</a>
+        </div>
       </div>
     </section>
 
-    <section class="pricing-section">
+    <section class="section" id="plans">
       <div class="container">
-        <div class="pricing-grid">
-          <article class="pricing-card">
-            <div class="plan-header">
-              <h2 class="plan-name">Free</h2>
-              <span class="plan-badge">Start</span>
-            </div>
-            <div class="price">
-              <strong>$0</strong>
-              <span>/ month</span>
-            </div>
-            <p class="plan-description">For developers trying Ocean and running agent work locally.</p>
-            <ul class="feature-list">
+        <div class="price-grid">
+          <article class="price-card featured">
+            <span class="section-label">Start</span>
+            <h3>Free</h3>
+            <p>For developers trying Ocean and running agent work locally.</p>
+            <div class="price">$0 <small>/ month</small></div>
+            <ul class="list">
               <li>Local workspaces and sessions</li>
               <li>Agent development workflow</li>
               <li>Spec to pull request basics</li>
             </ul>
-            <a href="https://github.com/viveky259259/ocean-releases/releases" target="_blank" rel="noopener"
-              class="btn btn-secondary">Download</a>
+            <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank" rel="noopener"
+              class="btn btn-primary">Download</a>
           </article>
-
-          <article class="pricing-card featured">
-            <div class="plan-header">
-              <h2 class="plan-name">Pro</h2>
-              <span class="plan-badge">Individual</span>
-            </div>
-            <div class="price">
-              <strong>$15</strong>
-              <span>/ seat / month</span>
-            </div>
-            <p class="plan-description">For individual developers who want a stronger agentic development platform.</p>
-            <ul class="feature-list">
+          <article class="price-card">
+            <span class="section-label">Individual</span>
+            <h3>Pro</h3>
+            <p>For individual developers who want a stronger agentic development platform.</p>
+            <div class="price">$15 <small>/ seat / month</small></div>
+            <ul class="list">
               <li>Everything in Free</li>
               <li>Project knowledge context packs</li>
               <li>Advanced local workflows</li>
             </ul>
-            <a href="https://github.com/viveky259259/ocean-releases/releases" target="_blank" rel="noopener"
-              class="btn btn-primary">Get Pro</a>
+            <a href="../for-developers.html" class="btn btn-secondary">Get Pro</a>
           </article>
-
-          <article class="pricing-card">
-            <div class="plan-header">
-              <h2 class="plan-name">Teams</h2>
-              <span class="plan-badge">Shared</span>
-            </div>
-            <div class="price">
-              <strong>$25</strong>
-              <span>/ seat / month</span>
-            </div>
-            <p class="plan-description">For teams sharing workspaces, artifacts, workflows, and development policies.</p>
-            <ul class="feature-list">
+          <article class="price-card">
+            <span class="section-label">Shared</span>
+            <h3>Teams</h3>
+            <p>For teams sharing workspaces, artifacts, workflows, and development policies.</p>
+            <div class="price">$25 <small>/ seat / month</small></div>
+            <ul class="list">
               <li>Everything in Pro</li>
               <li>Shared workspace collaboration</li>
               <li>Team workflows and policy gates</li>
             </ul>
-            <a href="mailto:vivek.ocean@gmail.com?subject=Ocean%20Teams%20Plan" class="btn btn-secondary">Contact us</a>
+            <a href="../for-enterprise.html" class="btn btn-secondary">Contact us</a>
           </article>
-
-          <article class="pricing-card">
-            <div class="plan-header">
-              <h2 class="plan-name">Enterprise</h2>
-              <span class="plan-badge">Custom</span>
-            </div>
-            <div class="price">
-              <strong>Custom</strong>
-            </div>
-            <p class="plan-description">For organizations that need security, governance, deployment, and support.</p>
-            <ul class="feature-list">
+          <article class="price-card">
+            <span class="section-label">Scale</span>
+            <h3>Enterprise</h3>
+            <p>For organizations that need security, governance, deployment, and support.</p>
+            <div class="price">Custom</div>
+            <ul class="list">
               <li>SSO, RBAC, and audit controls</li>
               <li>Self-hosted and managed options</li>
               <li>SLA, governance, and recovery</li>
             </ul>
-            <a href="mailto:vivek.ocean@gmail.com?subject=Ocean%20Enterprise%20Plan" class="btn btn-secondary">Talk to
-              sales</a>
+            <a href="../for-enterprise.html" class="btn btn-secondary">Talk to sales</a>
           </article>
         </div>
-
-        <p class="pricing-note">
+        <p style="max-width:760px;margin:22px auto 0;color:var(--text-muted);text-align:center;font-size:14px;">
           Paid plans are priced per seat per month. Enterprise pricing is custom based on deployment, support, and
           governance needs.
         </p>
       </div>
     </section>
 
-    <section class="cta-section">
+    <section class="cta">
       <div class="container">
-        <h2>Build locally first. Bring the team when it matters.</h2>
-        <p>
-          Ocean is designed to make agentic development more reliable: specs, workflows, project knowledge, review, and
-          pull requests in one platform.
-        </p>
-        <div class="cta-actions">
-          <a href="https://github.com/viveky259259/ocean-releases/releases" target="_blank" rel="noopener"
-            class="btn btn-primary">Download Ocean</a>
-          <a href="mailto:vivek.ocean@gmail.com?subject=Ocean%20Pricing" class="btn btn-secondary">Contact us</a>
+        <div class="cta-inner">
+          <h2>Build locally first. Bring the team when it matters.</h2>
+          <p>Ocean starts as the platform for your own agent workflow and scales toward shared trust controls.</p>
+          <div class="hero-actions">
+            <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank" rel="noopener"
+              class="btn btn-primary">Download</a>
+            <a href="../index.html" class="btn btn-secondary">Back to platform</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>
-      Ocean &mdash; The Native Platform for AI Agents &middot;
-      <a href="../">Home</a> &middot;
-      <a href="../for-developers.html">Developers</a> &middot;
-      <a href="../for-enterprise.html">Enterprise</a> &middot;
-      <a href="../pricing/">Pricing</a> &middot;
-      <a href="../vision.html">Vision</a> &middot;
-      <a href="https://articles.getocean.dev">Articles</a> &middot;
-      <a href="https://docs.getocean.dev" target="_blank" rel="noopener">Documentation</a> &middot;
-      <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a> &middot;
-      <a href="https://github.com/viveky259259/ocean-releases/releases" target="_blank" rel="noopener">Releases</a>
-    </p>
+    Ocean - Agentic Development Platform &middot; <a href="../index.html">Platform</a> &middot;
+    <a href="../for-developers.html">Developers</a> &middot; <a href="../for-enterprise.html">Teams</a>
   </footer>
 
-  <script>
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-      const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('ocean-theme', next);
-    });
-
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
-  </script>
+  <script src="../platform-pages.js"></script>
 </body>
 
 </html>
