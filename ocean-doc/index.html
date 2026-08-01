@@ -4,21 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ocean Docs — The Native Platform for AI Agents</title>
+  <title>Ocean Docs - Trust Layer for Coding Agents</title>
   <meta name="description"
-    content="Documentation for Ocean, the native platform for AI agents. Build, test, and deploy with agentic workflows.">
+    content="Documentation for Ocean, the platform and trust layer for teams using Claude, Codex, Cursor, Gemini, and other coding agents.">
   <meta property="og:url" content="https://docs.getocean.dev">
-  <meta property="og:title" content="Ocean Docs — The Native Platform for AI Agents">
+  <meta property="og:title" content="Ocean Docs - Trust Layer for Coding Agents">
   <meta property="og:description"
-    content="Detailed documentation for Ocean terminal features, shortcuts, and multi-agent workflows.">
+    content="Learn Ocean workspaces, isolated sessions, validation, merge controls, spend tracking, plugins, and team relay.">
   <meta property="og:image" content="https://getocean.dev/home.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://docs.getocean.dev">
-  <meta name="twitter:title" content="Ocean Docs — The Native Platform for AI Agents">
+  <meta name="twitter:title" content="Ocean Docs - Trust Layer for Coding Agents">
   <meta name="twitter:description"
-    content="Detailed documentation for Ocean terminal features, shortcuts, and multi-agent workflows.">
+    content="Learn Ocean workspaces, isolated sessions, validation, merge controls, spend tracking, plugins, and team relay.">
   <meta name="twitter:image" content="https://getocean.dev/home.png">
 
   <!-- Canonical -->
@@ -51,6 +51,9 @@
     </div>
     <div class="nav-links" id="navLinks">
       <a href="https://getocean.dev">Home</a>
+      <a href="https://getocean.dev/for-developers.html">Developers</a>
+      <a href="https://getocean.dev/for-enterprise.html">Enterprise</a>
+      <a href="https://getocean.dev/pricing/">Pricing</a>
       <a href="index.html" class="active">Docs</a>
       <a href="articles.html">Articles</a>
       <a href="https://github.com/Ocean-AI-Platform/ocean-releases" target="_blank" rel="noopener">GitHub</a>
@@ -72,6 +75,7 @@
       <a href="#sessions">Sessions</a>
       <a href="#split-panes">Split Panes</a>
       <a href="#workspaces">Workspaces</a>
+      <a href="#projects">Projects</a>
       <a href="#keyboard-shortcuts">Keyboard Shortcuts</a>
       <a href="#command-palette">Command Palette</a>
       <a href="#terminal-history">Terminal History</a>
@@ -81,12 +85,17 @@
       <div class="sidebar-section-title">AI & Git</div>
       <a href="#ai-agent-detection">AI Agent Detection</a>
       <a href="#git-visualizer">Git Visualizer</a>
+      <a href="#pull-request-runtime">Pull Request Runtime</a>
       <a href="#conflict-resolution">Conflict Resolution</a>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-section-title">Tools</div>
       <a href="#port-forwarding">Port Forwarding</a>
+      <a href="#file-workflows">File Workflows</a>
       <a href="#agent-notifications">Agent Notifications</a>
+      <a href="#usage-quota">Usage Quota</a>
+      <a href="#plugins">Plugins</a>
+      <a href="#team-relay">Team Relay</a>
       <a href="#settings">Settings</a>
       <a href="#configuration">Configuration</a>
     </div>
@@ -109,18 +118,20 @@
       <section class="intro-hero" id="ocean-documentation">
         <img src="favicon.png" alt="Ocean Logo" class="hero-logo-img">
         <h1>Ocean Documentation</h1>
-        <p><strong>Ocean</strong> is a high-performance terminal reimagined for the AI era. It provides a safe, isolated
-          environment where AI agents can work autonomously without risking your project's stability.</p>
+        <p><strong>Ocean</strong> is the platform and trust layer for coding agents. It gives teams using Claude,
+          Codex, Cursor, Gemini, and other agents isolated workspaces, validation evidence, spend control, PR status,
+          and safe merge paths before code reaches production.</p>
         <div class="hero-actions">
-          <a href="https://forms.gle/4RQFThD8KF6Vu1Su6" class="waitlist-cta" target="_blank" rel="noopener">
-            Join the Waitlist
+          <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" class="waitlist-cta" target="_blank"
+            rel="noopener">
+            Download for macOS
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round" />
             </svg>
           </a>
         </div>
-        <p class="beta-note">Ocean is currently in private beta for macOS (Apple Silicon).</p>
+        <p class="beta-note">Ocean is available for macOS on Apple Silicon. Download the current release from GitHub.</p>
       </section>
 
       <!-- Core Concepts -->
@@ -128,16 +139,50 @@
         <h2>Core Concepts</h2>
         <div class="concepts-grid">
           <div class="concept-card">
-            <div class="concept-icon">SC</div>
-            <h3>Safe Exploration (COW)</h3>
-            <p>Ocean uses Copy-On-Write isolation. Every session starts in a protected clone, allowing agents to
-              experiment without risking your main branch until you decide to merge.</p>
+            <div class="concept-icon">ISO</div>
+            <h3>Isolated Agent Workspaces</h3>
+            <p>Every agent session runs in its own copy-on-write workspace, so risky refactors and experiments stay
+              separate until a human reviews and merges them.</p>
           </div>
           <div class="concept-card">
-            <div class="concept-icon">AA</div>
-            <h3>Agent Awareness</h3>
-            <p>Ocean monitors AI agents in real-time. It tracks which files they touch, when they need input, and
-              ensures their work is isolated from other active sessions.</p>
+            <div class="concept-icon">CTL</div>
+            <h3>Control Plane</h3>
+            <p>Ocean tracks agent state, files touched, PR readiness, review status, CI checks, local ports,
+              notifications, and spend so teams can govern agentic development from one platform.</p>
+          </div>
+          <div class="concept-card">
+            <div class="concept-icon">VAL</div>
+            <h3>Validation Before Merge</h3>
+            <p>Use the merge panel, git visualizer, PR runtime, command history, and status surfaces to decide which
+              agent work is safe to promote.</p>
+          </div>
+          <div class="concept-card">
+            <div class="concept-icon">AUD</div>
+            <h3>Local Audit Trail</h3>
+            <p>Sessions, command history, workspace state, usage quota data, and project organization are persisted
+              locally so developers can inspect what happened without sending terminal content to Ocean.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="platform-summary">
+        <h2>Platform Map</h2>
+        <div class="summary-grid">
+          <div>
+            <span class="summary-label">Workspaces</span>
+            <p>Repo-aware environments with isolated sessions, split panes, projects, and local state.</p>
+          </div>
+          <div>
+            <span class="summary-label">Agents</span>
+            <p>Detection and status tracking for Claude, Codex, Cursor, Gemini, Aider, Copilot, Cody, and Devin.</p>
+          </div>
+          <div>
+            <span class="summary-label">Validation</span>
+            <p>Git visualizer, PR polling, review decisions, CI checks, conflict detection, and AI-assisted merge.</p>
+          </div>
+          <div>
+            <span class="summary-label">Governance</span>
+            <p>Usage quota notifications, plugin permissions, team relay auth, local privacy boundaries, and audit data.</p>
           </div>
         </div>
       </section>
@@ -171,7 +216,9 @@
 
       <!-- Getting Started -->
       <h2 id="getting-started">Getting Started</h2>
-      <p>When Ocean launches, you'll see a single terminal session in the <strong>Default</strong> workspace.</p>
+      <p>When Ocean launches, you'll see a single session in the <strong>Default</strong> workspace. From there you can
+        create isolated agent sessions, connect a repository, organize work into projects, and monitor status from the
+        sidebar and top status bar.</p>
 
       <h3>The Interface</h3>
       <pre><code>&#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
@@ -190,7 +237,7 @@
 
       <ul>
         <li><strong>Sidebar</strong> (left): Workspaces and sessions</li>
-        <li><strong>Terminal area</strong> (center): Active terminal panes</li>
+        <li><strong>Terminal area</strong> (center): Active shell and agent panes</li>
         <li><strong>Status bar</strong> (top): System metrics, network, git info</li>
         <li><strong>Connector bar</strong> (bottom): Detected dev tools</li>
       </ul>
@@ -306,10 +353,13 @@
 
       <!-- Workspaces -->
       <h2 id="workspaces">Workspaces</h2>
-      <p>Workspaces group sessions under a project.</p>
+      <p>Workspaces group sessions around a project or repository. Repo workspaces are the main unit for isolated agent
+        development, git tracking, merge review, and PR shipping.</p>
       <ul>
         <li><strong>WS</strong> button: Create a blank workspace</li>
         <li><strong>Repo</strong> button: Create a workspace linked to a git repository</li>
+        <li><strong>Copy Workspace Path</strong>: Right-click the workspace header to copy the Ocean workspace directory
+          at <code>~/.ocean/workspaces/{id}</code></li>
       </ul>
 
       <h3>Repo Workspaces</h3>
@@ -319,6 +369,42 @@
         <li>Staged, modified, and untracked file counts</li>
         <li>Ship to PR capability (<kbd>Cmd+Shift+S</kbd>)</li>
       </ul>
+
+      <hr>
+
+      <!-- Projects -->
+      <h2 id="projects">Projects</h2>
+      <p>Projects organize related workspaces in the sidebar. They are local to your machine and are not synced through
+        team relay.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>How</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Create project</td>
+              <td>Click the folder button in the sidebar header</td>
+            </tr>
+            <tr>
+              <td>Move workspace</td>
+              <td>Right-click a workspace and choose <strong>Move to Project...</strong></td>
+            </tr>
+            <tr>
+              <td>Manage project</td>
+              <td>Right-click the project header to rename, change color, create a workspace, or archive</td>
+            </tr>
+            <tr>
+              <td>Collapse state</td>
+              <td>Saved locally and restored after reload</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <hr>
 
@@ -546,6 +632,45 @@
 
       <hr>
 
+      <!-- Pull Request Runtime -->
+      <h2 id="pull-request-runtime">Pull Request Runtime</h2>
+      <p>Ocean tracks pull request status for repo workspaces in the background using your existing <code>gh</code> CLI
+        authentication. It refreshes branch and PR state on a 30 second interval.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Signal</th>
+              <th>Where it appears</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PR state</td>
+              <td>Status bar detail panel and workspace PR snapshot</td>
+            </tr>
+            <tr>
+              <td>Review decision</td>
+              <td>Approved, changes requested, pending, or none</td>
+            </tr>
+            <tr>
+              <td>CI checks</td>
+              <td>Aggregated success, failure, pending, or none, with individual check runs</td>
+            </tr>
+            <tr>
+              <td>Branch sync</td>
+              <td>Local branch and head SHA are watched while the workspace is tracked</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Useful commands include <code>track_workspace_pr</code>, <code>refresh_workspace_pr</code>, and
+        <code>get_workspace_pr_status</code>. The frontend receives <code>pr-status-update</code> events.</p>
+
+      <hr>
+
       <!-- Conflict Resolution -->
       <h2 id="conflict-resolution">Conflict Resolution</h2>
       <p>When multiple sessions edit the same files, Ocean detects and resolves conflicts automatically.</p>
@@ -673,6 +798,43 @@
 
       <hr>
 
+      <!-- File Workflows -->
+      <h2 id="file-workflows">File Workflows</h2>
+      <p>Ocean has native path workflows for feeding files into agents without manually typing long paths.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Workflow</th>
+              <th>How it works</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>File drop</td>
+              <td>Drag files onto the focused terminal pane to paste shell-escaped paths. Ocean shows a dashed overlay
+                while dragging.</td>
+            </tr>
+            <tr>
+              <td>File picker</td>
+              <td>Press <kbd>Cmd+Option+F</kbd> or use the command palette action <strong>Pick File to Paste
+                  Path</strong>. Multi-select is supported.</td>
+            </tr>
+            <tr>
+              <td>Workspace path</td>
+              <td>Right-click the workspace header and choose <strong>Copy Workspace Path</strong>.</td>
+            </tr>
+            <tr>
+              <td>Env vars popover</td>
+              <td>Edit per-workspace environment variables in structured key/value rows from a floating panel.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr>
+
       <!-- Agent Notifications -->
       <h2 id="agent-notifications">Agent Notifications</h2>
       <p>Ocean monitors AI agents running in your sessions and notifies you when they need input:</p>
@@ -680,6 +842,70 @@
         <li>Pane header turns <strong style="color:#eab308;">yellow</strong> after 30 seconds of agent waiting</li>
         <li>Desktop notification if the window is not focused</li>
         <li>View all agent states in the <strong>Agent Dashboard</strong> (<kbd>Cmd+Shift+J</kbd>)</li>
+      </ul>
+
+      <hr>
+
+      <!-- Usage Quota -->
+      <h2 id="usage-quota">Usage Quota</h2>
+      <p>Usage quota tracks cumulative estimated Codex spend across sessions and helps teams avoid surprise AI costs.</p>
+      <ul>
+        <li>Configure warning and error thresholds in <strong>Settings &gt; General &gt; Usage Quota</strong></li>
+        <li>See the quota bar in the status bar</li>
+        <li>Receive notifications when spend crosses configured thresholds</li>
+        <li>Quota state is stored locally under <code>ocean:usage-quota</code></li>
+      </ul>
+
+      <hr>
+
+      <!-- Plugins -->
+      <h2 id="plugins">Plugins</h2>
+      <p>Ocean supports a three-tier plugin system: MCP servers, WASM sandbox plugins, and native Rust plugins.
+        Installed plugins live under <code>~/.ocean/plugins/</code> and declare an <code>ocean-plugin.toml</code>
+        manifest.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Surface</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Plugin Manager</td>
+              <td>Open with <kbd>Cmd+Shift+X</kbd> to install, activate, and configure plugins</td>
+            </tr>
+            <tr>
+              <td>Status bar indicators</td>
+              <td>Plugins can contribute real-time signals to the status bar</td>
+            </tr>
+            <tr>
+              <td>Sidebar panels</td>
+              <td>Plugins can add panels below the workspace list</td>
+            </tr>
+            <tr>
+              <td>Permissions</td>
+              <td>The plugin host manages lifecycle, MCP connections, config, and permissions</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr>
+
+      <!-- Team Relay -->
+      <h2 id="team-relay">Team Relay</h2>
+      <p>Team relay is an optional collaboration backend. Ocean works standalone by default; connect relay only when a
+        team wants shared workspace capabilities or a self-hosted sync endpoint.</p>
+
+      <ul>
+        <li>Configure relay in <strong>Settings &gt; Team</strong></li>
+        <li>The server URL is configuration, not a secret, and can be overridden for self-hosted deployments</li>
+        <li>JWT and refresh tokens are read from macOS Keychain only when the Team tab restores a session</li>
+        <li><code>relay_login</code>, <code>relay_register</code>, <code>relay_logout</code>, and
+          <code>relay_restore_session</code> handle auth from the app</li>
       </ul>
 
       <hr>
@@ -713,6 +939,16 @@
               <td>Show Claude Code indicator at top of app</td>
               <td>Off</td>
             </tr>
+            <tr>
+              <td>Usage Quota</td>
+              <td>Warning and error thresholds for estimated agent spend</td>
+              <td>Configurable</td>
+            </tr>
+            <tr>
+              <td>Team Relay</td>
+              <td>Login, register, logout, restore session, and server URL override</td>
+              <td>Disconnected</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -721,7 +957,8 @@
 
       <!-- Configuration -->
       <h2 id="configuration">Configuration</h2>
-      <p>Ocean can be configured via environment variables or the built-in settings panel.</p>
+      <p>Ocean can be configured via environment variables, per-workspace env vars, localStorage settings, plugins, or
+        the built-in settings panel.</p>
 
       <h3>Environment Variables</h3>
       <div class="table-wrap">
@@ -740,6 +977,10 @@
             <tr>
               <td><code>OCEAN_LOG_LEVEL</code></td>
               <td>Sets the verbosity of terminal and agent logs (debug, info, warn, error).</td>
+            </tr>
+            <tr>
+              <td><code>.ocean.env</code></td>
+              <td>Per-workspace environment file loaded into every session in that workspace.</td>
             </tr>
           </tbody>
         </table>
@@ -762,8 +1003,8 @@
       <h2 id="use-cases">Use Cases</h2>
 
       <h3>Multi-Agent Development</h3>
-      <p>Run Claude Code in one pane, Aider in another, and a manual shell in a third. Ocean tracks each agent with
-        status badges.</p>
+      <p>Run Claude Code in one pane, Codex in another, Cursor or Gemini in another, and a manual shell in a fourth.
+        Ocean tracks each agent with status badges and keeps their work isolated.</p>
 
       <pre><code>&#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x252C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
 &#x2502; &#x25CF; Claude Code  &#x2502; &#x25CF; Aider        &#x2502;
@@ -790,6 +1031,7 @@
         <li>Split panes for code + tests</li>
         <li>Monitor git status in pane headers</li>
         <li>Review changes in Git Visualizer (<kbd>Cmd+Shift+V</kbd>)</li>
+        <li>Check review and CI state in the PR status detail panel</li>
         <li>Ship to PR (<kbd>Cmd+Shift+S</kbd>)</li>
       </ol>
 
@@ -815,8 +1057,18 @@
           </div>
           <div class="concept-card">
             <h3>Custom Environments</h3>
-            <p>Define per-workspace environment variables in a <code>.ocean.env</code> file. These are automatically
-              loaded into every session within that workspace.</p>
+            <p>Use the env vars popover or define variables in a <code>.ocean.env</code> file. Values are loaded into
+              every session within that workspace.</p>
+          </div>
+          <div class="concept-card">
+            <h3>Shortcut Feedback</h3>
+            <p>When a shortcut cannot execute, Ocean shows a notification explaining why, such as needing two or more
+              sessions before merge can run.</p>
+          </div>
+          <div class="concept-card">
+            <h3>Git Index Repair</h3>
+            <p>If Ocean detects a corrupt <code>.git/index</code>, it shows a dialog with a fix action and can repair
+              the index before commit.</p>
           </div>
         </div>
       </section>
@@ -847,6 +1099,21 @@
               <td>Never</td>
             </tr>
             <tr>
+              <td>Projects</td>
+              <td>Local on your machine</td>
+              <td>Not synced via relay</td>
+            </tr>
+            <tr>
+              <td>Usage quota</td>
+              <td>LocalStorage under <code>ocean:usage-quota</code></td>
+              <td>Never</td>
+            </tr>
+            <tr>
+              <td>Relay tokens</td>
+              <td>macOS Keychain, restored lazily from Settings &gt; Team</td>
+              <td>Only to the configured relay server</td>
+            </tr>
+            <tr>
               <td>Terminal content</td>
               <td>Never collected</td>
               <td>Never</td>
@@ -860,7 +1127,8 @@
         </table>
       </div>
 
-      <p>Ocean runs entirely on your machine. No terminal content or commands leave your device.</p>
+      <p>Ocean runs standalone on your machine. No terminal content or commands leave your device unless you explicitly
+        configure a team relay or plugin that performs network requests.</p>
 
       <hr>
 
@@ -880,6 +1148,14 @@
       <p><strong>Shortcut not working</strong></p>
       <p>Open <kbd>Cmd+Shift+P</kbd> and search for the action. Some shortcuts may conflict with macOS system shortcuts.
       </p>
+
+      <p><strong>PR status is not updating</strong></p>
+      <p>Confirm the workspace is linked to a GitHub repo, the branch has a pull request, and <code>gh</code> is
+        authenticated in your shell.</p>
+
+      <p><strong>Team login restores the wrong server</strong></p>
+      <p>Open <strong>Settings &gt; Team</strong>, confirm the server URL, then restore the session. Ocean syncs the
+        configured URL before reading tokens from Keychain.</p>
 
       <hr>
 
@@ -914,7 +1190,7 @@
           <a href="https://docs.getocean.dev">docs.getocean.dev</a> &nbsp;&middot;&nbsp;
           <a href="https://github.com/Ocean-AI-Platform/ocean-releases">GitHub</a>
           &nbsp;&middot;&nbsp;
-          <a href="https://forms.gle/4RQFThD8KF6Vu1Su6" target="_blank" rel="noopener">Join the Waitlist</a>
+          <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank" rel="noopener">Download</a>
         </p>
       </footer>
 

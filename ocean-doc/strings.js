@@ -5,9 +5,9 @@ const AppStrings = {
   navGitHub: "GitHub",
 
   heroTitle: "Ocean Documentation",
-  heroSubtitle: "Ocean — The Native Platform for AI Agents",
-  heroWaitlistCta: "Join the Waitlist",
-  heroBetaNote: "Ocean is in private beta for macOS (Apple Silicon).",
+  heroSubtitle: "Ocean - Trust Layer for Coding Agents",
+  heroWaitlistCta: "Download for macOS",
+  heroBetaNote: "Ocean is available for macOS on Apple Silicon.",
 
   copyText: "Copy",
   copiedText: "Copied!",
@@ -19,10 +19,10 @@ const AppStrings = {
   sidebarResources: "Resources",
 
   conceptTitle: "Core Concepts",
-  conceptCowTitle: "Safe Exploration (COW)",
-  conceptCowDesc: "Ocean uses Copy-On-Write isolation. Every session starts in a protected clone, allowing agents to experiment without risking your main branch until you decide to merge.",
-  conceptAgentTitle: "Agent Awareness",
-  conceptAgentDesc: "Ocean monitors AI agents in real-time. It tracks which files they touch, when they need input, and ensures their work is isolated from other active sessions.",
+  conceptCowTitle: "Isolated Agent Workspaces",
+  conceptCowDesc: "Every agent session runs in a protected copy-on-write workspace, letting agents explore without risking your main branch until you review and merge.",
+  conceptAgentTitle: "Control Plane",
+  conceptAgentDesc: "Ocean tracks agent state, file activity, PR readiness, CI checks, spend, and team controls from one platform.",
 
   configTitle: "Configuration",
   configEnvTitle: "Environment Variables",
@@ -35,6 +35,8 @@ const AppStrings = {
   tipEnvTitle: "Custom Environments",
   tipEnvDesc: "Define per-workspace environment variables in a .ocean.env file. These are automatically loaded into every session within that workspace.",
 
+  release0_3_1: "Signed and notarized maintenance release with refreshed packaged Mastra sidecar integrity data",
+  release0_2_0: "Codex and Claude chat providers, reliable Codex generation, Claude Agent SDK packaging, installed-app QA",
   release0_15_0: "Persistent sessions, production Mastra evals, configured AI providers, release hardening",
   release0_13_2: "Key verification before build, fundraising memo, restoration of dev identifiers",
   release0_13_1: "Parallel Claudes: batch spawn, broadcast, N-way diff, promote winner, infra hardening",
@@ -47,10 +49,10 @@ const AppStrings = {
   // Articles Strings
   articlesTitle: "Deep Dives &",
   articlesSubtitle: "Release Notes",
-  articlesDesc: "Technical guides, architecture walkthroughs, and release notes for Ocean — The Native Platform for AI Agents.",
+  articlesDesc: "Technical guides, architecture walkthroughs, and release notes for Ocean - the trust layer for coding agents.",
   sectionLatestRelease: "Latest Release",
   sectionGuidesByAudience: "Guides by Audience",
-  footerText: "Ocean — The Native Platform for AI Agents",
+  footerText: "Ocean - Trust Layer for Coding Agents",
 };
 
 const AppArticles = [
@@ -67,6 +69,22 @@ const AppArticles = [
     title: "Don't Ship What You Can't Measure",
     desc: "Gate agentic workflows on Mastra-backed evals: score an agent's output and fail the run unless it clears a bar — with a worked faithfulness example.",
     date: "Featured",
+  },
+  {
+    id: "ocean-v0-3-1-release",
+    tag: "Release Notes",
+    title: "What's New in Ocean v0.3.1",
+    version: "0.3.1",
+    desc: "Signed and notarized maintenance release with refreshed packaged Mastra sidecar integrity data.",
+    date: "August 1, 2026",
+  },
+  {
+    id: "ocean-v0-2-0-release",
+    tag: "Release Notes",
+    title: "What's New in Ocean v0.2.0",
+    version: "0.2.0",
+    desc: "Codex and Claude chat providers, reliable Codex code generation, packaged Claude Agent SDK, and installed-app QA journeys.",
+    date: "July 28, 2026",
   },
   {
     id: "ocean-v0-15-0-release",
