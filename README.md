@@ -20,7 +20,7 @@ Ocean is a desktop terminal built for developers working with AI coding agents. 
 
 ## Download
 
-Latest release: **v0.15.0** (July 3, 2026).
+Latest release: **v0.3.1** (August 1, 2026).
 
 Download the latest release from the [Releases page](https://github.com/Ocean-AI-Platform/ocean-releases/releases).
 

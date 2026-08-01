@@ -309,6 +309,7 @@ Understand Ocean from the perspective that matters to you:
 
 | Article | For | What You'll Learn |
 |---------|-----|-------------------|
+| [What's New in v0.3.1](articles/ocean-v0-3-1-release.md) | Everyone | Signed and notarized maintenance release with refreshed packaged sidecar integrity data |
 | [What's New in v0.15.0](articles/ocean-v0-15-0-release.md) | Everyone | Persistent sessions, production Mastra evals, configured AI providers |
 | [What's New in v0.13.2](articles/ocean-v0-13-2-release.md) | Everyone | Key verification before build, fundraising memo, restoration of dev identifiers |
 | [What's New in v0.13.1](articles/ocean-v0-13-1-release.md) | Everyone | Parallel Claudes: batch spawn, broadcast, N-way diff, promote winner |
@@ -408,6 +409,7 @@ Get the latest version from the [Releases page](https://github.com/Ocean-AI-Plat
 
 | Version | Date | Highlights |
 |---------|------|------------|
+| v0.3.1 | 2026-08-01 | Signed and notarized maintenance release; refreshed packaged Mastra sidecar integrity data |
 | v0.15.0 | 2026-07-03 | Persistent sessions, production Mastra evals, configured AI providers, release hardening |
 | v0.13.2 | 2026-04-27 | Key verification before build, fundraising memo, restoration of dev identifiers |
 | v0.13.1 | 2026-04-25 | Parallel Claudes: batch spawn, broadcast, N-way diff, promote winner |
