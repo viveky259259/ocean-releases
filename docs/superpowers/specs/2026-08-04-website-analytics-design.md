@@ -2,11 +2,13 @@
 
 ## Goal
 
-Measure anonymous acquisition, visits, content engagement, and conversion activity across `getocean.dev` and `docs.getocean.dev` using the existing Firebase project, `getoceanplatform`.
+Measure anonymous acquisition, visits, content engagement, and conversion activity across `getocean.dev` and `docs.getocean.dev` using the existing Firebase project, `getoceanplatform`. Make pricing available directly on the marketing homepage as well as the standalone pricing URL.
 
 ## Scope
 
 Both static sites will report to one GA4 property through Firebase Analytics. Analytics loads when a page loads; there is no analytics consent prompt. Events must not contain email addresses, names, form-field values, or other personally identifiable information.
+
+The marketing homepage will include the existing four pricing plans (Free, Pro, Teams, and Enterprise) in a responsive pricing section. Its navigation and footer links target that section; the standalone pricing page remains available for direct links and search indexing.
 
 ## Design
 

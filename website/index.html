@@ -1557,6 +1557,86 @@
       letter-spacing: 0.06em;
     }
 
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .pricing-card {
+      display: flex;
+      min-height: 410px;
+      flex-direction: column;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(180, 217, 255, 0.04);
+    }
+
+    [data-theme="light"] .pricing-card {
+      background: rgba(10, 16, 24, 0.03);
+    }
+
+    .pricing-card.featured {
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow);
+    }
+
+    .pricing-card .section-label {
+      margin-bottom: 16px;
+    }
+
+    .pricing-card h3 {
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .pricing-card > p {
+      margin-top: 12px;
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .price {
+      margin-top: 20px;
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .price small {
+      color: var(--text-dim);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .pricing-list {
+      display: grid;
+      gap: 10px;
+      margin: 22px 0;
+      padding: 0;
+      list-style: none;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .pricing-list li {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+    }
+
+    .pricing-list li::before {
+      content: "•";
+      color: var(--cyan);
+      font-weight: 900;
+    }
+
+    .pricing-card .btn {
+      margin-top: auto;
+    }
+
     .start-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1874,6 +1954,7 @@
       .step-grid,
       .proof-panel,
       .persona-grid,
+      .pricing-grid,
       .start-grid,
       .pipeline-body {
         grid-template-columns: 1fr;
@@ -1985,6 +2066,8 @@
       }
     }
   </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-04ECN7XEVS"></script>
+  <script src="/analytics.js" defer></script>
 </head>
 
 <body>
@@ -1997,7 +2080,7 @@
     <div class="nav-links" id="nav-links">
       <a href="for-developers.html">Developers</a>
       <a href="for-enterprise.html">Enterprise</a>
-      <a href="pricing/">Pricing</a>
+      <a href="#pricing">Pricing</a>
       <a href="vision.html">Vision</a>
       <a href="careers.html">Careers</a>
       <a href="https://docs.getocean.dev" target="_blank" rel="noopener">Documentation</a>
@@ -2386,6 +2469,67 @@
       </div>
     </section>
 
+    <section class="section" id="pricing">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-label">Pricing</span>
+          <h2>Start locally. Scale into shared controls when the team needs them.</h2>
+          <p>Ocean is free during beta. Choose the level of shared workflows, governance, and support that fits your team.</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="pricing-card featured reveal">
+            <span class="section-label">Start</span>
+            <h3>Free</h3>
+            <p>For developers trying Ocean and running agent work locally.</p>
+            <div class="price">$0 <small>/ month</small></div>
+            <ul class="pricing-list">
+              <li>Local workspaces and sessions</li>
+              <li>Agent development workflow</li>
+              <li>Spec-to-pull-request basics</li>
+            </ul>
+            <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank" rel="noopener"
+              class="btn btn-primary">Download</a>
+          </article>
+          <article class="pricing-card reveal">
+            <span class="section-label">Individual</span>
+            <h3>Pro</h3>
+            <p>For individual developers who want a stronger agentic development platform.</p>
+            <div class="price">$15 <small>/ seat / month</small></div>
+            <ul class="pricing-list">
+              <li>Everything in Free</li>
+              <li>Project knowledge context packs</li>
+              <li>Advanced local workflows</li>
+            </ul>
+            <a href="for-developers.html" class="btn btn-secondary">Get Pro</a>
+          </article>
+          <article class="pricing-card reveal">
+            <span class="section-label">Shared</span>
+            <h3>Teams</h3>
+            <p>For teams sharing workspaces, artifacts, workflows, and development policies.</p>
+            <div class="price">$25 <small>/ seat / month</small></div>
+            <ul class="pricing-list">
+              <li>Everything in Pro</li>
+              <li>Shared workspace collaboration</li>
+              <li>Team workflows and policy gates</li>
+            </ul>
+            <a href="for-enterprise.html" class="btn btn-secondary">Contact us</a>
+          </article>
+          <article class="pricing-card reveal">
+            <span class="section-label">Scale</span>
+            <h3>Enterprise</h3>
+            <p>For organizations that need security, governance, deployment, and support.</p>
+            <div class="price">Custom</div>
+            <ul class="pricing-list">
+              <li>SSO, RBAC, and audit controls</li>
+              <li>Self-hosted and managed options</li>
+              <li>SLA, governance, and recovery</li>
+            </ul>
+            <a href="for-enterprise.html" class="btn btn-secondary">Talk to sales</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="start">
       <div class="container">
         <div class="section-head reveal">
@@ -2429,7 +2573,7 @@
     Ocean - Agentic Development Platform &middot;
     <a href="for-developers.html">Developers</a> &middot;
     <a href="for-enterprise.html">Enterprise</a> &middot;
-    <a href="pricing/">Pricing</a> &middot;
+    <a href="#pricing">Pricing</a> &middot;
     <a href="vision.html">Vision</a> &middot;
     <a href="careers.html">Careers</a> &middot;
     <a href="https://articles.getocean.dev">Articles</a> &middot;
