@@ -43,6 +43,7 @@ You don't need to learn git to use Ocean. You need to learn Ocean.
 - **Workspaces.** Your landing page, your backend, and your marketing site live in separate workspaces — each with its own agents, its own budget, its own settings. Switching projects takes one click, not ten.
 - **Git visualizer.** You don't have to *think* in branches and commits. Ocean shows you a picture of your project's history and lets you point at what you want to ship.
 - **Real-time conflict detection.** If two agents do touch the same file, Ocean tells you *as it happens*, not after you've spent two hours going the wrong direction.
+- **Software-review.** Not sure if the code is good? One click triggers a comprehensive audit via the Software-review skill.
 - **Ship to PR.** You don't have to understand git. Ocean translates "I'm done with this feature" into a clean pull request automatically.
 - **Command palette (`Cmd+Shift+P`).** One keystroke, type what you want — "open landing page", "stop agent", "ship to PR". No menu hunting, no cheat sheets.
 - **Budget controls.** Set a token budget per project. Ocean warns you at 50%, 75%, 100%. You don't wake up to a surprise bill.
@@ -64,7 +65,7 @@ Ocean is free during the beta. **If you join during the beta, you keep Ocean Pla
 
 ## Get it
 
-- Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/viveky259259/ocean-releases/releases)
-- Docs: [viveky259259.github.io/ocean-releases](https://viveky259259.github.io/ocean-releases)
+- Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/Ocean-AI-Platform/ocean-releases/releases)
+- Docs: [docs.getocean.dev](https://docs.getocean.dev)
 
 macOS today (Apple Silicon and Intel). Windows and Linux are coming soon.

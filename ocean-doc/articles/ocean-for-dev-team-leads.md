@@ -38,8 +38,8 @@ Ocean replaces "everyone's custom setup" with one app that every developer can u
 - **Session DAG.** Every session your team runs — per dev, per agent, per experiment — is a node in a shared graph (`Cmd+Shift+G`). When a dev asks "how do I split this branch of work?" or "can I roll this experiment back?", the answer is a visible, navigable structure instead of a `git reflog` archaeology dig.
 - **Copy-on-write session isolation.** Every agent gets an APFS clone of the repo. No git worktrees, no duplicated `node_modules`, no "is the server still running on port 3000?" Sessions cost kilobytes and spawn in milliseconds.
 - **Agent detection for 8+ agents.** Claude Code, Cursor, Aider, Codex, Copilot, Cody, Gemini, Devin. Badges, lifecycle state, waiting notifications, per-agent token/cost tracking.
-- **Real-time conflict detection and 3-way merge.** When two sessions modify the same file, your dev knows immediately. Hunk-level resolution. One-click AI merge for tricky ones.
-- **File locks and merge queue.** Declare "this file is mine while I'm on this session"; queue merges so two devs don't race into main. Coordination for your team's actual race conditions, not just their filesystem ones.
+- **Parallel Claudes.** Batch spawn agents, broadcast commands, and use N-way diff to promote the best implementation — perfect for complex refactors.
+- **Software-review skill.** Trigger comprehensive codebase audits directly from the terminal to ensure quality before shipping.
 - **Ship to PR workflow.** Merge N sessions → generate commits → push branch → open PR. Keyboard-driven. Consistent across the team.
 - **Workflow engine.** TOML-defined multi-step agent pipelines with event triggers (`git.push`, `pr.opened`, `schedule.daily`) and a visual DAG editor. Encode your team's release rituals — "on `pr.opened`, run tests, summarize the diff, assign reviewers" — as executable workflows your whole team inherits.
 - **Three-tier plugin system.** MCP servers, WASM modules, and native Rust plugins. Ship internal tools to your team today — a shared marketplace is the V1.x addition, not the plugin runtime itself.
@@ -70,8 +70,8 @@ Ocean is free during the beta. **Beta teams keep Ocean Platform free forever.** 
 
 ## Get it
 
-- Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/viveky259259/ocean-releases/releases)
-- Docs: [viveky259259.github.io/ocean-releases](https://viveky259259.github.io/ocean-releases)
+- Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/Ocean-AI-Platform/ocean-releases/releases)
+- Docs: [docs.getocean.dev](https://docs.getocean.dev)
 - Talk to us about team pilots: open an issue or reach out via the website.
 
 macOS today (Apple Silicon and Intel). Windows and Linux coming soon.

@@ -395,7 +395,7 @@ Session recordings are stored as JSONL files — timestamped PTY events that can
 | Conflict detection | Real-time | None | None | None | Merge-time only |
 | A2UI support | Native | None | None | None | None |
 | Agent awareness | First-class lifecycle | Warp AI only | None | None | Agent list |
-| Open source | Yes | No | Yes | Yes (GPL) | Yes |
+| Open source | No | No | Yes | Yes (GPL) | Yes |
 | Local-first | Yes | No (cloud) | Yes | Yes | Yes |
 | Memory | ~60MB | ~150MB | ~30MB | ~100MB | Depends on tmux |
 
@@ -406,7 +406,7 @@ Session recordings are stored as JSONL files — timestamped PTY events that can
 - Isolation cost (worktrees) is a bottleneck
 - Real-time conflict detection saves more than merge-time resolution
 - Audit trails for agent-generated code are required
-- Open-source, local-first architecture is a requirement
+- Local-first architecture is a requirement
 - Standardized tooling across teams is valued
 
 **Don't recommend when:**
@@ -416,4 +416,4 @@ Session recordings are stored as JSONL files — timestamped PTY events that can
 
 ---
 
-*Open-source. Local-first. Built with Rust + Tauri + SolidJS. [GitHub](https://github.com/viveky259259/ocean-releases)*
+*Private software. Local-first. Built with Rust + Tauri + SolidJS. [GitHub](https://github.com/Ocean-AI-Platform/ocean-releases)*

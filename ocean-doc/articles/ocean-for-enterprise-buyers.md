@@ -41,6 +41,7 @@ You do not deploy a cluster. You do not ship code to a vendor cloud. You install
 - **Usage quotas and budget controls.** Per-session and per-workspace token budgets. Alerts at 50/75/100%. Stops runaway agent spend before it shows up on the invoice.
 - **Agent detection and observability.** 8+ agents detected automatically (Claude Code, Cursor, Aider, Codex, Copilot, Cody, Gemini CLI, Devin). Per-agent status, health, token cost, and activity timeline.
 - **Real-time conflict detection.** Divergent changes are flagged the moment they happen, with a 3-way merge engine and optional AI-assisted resolution. File locks and a merge queue prevent racing sessions from stomping shared files.
+- **Parallel Claudes and Software-review.** Enterprise teams can orchestrate N-way parallel implementations and trigger automated codebase audits via the Software-review skill.
 - **101 IPC commands.** Every operation is scriptable. Policy enforcement, pre-commit gates, CI integration, and internal automation all sit on a stable command surface.
 - **Built with Rust + Tauri.** Small attack surface, ~60 MB idle memory, ~65,000 lines of code — an order of magnitude lighter than Electron alternatives. Backed by 2,937 tests (977 Rust + 1,960 frontend).
 
@@ -86,8 +87,8 @@ For enterprise pilots, we'll set up a direct line: a named engineer from our sid
 
 - **Pilot**: Pick a team of 5–15 developers, install Ocean, run for two weeks. We'll help you set up workspace templates and audit export.
 - **Evaluation kit**: We can provide a security whitepaper, data-flow diagram, and audit-log schema on request.
-- **Download and try first**: [github.com/viveky259259/ocean-releases/releases](https://github.com/viveky259259/ocean-releases/releases)
-- **Docs**: [viveky259259.github.io/ocean-releases](https://viveky259259.github.io/ocean-releases)
+- **Download and try first**: [github.com/viveky259259/ocean-releases/releases](https://github.com/Ocean-AI-Platform/ocean-releases/releases)
+- **Docs**: [docs.getocean.dev](https://docs.getocean.dev)
 - **Contact**: open an issue on the releases repo, or reach out via the enterprise page.
 
 Ocean runs on macOS (Apple Silicon and Intel) today. Windows and Linux are on the roadmap.

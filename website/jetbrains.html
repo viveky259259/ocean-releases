@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <title>Ocean - Agentic Development Control Plane</title>
+  <meta name="description"
+    content="Ocean is a trust layer for teams using Claude, Codex, Cursor, and Gemini. Run coding agents in isolated workspaces, validate their output, track spend, and merge only what is ready.">
+  <meta name="keywords"
+    content="Ocean, coding agents, AI coding agents, trust layer, agentic development, Claude, Codex, Cursor, Gemini, AI spend control, safe merges">
+  <meta name="author" content="Ocean Team">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://getocean.dev/jetbrains.html">
+  <meta property="og:title" content="Ocean - Agentic Development Control Plane">
+  <meta property="og:description"
+    content="A trust layer for teams using Claude, Codex, Cursor, and Gemini. Isolate, validate, measure, and merge from one workbench.">
+  <meta property="og:image" content="https://getocean.dev/home.png">
+  <meta property="og:image:alt" content="Ocean desktop app showing parallel coding agent sessions">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ocean - Agentic Development Control Plane">
+  <meta name="twitter:description"
+    content="Control coding agents before they touch production. Ocean gives teams isolated workspaces, validation evidence, spend control, and safe merges.">
+  <meta name="twitter:image" content="https://getocean.dev/home.png">
+
+  <link rel="canonical" href="https://getocean.dev/jetbrains.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #000000;
+      --nav: #19191c;
+      --surface: rgba(255, 255, 255, 0.055);
+      --surface-strong: rgba(255, 255, 255, 0.09);
+      --border: rgba(255, 255, 255, 0.13);
+      --border-hot: rgba(123, 97, 255, 0.62);
+      --text: #ffffff;
+      --muted: #bababb;
+      --dim: #7c7c84;
+      --blue: #18a3fa;
+      --blue-deep: #0047fd;
+      --violet: #7b61ff;
+      --magenta: #f31199;
+      --teal: #08deaa;
+      --green: #4dbb5f;
+      --amber: #f3c033;
+      --danger: #f45c4a;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --max-w: 1280px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(87% 98% at 54% 8%, rgba(0, 71, 253, 0.76) 0, rgba(0, 71, 253, 0.48) 13%, rgba(0, 0, 0, 0) 58%),
+        radial-gradient(60% 44% at 17% 38%, rgba(243, 17, 153, 0.21), rgba(0, 0, 0, 0) 68%),
+        radial-gradient(52% 46% at 87% 42%, rgba(8, 222, 170, 0.16), rgba(0, 0, 0, 0) 70%),
+        #000;
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.58), rgba(0, 0, 0, 0.08) 68%, transparent);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(100% - 48px, var(--max-w));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 50;
+      display: grid;
+      grid-template-columns: minmax(140px, 1fr) auto minmax(140px, 1fr);
+      align-items: center;
+      min-height: 72px;
+      padding: 0 max(24px, calc((100vw - var(--max-w)) / 2));
+      background: rgba(25, 25, 28, 0.78);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      width: max-content;
+      color: var(--text);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: #d6d6da;
+      font-size: 14px;
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .nav-menu {
+      display: none;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 10px;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .btn {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 22px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 750;
+      text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, color 160ms ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #060608;
+    }
+
+    .btn-secondary {
+      border-color: rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.03);
+      color: #fff;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, 0.44);
+      background: rgba(255, 255, 255, 0.075);
+    }
+
+    .btn-blue {
+      border-color: rgba(24, 163, 250, 0.34);
+      background: rgba(24, 163, 250, 0.11);
+      color: #8bd4ff;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 144px 0 64px;
+      overflow: clip;
+    }
+
+    .hero-copy {
+      max-width: 1030px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 100%;
+      margin-bottom: 24px;
+      padding: 8px 14px;
+      border: 1px solid rgba(123, 97, 255, 0.5);
+      border-radius: 999px;
+      background: rgba(123, 97, 255, 0.13);
+      color: #d8d2ff;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      flex: 0 0 auto;
+      border-radius: 999px;
+      background: var(--teal);
+      box-shadow: 0 0 22px rgba(8, 222, 170, 0.85);
+    }
+
+    h1 {
+      max-width: 980px;
+      margin: 0 auto;
+      font-size: clamp(54px, 8vw, 110px);
+      line-height: 0.92;
+      letter-spacing: 0;
+      font-weight: 850;
+    }
+
+    .hero-copy p {
+      max-width: 760px;
+      margin: 28px auto 0;
+      color: #d2d2d7;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 38px auto 0;
+      color: #c8c8ce;
+    }
+
+    .trust-strip span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 13px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .hero-stage {
+      position: relative;
+      margin: 72px auto 0;
+      max-width: 1120px;
+    }
+
+    .hero-stage::before {
+      content: "";
+      position: absolute;
+      inset: -28px -34px;
+      z-index: -1;
+      border-radius: 42px;
+      background:
+        radial-gradient(circle at 22% 22%, rgba(243, 17, 153, 0.26), transparent 34%),
+        radial-gradient(circle at 72% 34%, rgba(24, 163, 250, 0.34), transparent 36%),
+        radial-gradient(circle at 56% 92%, rgba(8, 222, 170, 0.18), transparent 34%);
+      filter: blur(6px);
+    }
+
+    .launch-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 0.9fr 1.25fr;
+      gap: 34px;
+      min-height: 446px;
+      padding: 34px;
+      border: 1px solid rgba(123, 97, 255, 0.58);
+      border-radius: 30px;
+      overflow: hidden;
+      background:
+        linear-gradient(130deg, rgba(90, 31, 208, 0.62) 0%, rgba(46, 16, 106, 0.18) 42%, rgba(0, 0, 0, 0.36) 72%),
+        rgba(255, 255, 255, 0.035);
+    }
+
+    .launch-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -18% -42% 38%;
+      height: 340px;
+      background: radial-gradient(circle, rgba(243, 17, 153, 0.32), rgba(0, 0, 0, 0) 67%);
+      pointer-events: none;
+    }
+
+    .launch-copy {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .section-kicker {
+      color: var(--magenta);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .launch-copy h2 {
+      margin-top: 16px;
+      font-size: clamp(34px, 4vw, 58px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .launch-copy p {
+      margin-top: 18px;
+      max-width: 440px;
+      color: #d8d8df;
+      font-size: 17px;
+    }
+
+    .release-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .release-meta div {
+      min-height: 82px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.24);
+    }
+
+    .release-meta strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .release-meta span {
+      display: block;
+      margin-top: 8px;
+      color: #c8c8d1;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .control-surface {
+      position: relative;
+      z-index: 1;
+      align-self: center;
+      min-width: 0;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 22px;
+      overflow: hidden;
+      background: #0b0c12;
+    }
+
+    .surface-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 52px;
+      padding: 0 16px;
+      background: #19191c;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: #d6d6dd;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .window-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--danger);
+    }
+
+    .window-dots span:nth-child(2) {
+      background: var(--amber);
+    }
+
+    .window-dots span:nth-child(3) {
+      background: var(--green);
+    }
+
+    .surface-body {
+      display: grid;
+      grid-template-columns: 150px 1fr 164px;
+      gap: 14px;
+      min-height: 322px;
+      padding: 16px;
+    }
+
+    .surface-sidebar,
+    .surface-main,
+    .surface-inspector {
+      min-width: 0;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .surface-sidebar {
+      padding: 13px;
+    }
+
+    .agent-logo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .agent-logo {
+      display: grid;
+      min-height: 58px;
+      place-items: center;
+      border-radius: 16px;
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .agent-logo:nth-child(1) {
+      background: linear-gradient(135deg, #f31199, #7b61ff 48%, #18a3fa);
+    }
+
+    .agent-logo:nth-child(2) {
+      background: linear-gradient(135deg, #08deaa, #18a3fa 48%, #0047fd);
+    }
+
+    .agent-logo:nth-child(3) {
+      background: linear-gradient(135deg, #f3c033, #f45c4a 45%, #f31199);
+    }
+
+    .agent-logo:nth-child(4) {
+      background: linear-gradient(135deg, #4dbb5f, #08deaa 42%, #7b61ff);
+    }
+
+    .sidebar-lines {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .sidebar-lines span {
+      height: 9px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar-lines span:nth-child(2) {
+      width: 74%;
+    }
+
+    .sidebar-lines span:nth-child(3) {
+      width: 88%;
+    }
+
+    .surface-main {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      overflow: hidden;
+    }
+
+    .lane-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .lane-tabs span {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d4d4da;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 800;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .lane-tabs span:last-child {
+      border-right: 0;
+    }
+
+    .lane-tabs .active {
+      background: rgba(24, 163, 250, 0.14);
+      color: #8bd4ff;
+    }
+
+    .lane-map {
+      position: relative;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .lane-map::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.45;
+    }
+
+    .route {
+      position: relative;
+      display: grid;
+      gap: 14px;
+      z-index: 1;
+    }
+
+    .route-step {
+      display: grid;
+      grid-template-columns: 88px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      min-height: 48px;
+      padding: 0 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      background: rgba(0, 0, 0, 0.42);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .route-step i {
+      display: block;
+      width: 100%;
+      height: 6px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--teal), var(--blue), var(--violet));
+    }
+
+    .route-step b {
+      color: #fff;
+    }
+
+    .route-step em {
+      color: var(--teal);
+      font-style: normal;
+    }
+
+    .surface-inspector {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+    }
+
+    .signal {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .signal strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .signal span {
+      display: block;
+      margin-top: 8px;
+      color: #bcbcc5;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    section {
+      padding: 96px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 34px;
+    }
+
+    .section-head h2 {
+      max-width: 760px;
+      font-size: clamp(36px, 5vw, 68px);
+      line-height: 1.02;
+      letter-spacing: 0;
+      font-weight: 820;
+    }
+
+    .section-head p {
+      max-width: 430px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .product-tile {
+      position: relative;
+      min-height: 236px;
+      padding: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.055);
+      text-decoration: none;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .product-tile:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .product-tile::before {
+      content: "";
+      position: absolute;
+      inset: auto -24% -30% -24%;
+      height: 150px;
+      background: var(--tile-glow);
+      filter: blur(4px);
+      opacity: 0.86;
+    }
+
+    .product-icon {
+      position: relative;
+      display: grid;
+      width: 54px;
+      height: 54px;
+      place-items: center;
+      border-radius: 16px;
+      background: var(--tile-gradient);
+      color: #fff;
+      font-family: var(--mono);
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .product-tile h3 {
+      position: relative;
+      margin-top: 26px;
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .product-tile p {
+      position: relative;
+      margin-top: 12px;
+      color: #c9c9d0;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .tile-workspaces {
+      --tile-gradient: linear-gradient(135deg, #f31199, #7b61ff 52%, #18a3fa);
+      --tile-glow: radial-gradient(circle, rgba(243, 17, 153, 0.34), transparent 68%);
+    }
+
+    .tile-validation {
+      --tile-gradient: linear-gradient(135deg, #08deaa, #18a3fa 50%, #0047fd);
+      --tile-glow: radial-gradient(circle, rgba(8, 222, 170, 0.28), transparent 68%);
+    }
+
+    .tile-spend {
+      --tile-gradient: linear-gradient(135deg, #f3c033, #f45c4a 45%, #f31199);
+      --tile-glow: radial-gradient(circle, rgba(243, 192, 51, 0.24), transparent 68%);
+    }
+
+    .tile-merge {
+      --tile-gradient: linear-gradient(135deg, #4dbb5f, #08deaa 43%, #7b61ff);
+      --tile-glow: radial-gradient(circle, rgba(77, 187, 95, 0.25), transparent 68%);
+    }
+
+    .tile-audit {
+      --tile-gradient: linear-gradient(135deg, #18a3fa, #7b61ff 48%, #f31199);
+      --tile-glow: radial-gradient(circle, rgba(123, 97, 255, 0.28), transparent 68%);
+    }
+
+    .feature-band {
+      background: #19191c;
+    }
+
+    .audience-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .audience-tab {
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #d7d7dd;
+      font: 750 14px var(--sans);
+      cursor: pointer;
+    }
+
+    .audience-tab[aria-selected="true"] {
+      border-color: rgba(24, 163, 250, 0.52);
+      background: linear-gradient(90deg, rgba(8, 222, 170, 0.16), rgba(24, 163, 250, 0.18));
+      color: #fff;
+    }
+
+    .audience-panel {
+      display: none;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 26px;
+      align-items: stretch;
+      min-height: 430px;
+      padding: 34px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 28px;
+      background:
+        linear-gradient(130deg, rgba(90, 31, 208, 0.44) 8%, rgba(46, 16, 106, 0) 68%),
+        radial-gradient(circle at 84% 20%, rgba(24, 163, 250, 0.18), transparent 38%),
+        rgba(255, 255, 255, 0.035);
+    }
+
+    .audience-panel.active {
+      display: grid;
+    }
+
+    .audience-copy h3 {
+      max-width: 560px;
+      font-size: clamp(34px, 4vw, 58px);
+      line-height: 1.03;
+      letter-spacing: 0;
+    }
+
+    .audience-copy p {
+      margin-top: 18px;
+      max-width: 560px;
+      color: #d0d0d7;
+      font-size: 17px;
+    }
+
+    .audience-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 28px;
+      list-style: none;
+    }
+
+    .audience-list li {
+      display: flex;
+      gap: 12px;
+      color: #f1f1f4;
+      font-size: 15px;
+    }
+
+    .audience-list li::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      flex: 0 0 auto;
+      margin-top: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      box-shadow: 0 0 16px rgba(24, 163, 250, 0.58);
+    }
+
+    .proof-console {
+      min-width: 0;
+      align-self: center;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.46);
+    }
+
+    .proof-row {
+      display: grid;
+      grid-template-columns: 110px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      min-height: 62px;
+      padding: 0 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .proof-row:last-child {
+      border-bottom: 0;
+    }
+
+    .proof-row span {
+      color: #c8c8cf;
+    }
+
+    .proof-row b {
+      color: #fff;
+    }
+
+    .proof-row em {
+      color: var(--teal);
+      font-style: normal;
+    }
+
+    .proof-row.warning em {
+      color: var(--amber);
+    }
+
+    .proof-row.blocked em {
+      color: var(--danger);
+    }
+
+    .screenshot-section {
+      padding-bottom: 38px;
+    }
+
+    .screenshot-shell {
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 16% 18%, rgba(243, 17, 153, 0.16), transparent 32%),
+        radial-gradient(circle at 84% 12%, rgba(8, 222, 170, 0.15), transparent 34%),
+        rgba(255, 255, 255, 0.04);
+    }
+
+    .screenshot-shell img {
+      display: block;
+      width: 100%;
+      height: auto;
+      min-height: 360px;
+      object-fit: cover;
+      object-position: top center;
+      opacity: 0.92;
+    }
+
+    .screenshot-overlay {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      width: min(360px, calc(100% - 48px));
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(16px);
+    }
+
+    .screenshot-overlay strong {
+      display: block;
+      font-size: 21px;
+      line-height: 1.15;
+    }
+
+    .screenshot-overlay span {
+      display: block;
+      margin-top: 10px;
+      color: #c9c9d0;
+      font-size: 14px;
+    }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .flow-card {
+      min-height: 264px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      background:
+        linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+        rgba(255, 255, 255, 0.035);
+    }
+
+    .flow-number {
+      color: var(--dim);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .flow-card h3 {
+      margin-top: 40px;
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .flow-card p {
+      margin-top: 14px;
+      color: #c6c6cd;
+      font-size: 15px;
+    }
+
+    .flow-card:nth-child(1) {
+      background:
+        linear-gradient(140deg, rgba(243, 17, 153, 0.22), rgba(255, 255, 255, 0.025)),
+        rgba(255, 255, 255, 0.035);
+    }
+
+    .flow-card:nth-child(2) {
+      background:
+        linear-gradient(140deg, rgba(123, 97, 255, 0.24), rgba(255, 255, 255, 0.025)),
+        rgba(255, 255, 255, 0.035);
+    }
+
+    .flow-card:nth-child(3) {
+      background:
+        linear-gradient(140deg, rgba(24, 163, 250, 0.23), rgba(255, 255, 255, 0.025)),
+        rgba(255, 255, 255, 0.035);
+    }
+
+    .flow-card:nth-child(4) {
+      background:
+        linear-gradient(140deg, rgba(8, 222, 170, 0.2), rgba(255, 255, 255, 0.025)),
+        rgba(255, 255, 255, 0.035);
+    }
+
+    .cta {
+      padding: 118px 0 104px;
+      text-align: center;
+    }
+
+    .cta-inner {
+      position: relative;
+      overflow: hidden;
+      padding: 72px 28px;
+      border: 1px solid rgba(123, 97, 255, 0.5);
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(0, 71, 253, 0.52), transparent 44%),
+        radial-gradient(circle at 18% 88%, rgba(243, 17, 153, 0.2), transparent 36%),
+        radial-gradient(circle at 82% 86%, rgba(8, 222, 170, 0.15), transparent 34%),
+        rgba(255, 255, 255, 0.04);
+    }
+
+    .cta h2 {
+      max-width: 850px;
+      margin: 0 auto;
+      font-size: clamp(42px, 6vw, 86px);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .cta p {
+      max-width: 650px;
+      margin: 22px auto 0;
+      color: #d2d2d8;
+      font-size: 18px;
+    }
+
+    .footer {
+      padding: 34px 0 46px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: #19191c;
+      color: #bcbcc2;
+    }
+
+    .footer .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .footer a {
+      color: #e7e7eb;
+      text-decoration: none;
+    }
+
+    .mobile-only {
+      display: none;
+    }
+
+    @media (max-width: 980px) {
+      .nav {
+        grid-template-columns: 1fr auto auto;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        right: 18px;
+        display: none;
+        width: min(280px, calc(100vw - 36px));
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 18px;
+        background: rgba(25, 25, 28, 0.96);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px;
+      }
+
+      .nav-menu {
+        display: inline-flex;
+      }
+
+      .launch-card,
+      .audience-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .surface-body {
+        grid-template-columns: 1fr;
+      }
+
+      .surface-sidebar,
+      .surface-inspector {
+        display: none;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flow-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: 16px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, var(--max-w));
+      }
+
+      .nav {
+        min-height: 64px;
+        padding: 0 14px;
+      }
+
+      .brand span {
+        display: none;
+      }
+
+      .nav-links {
+        top: 64px;
+      }
+
+      .nav-actions .btn {
+        display: none;
+      }
+
+      .mobile-only {
+        display: inline-flex;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 112px 0 48px;
+      }
+
+      h1 {
+        font-size: clamp(46px, 14vw, 70px);
+      }
+
+      .hero-copy {
+        text-align: left;
+      }
+
+      .hero-copy p,
+      .hero-actions,
+      .trust-strip {
+        justify-content: flex-start;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .launch-card,
+      .audience-panel {
+        padding: 20px;
+        border-radius: 24px;
+      }
+
+      .release-meta,
+      .product-grid,
+      .flow-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .route-step,
+      .proof-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 14px;
+      }
+
+      .screenshot-shell img {
+        min-height: 280px;
+      }
+
+      .screenshot-overlay {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        width: auto;
+        margin: 14px;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="index.html" aria-label="Ocean home">
+      <img src="favicon.png" alt="">
+      <span>Ocean</span>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a href="#products">Platform</a>
+      <a href="#teams">Teams</a>
+      <a href="#product">Product</a>
+      <a href="#flow">Workflow</a>
+      <a href="index.html">Current site</a>
+    </div>
+    <div class="nav-actions">
+      <a class="btn btn-primary" href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank"
+        rel="noopener">Download</a>
+      <button class="nav-menu" type="button" aria-label="Toggle navigation" aria-expanded="false"
+        aria-controls="nav-links">Menu</button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-copy">
+          <div class="eyebrow">Trust layer for teams using Claude, Codex, Cursor, and Gemini</div>
+          <h1>The control plane for agentic development.</h1>
+          <p>Ocean helps engineering teams run coding agents like a real production workflow: every agent gets an
+            isolated lane, every change gets evidence, and every merge stays under human control.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://github.com/Ocean-AI-Platform/ocean-releases/releases"
+              target="_blank" rel="noopener">Download</a>
+            <a class="btn btn-secondary" href="#product">Explore the platform</a>
+          </div>
+          <div class="trust-strip" aria-label="Ocean trust signals">
+            <span>10 agents controlled</span>
+            <span>68% merge-ready output</span>
+            <span>Project spend tracked</span>
+            <span>Validation before merge</span>
+          </div>
+        </div>
+
+        <div class="hero-stage" id="product">
+          <div class="launch-card">
+            <div class="launch-copy">
+              <div>
+                <div class="section-kicker">Ocean 2026</div>
+                <h2>One workbench for every coding agent.</h2>
+                <p>Launch agents, watch their lanes, inspect validation evidence, and approve only the work that is
+                  ready for your repo.</p>
+              </div>
+              <div class="release-meta" aria-label="Product metrics">
+                <div>
+                  <strong>4</strong>
+                  <span>agent tools</span>
+                </div>
+                <div>
+                  <strong>30s</strong>
+                  <span>PR polling</span>
+                </div>
+                <div>
+                  <strong>1</strong>
+                  <span>merge gate</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="control-surface" aria-label="Ocean control plane mockup">
+              <div class="surface-top">
+                <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <span>ocean://workspace/client-app</span>
+                <span>LIVE</span>
+              </div>
+              <div class="surface-body">
+                <aside class="surface-sidebar" aria-label="Connected agents">
+                  <div class="agent-logo-grid">
+                    <div class="agent-logo">CL</div>
+                    <div class="agent-logo">CX</div>
+                    <div class="agent-logo">CU</div>
+                    <div class="agent-logo">GM</div>
+                  </div>
+                  <div class="sidebar-lines" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                  </div>
+                </aside>
+                <div class="surface-main">
+                  <div class="lane-tabs">
+                    <span class="active">LANE A</span>
+                    <span>LANE B</span>
+                    <span>LANE C</span>
+                  </div>
+                  <div class="lane-map">
+                    <div class="route">
+                      <div class="route-step"><b>Task</b><i></i><em>scoped</em></div>
+                      <div class="route-step"><b>Workspace</b><i></i><em>isolated</em></div>
+                      <div class="route-step"><b>Checks</b><i></i><em>passing</em></div>
+                      <div class="route-step"><b>Merge</b><i></i><em>ready</em></div>
+                    </div>
+                  </div>
+                </div>
+                <aside class="surface-inspector" aria-label="Agent evidence">
+                  <div class="signal">
+                    <strong>$42</strong>
+                    <span>session cost</span>
+                  </div>
+                  <div class="signal">
+                    <strong>7</strong>
+                    <span>files changed</span>
+                  </div>
+                  <div class="signal">
+                    <strong>OK</strong>
+                    <span>risk state</span>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Platform</div>
+            <h2>A product family for controlled AI coding.</h2>
+          </div>
+          <p>JetBrains has IDEs for every developer workflow. Ocean has control surfaces for every risky part of
+            agentic development.</p>
+        </div>
+        <div class="product-grid">
+          <a class="product-tile tile-workspaces" href="#flow">
+            <div class="product-icon">WS</div>
+            <h3>Workspaces</h3>
+            <p>Give every agent a copy-on-write lane instead of letting parallel sessions collide in your repo.</p>
+          </a>
+          <a class="product-tile tile-validation" href="#flow">
+            <div class="product-icon">VA</div>
+            <h3>Validation</h3>
+            <p>Turn tests, type checks, review status, and risk into explicit merge evidence.</p>
+          </a>
+          <a class="product-tile tile-spend" href="#teams">
+            <div class="product-icon">SP</div>
+            <h3>Spend</h3>
+            <p>Track agent cost by project, developer, lane, and outcome before margins disappear.</p>
+          </a>
+          <a class="product-tile tile-merge" href="#flow">
+            <div class="product-icon">MR</div>
+            <h3>Merge</h3>
+            <p>Resolve conflicts and move only approved, validated agent work back into the base branch.</p>
+          </a>
+          <a class="product-tile tile-audit" href="#teams">
+            <div class="product-icon">AU</div>
+            <h3>Audit</h3>
+            <p>Keep a clear trail of what the agent changed, what it cost, and why it was accepted or held.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-band" id="teams">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">For teams</div>
+            <h2>Choose the control surface your team needs first.</h2>
+          </div>
+          <p>Ocean is useful for solo power users, but it becomes critical when teams are running many agents across
+            client work and production code.</p>
+        </div>
+
+        <div class="audience-tabs" role="tablist" aria-label="Audience views">
+          <button class="audience-tab" type="button" role="tab" aria-selected="true" aria-controls="panel-studios"
+            id="tab-studios">Studios</button>
+          <button class="audience-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-teams"
+            id="tab-teams">Engineering teams</button>
+          <button class="audience-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-devs"
+            id="tab-devs">Developers</button>
+        </div>
+
+        <div class="audience-panel active" role="tabpanel" id="panel-studios" aria-labelledby="tab-studios">
+          <div class="audience-copy">
+            <h3>Protect project margins while agents move faster.</h3>
+            <p>For agencies and software studios, the question is not whether agents can write code. The question is
+              which work is useful, which work is expensive, and which work is safe to ship.</p>
+            <ul class="audience-list">
+              <li>See AI spend by client project and contributor.</li>
+              <li>Separate productive agent work from blocked, repeated, or risky sessions.</li>
+              <li>Approve merge-ready output with evidence attached.</li>
+            </ul>
+          </div>
+          <div class="proof-console" aria-label="Studio proof console">
+            <div class="proof-row"><span>PROJECT</span><b>acme-mobile</b><em>$420 remaining</em></div>
+            <div class="proof-row"><span>LANE A</span><b>checkout refactor</b><em>merge ready</em></div>
+            <div class="proof-row warning"><span>LANE B</span><b>pricing tests</b><em>needs review</em></div>
+            <div class="proof-row blocked"><span>LANE C</span><b>auth migration</b><em>security hold</em></div>
+            <div class="proof-row"><span>OUTPUT</span><b>68% accepted</b><em>this week</em></div>
+          </div>
+        </div>
+
+        <div class="audience-panel" role="tabpanel" id="panel-teams" aria-labelledby="tab-teams">
+          <div class="audience-copy">
+            <h3>Turn AI coding from local chaos into team workflow.</h3>
+            <p>Engineering leads get a shared vocabulary for agent work: lane state, validation state, risk state,
+              review decision, and merge readiness.</p>
+            <ul class="audience-list">
+              <li>Coordinate many agents without hidden workspace conflicts.</li>
+              <li>Make review and CI status visible before merge decisions.</li>
+              <li>Keep agent adoption measurable instead of anecdotal.</li>
+            </ul>
+          </div>
+          <div class="proof-console" aria-label="Team proof console">
+            <div class="proof-row"><span>REVIEW</span><b>PR #148</b><em>approved</em></div>
+            <div class="proof-row"><span>CHECKS</span><b>12 passed</b><em>green</em></div>
+            <div class="proof-row warning"><span>RISK</span><b>payments/api.ts</b><em>owner review</em></div>
+            <div class="proof-row"><span>MERGE</span><b>session dag clean</b><em>ready</em></div>
+            <div class="proof-row"><span>TEAM</span><b>Claude + Codex</b><em>same workbench</em></div>
+          </div>
+        </div>
+
+        <div class="audience-panel" role="tabpanel" id="panel-devs" aria-labelledby="tab-devs">
+          <div class="audience-copy">
+            <h3>Run more agents without sacrificing your working tree.</h3>
+            <p>Ocean keeps agent experiments isolated, observable, and mergeable so developers can parallelize without
+              losing control of local code.</p>
+            <ul class="audience-list">
+              <li>Launch multiple coding agents side by side.</li>
+              <li>Drop files, inspect sessions, and keep terminal state visible.</li>
+              <li>Merge the winning session back into the repo when it is ready.</li>
+            </ul>
+          </div>
+          <div class="proof-console" aria-label="Developer proof console">
+            <div class="proof-row"><span>AGENT</span><b>Codex</b><em>active</em></div>
+            <div class="proof-row"><span>AGENT</span><b>Claude</b><em>reviewing</em></div>
+            <div class="proof-row warning"><span>AGENT</span><b>Cursor</b><em>tests failing</em></div>
+            <div class="proof-row"><span>FILES</span><b>drop to paste path</b><em>ready</em></div>
+            <div class="proof-row"><span>MERGE</span><b>conflicts detected</b><em>guided</em></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screenshot-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Native workbench</div>
+            <h2>The terminal becomes a reviewable agent cockpit.</h2>
+          </div>
+          <p>Ocean is not another chat wrapper. It is a macOS terminal built around parallel sessions, workspace
+            isolation, merge flow, PR checks, and agent evidence.</p>
+        </div>
+        <div class="screenshot-shell">
+          <img src="home.png" alt="Ocean desktop interface with parallel agent development sessions">
+          <div class="screenshot-overlay">
+            <strong>Real product surface, not a dashboard metaphor.</strong>
+            <span>The website should show Ocean as the place where agent work is launched, watched, validated, and
+              merged.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="flow">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Workflow</div>
+            <h2>From agent task to trusted merge.</h2>
+          </div>
+          <p>The promise is simple: agents can move quickly, but production code only moves through controlled gates.</p>
+        </div>
+        <div class="flow-grid">
+          <div class="flow-card">
+            <div class="flow-number">01</div>
+            <h3>Scope the task</h3>
+            <p>Start Claude, Codex, Cursor, or Gemini with the workstream and project context it is allowed to touch.</p>
+          </div>
+          <div class="flow-card">
+            <div class="flow-number">02</div>
+            <h3>Isolate the lane</h3>
+            <p>Each agent gets its own workspace so experiments do not overwrite each other or corrupt the base repo.</p>
+          </div>
+          <div class="flow-card">
+            <div class="flow-number">03</div>
+            <h3>Validate evidence</h3>
+            <p>Tests, checks, spend, risky files, and review state become visible before anyone approves the work.</p>
+          </div>
+          <div class="flow-card">
+            <div class="flow-number">04</div>
+            <h3>Merge with control</h3>
+            <p>Ocean guides conflicts and moves only the accepted session back into the canonical workspace.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-inner">
+          <div class="section-kicker">Download Ocean</div>
+          <h2>Let agents move fast. Keep the repo under control.</h2>
+          <p>Start with the macOS app, connect the tools your team already uses, and make every agent session
+            measurable before it reaches production.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://github.com/Ocean-AI-Platform/ocean-releases/releases"
+              target="_blank" rel="noopener">Download</a>
+            <a class="btn btn-blue" href="https://github.com/Ocean-AI-Platform/ocean-releases" target="_blank"
+              rel="noopener">View GitHub</a>
+            <a class="btn btn-secondary mobile-only" href="#products">Platform</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Ocean - Terminal for agentic development.</p>
+      <p>
+        <a href="index.html">Current homepage</a> &middot;
+        <a href="https://github.com/Ocean-AI-Platform/ocean-releases" target="_blank" rel="noopener">GitHub</a> &middot;
+        <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank"
+          rel="noopener">Releases</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.nav-menu');
+    const navLinks = document.querySelector('#nav-links');
+
+    if (menuButton && navLinks) {
+      menuButton.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('open');
+        menuButton.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      navLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('open');
+          menuButton.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    const tabs = Array.from(document.querySelectorAll('.audience-tab'));
+    const panels = Array.from(document.querySelectorAll('.audience-panel'));
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach((candidate) => candidate.setAttribute('aria-selected', 'false'));
+        panels.forEach((panel) => panel.classList.remove('active'));
+
+        tab.setAttribute('aria-selected', 'true');
+        const panelId = tab.getAttribute('aria-controls');
+        const panel = document.getElementById(panelId);
+        if (panel) {
+          panel.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

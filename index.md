@@ -19,7 +19,7 @@ Ocean is in private beta for macOS (Apple Silicon). **[Join the waitlist](https:
 
 ### macOS (Apple Silicon)
 
-1. Download the latest release from the [Releases page](https://github.com/viveky259259/ocean-releases/releases)
+1. Download the latest release from the [Releases page](https://github.com/Ocean-AI-Platform/ocean-releases/releases)
 2. Extract the archive:
    ```bash
    tar -xzf Ocean_*_aarch64.app.tar.gz
@@ -97,14 +97,14 @@ Sessions sharing a split show direction-aware badges:
 
 | Badge | Meaning |
 |-------|---------|
-| **┃2** | 2 panes side by side (vertical) |
-| **━2** | 2 panes stacked (horizontal) |
-| **┼3** | 3+ panes, mixed layout |
+| **[V2]** | 2 (vertical) side-by-side panes |
+| **[H2]** | 2 (horizontal) stacked panes |
+| **[M3]** | 3+ panes, mixed layout |
 
 ### Resizing
 
 - Drag the divider between panes
-- Click **⇔** in the pane header to auto-resize to your configured width
+- Click the resize icon in the pane header to auto-resize to your configured width
 - Up to **5 panes** per tab
 
 ---
@@ -188,7 +188,7 @@ All shortcuts are searchable in **Settings > Commands** tab.
 
 - Type to search
 - **Enter** to re-run a command
-- Exit codes shown: **✓** success, **✗** failure with code
+- Exit codes shown: [PASS] success, [FAIL] failure with code
 
 ---
 
@@ -309,6 +309,12 @@ Understand Ocean from the perspective that matters to you:
 
 | Article | For | What You'll Learn |
 |---------|-----|-------------------|
+| [What's New in v0.3.1](articles/ocean-v0-3-1-release.md) | Everyone | Signed and notarized maintenance release with refreshed packaged sidecar integrity data |
+| [What's New in v0.15.0](articles/ocean-v0-15-0-release.md) | Everyone | Persistent sessions, production Mastra evals, configured AI providers |
+| [What's New in v0.13.2](articles/ocean-v0-13-2-release.md) | Everyone | Key verification before build, fundraising memo, restoration of dev identifiers |
+| [What's New in v0.13.1](articles/ocean-v0-13-1-release.md) | Everyone | Parallel Claudes: batch spawn, broadcast, N-way diff, promote winner |
+| [What's New in v0.13.0](articles/ocean-v0-13-0-release.md) | Everyone | Save Session as Agent, Smollm plugin, software-review skill |
+| [What's New in v0.12.3](articles/ocean-v0-12-3-release.md) | Everyone | WorkOS session cookie fixes, terminal resizing, PTY signal leak resolution |
 | [What's New in v0.9.2](articles/ocean-v0-9-2-release.md) | Everyone | Shell passthrough, Agent API, git fetch_remote, security hardening |
 | [What's New in v0.9.1](articles/ocean-v0-9-1-release.md) | Everyone | Claude OAuth usage panel, PTY deadlock fix, poller guard fixes |
 | [What's New in v0.8.0](articles/ocean-v0-8-0-release.md) | Everyone | Discard changes, file picker, 10 conflict fixes, git index repair |
@@ -399,14 +405,22 @@ Open **Cmd+Shift+P** and search for the action. Some shortcuts may conflict with
 
 ## Downloads
 
-Get the latest version from the [Releases page](https://github.com/viveky259259/ocean-releases/releases).
+Get the latest version from the [Releases page](https://github.com/Ocean-AI-Platform/ocean-releases/releases).
 
 | Version | Date | Highlights |
 |---------|------|------------|
-| v0.9.2 | 2026-04-03 | Shell passthrough, Ocean Agent API (MCP), git fetch_remote, sync commands, security hardening, 660 Rust / 1034 frontend tests |
+| v0.3.1 | 2026-08-01 | Signed and notarized maintenance release; refreshed packaged Mastra sidecar integrity data |
+| v0.15.0 | 2026-07-03 | Persistent sessions, production Mastra evals, configured AI providers, release hardening |
+| v0.13.2 | 2026-04-27 | Key verification before build, fundraising memo, restoration of dev identifiers |
+| v0.13.1 | 2026-04-25 | Parallel Claudes: batch spawn, broadcast, N-way diff, promote winner |
+| v0.13.0 | 2026-04-20 | Save Session as Agent, Smollm plugin, software-review skill, workflow tool |
+| v0.12.3 | 2026-04-15 | WorkOS session cookie fixes, terminal resizing, PTY signal leak resolution |
+| v0.11.0 | 2026-04-10 | MCP Server Config Editor, persistent logs, port-forwarding dashboard |
+| v0.10.1 | 2026-04-05 | Git index lock fixes for parallel commits, Cursor CLI detection support |
+| v0.10.0 | 2026-04-04 | Multi-workspace dashboard, AI-assisted 3-way merge conflict visualizer |
+| v0.9.2 | 2026-04-03 | Shell passthrough, Ocean Agent API (MCP), git fetch_remote, sync commands, security hardening |
 | v0.9.1 | 2026-04-02 | Claude OAuth usage panel, PTY deadlock fix, OAuth poller guard fixes, E2E test suite restored |
-| v0.8.0 | 2026-04-01 | Discard session changes, view per-session diffs, file picker, git index auto-repair, 10 conflict/merge fixes |
+| v0.8.0 | 2026-04-01 | Discard session changes, view per-session diffs, file picker, git index auto-repair, 10 conflict fixes |
 | v0.7.1 | 2026-03-25 | Context menus, merge & ship workflow expansion, E2E test suite, Rust backend growth |
-| v0.7.0 | 2026-03-24 | Conflict resolution (26 stories), AI merge, file locks, stash, heatmap, dependency graph, port forwarding, documentation |
+| v0.7.0 | 2026-03-24 | Conflict resolution (26 stories), AI merge, file locks, stash, heatmap, dependency graph, port forwarding |
 | v0.6.0 | 2026-03-22 | Git Visualizer, split indicators, 16 bug fixes |
-| v0.5.0 | 2026-03-21 | Ocean Sync backend, settings improvements |

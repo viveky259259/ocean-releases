@@ -40,6 +40,8 @@ Ocean is a native desktop platform (macOS today, Windows and Linux coming soon) 
 - **Auto-detection for 8+ agents.** Claude Code, Cursor, Aider, Codex, Copilot, Cody, Gemini CLI, Devin. Status badges, health metrics, waiting notifications — no configuration.
 - **Claude Native (A2UI).** Claude's agents render interactive UI — buttons, cards, diffs, progress bars — inline in the terminal. No wrappers, no separate apps.
 - **Real-time conflict detection.** When two sessions touch the same file, you see it immediately. Not at merge time. Not at PR time. Now.
+- **Parallel Claudes.** Batch spawn multiple agents to solve the same problem, compare results with N-way diff, and pick the winner.
+- **Save Session as Agent.** Convert a successful session into a reusable agent primer for future tasks.
 - **Ship to PR.** `Cmd+Shift+S` merges your sessions, generates the commit, and opens the PR.
 - **Session recording and replay.** Every session's terminal output, commands, and agent activity is captured. When an agent shipped a bug three days ago, you don't guess — you rewind.
 - **Command palette (`Cmd+Shift+P`) and quick switcher (`Cmd+P`).** Every action is keyboard-reachable. Every open session is one fuzzy-match away.
@@ -60,7 +62,7 @@ Ocean is free during the beta. **If you download and use Ocean during the beta, 
 
 ## Get it
 
-- Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/viveky259259/ocean-releases/releases)
-- Docs: [viveky259259.github.io/ocean-releases](https://viveky259259.github.io/ocean-releases)
+- Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/Ocean-AI-Platform/ocean-releases/releases)
+- Docs: [docs.getocean.dev](https://docs.getocean.dev)
 
 Ocean runs on macOS (Apple Silicon and Intel) today. Windows and Linux are on the roadmap.

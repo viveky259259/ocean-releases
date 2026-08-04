@@ -18,11 +18,11 @@ ocean-releases/
 ├── README.md                              # Repo landing page with download links
 ├── index.md                               # Full user documentation (GitHub Pages home)
 ├── _config.yml                            # Jekyll theme config
-├── website/                               # Waitlist landing page (joinocean.web.app)
+├── website/                               # Waitlist landing page (getocean.dev)
 │   └── index.html                         # Self-contained landing page with Google Forms waitlist
-├── ocean-app/                             # Marketing site (ocean-terminal.web.app)
+├── ocean-app/                             # Marketing site (getocean.dev/articles.html)
 │   └── index.html                         # Features, articles, releases, waitlist CTA
-├── ocean-doc/                             # Documentation site (ocean-doc.web.app)
+├── ocean-doc/                             # Documentation site (docs.getocean.dev)
 │   └── index.html                         # Full docs with sidebar nav for external users
 └── articles/
     ├── ocean-for-ai-developers.md         # Hands-on guide for devs using AI agents
@@ -43,8 +43,8 @@ ocean-releases/
 - **Never include source code or internal architecture details that aren't already public.** This repo is public. The Rust backend, IPC layer, store internals, and component code belong in the private repo.
 - **Never include API keys, internal URLs, Slack links, or team-specific information.**
 - **Feature claims must reflect shipped features**, not the roadmap. If a feature is planned but not shipped, label it as "coming in V1.x" or "V2 roadmap" — never present it as available.
-- **Keep download links pointing to**: `https://github.com/viveky259259/ocean-releases/releases`
-- **Keep docs link pointing to**: `https://viveky259259.github.io/ocean-releases`
+- **Keep download links pointing to**: `https://github.com/Ocean-AI-Platform/ocean-releases/releases`
+- **Keep docs link pointing to**: `https://docs.getocean.dev`
 
 ### Article Format
 Articles in `articles/` follow a consistent structure:
@@ -68,7 +68,7 @@ Articles in `articles/` follow a consistent structure:
 ### What Ocean Is
 - Desktop terminal for macOS (Apple Silicon), built with Tauri v2 (Rust) + SolidJS + xterm.js
 - Purpose-built for multi-agent AI development workflows
-- Local-first, open-source (all rights reserved), no cloud dependency
+- Local-first, private software (all rights reserved), no cloud dependency
 - Session DAG with COW filesystem isolation is the core primitive
 
 ### Key Capabilities
@@ -94,7 +94,7 @@ Articles in `articles/` follow a consistent structure:
 - Annotation latency: <0.5ms/line
 
 ### Competitive Position
-- vs. Warp: open-source, local-first, COW isolation (Warp has none)
+- vs. Warp: local-first, COW isolation (Warp has none)
 - vs. Ghostty: adds orchestration layer on top of terminal performance
 - vs. iTerm2: generational leap for agent workflows
 - vs. Claude Squad: native UI replaces tmux+worktree approach
@@ -110,10 +110,10 @@ Articles in `articles/` follow a consistent structure:
 
 | Site | URL | Source | Purpose |
 |------|-----|--------|---------|
-| GitHub Pages | viveky259259.github.io/ocean-releases | `index.md` | Documentation + waitlist link |
-| Waitlist | joinocean.web.app | `website/` | Standalone waitlist landing page |
-| Marketing | ocean-terminal.web.app | `ocean-app/` | Features, articles, release notes |
-| Docs | ocean-doc.web.app | `ocean-doc/` | Full docs with sidebar nav |
+| GitHub Pages | docs.getocean.dev | `index.md` | Documentation + waitlist link |
+| Waitlist | getocean.dev | `website/` | Standalone waitlist landing page |
+| Marketing | getocean.dev | `ocean-app/` | Features, articles, release notes |
+| Docs | docs.getocean.dev | `ocean-doc/` | Full docs with sidebar nav |
 
 - All NetLaunch sites deployed via `netlaunch deploy -s <name> -f <zip>`
 - Waitlist uses Google Forms: https://forms.gle/4RQFThD8KF6Vu1Su6

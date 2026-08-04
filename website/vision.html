@@ -4,404 +4,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vision — Ocean</title>
+  <meta name="theme-color" content="#08090b">
+  <meta name="color-scheme" content="dark light">
+  <script>
+    (function () {
+      try {
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('ocean-theme') || 'dark');
+      } catch (e) { }
+    })();
+  </script>
+  <title>Vision - Ocean Agentic Development Platform</title>
   <meta name="description"
-    content="Why we are building Ocean and our belief in the future of multi-agent software development.">
-  <meta name="keywords" content="Ocean vision, multi-agent development, AI agents coordination, software development future, AI orchestration">
-  <meta name="author" content="Ocean Team">
-
-  <!-- Open Graph / Facebook -->
+    content="Ocean's vision for agentic development: coding agents need a platform layer for trust, evidence, collaboration, and controlled autonomy.">
+  <meta name="keywords" content="Ocean vision, agentic development, AI coding agents, trust layer, development platform">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://getocean.dev/vision.html">
-  <meta property="og:title" content="Vision — Ocean">
-  <meta property="og:description"
-    content="Software development is about to change fundamentally. Ocean is building the infrastructure for multi-agent development.">
+  <meta property="og:title" content="Vision - Ocean Agentic Development Platform">
+  <meta property="og:description" content="The future of software development needs a platform layer for coding agents.">
   <meta property="og:image" content="https://getocean.dev/home.png">
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://getocean.dev/vision.html">
-  <meta name="twitter:title" content="Vision — Ocean">
-  <meta name="twitter:description"
-    content="Software development is about to change fundamentally. Ocean is building the infrastructure for multi-agent development.">
   <meta name="twitter:image" content="https://getocean.dev/home.png">
-
-  <!-- Canonical -->
   <link rel="canonical" href="https://getocean.dev/vision.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"
     rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon.png">
-  <style>
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg: #09090b;
-      --surface: #111113;
-      --surface-2: #18181b;
-      --border: #27272a;
-      --text: #fafafa;
-      --text-muted: #a1a1aa;
-      --text-dim: #71717a;
-      --accent: #06b6d4;
-      --accent-glow: rgba(6, 182, 212, 0.15);
-      --accent-2: #0ea5e9;
-      --mono: 'JetBrains Mono', monospace;
-      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: var(--sans);
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    .glow-bg {
-      position: fixed;
-      top: -40%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80vw;
-      height: 60vh;
-      background: radial-gradient(ellipse, rgba(6, 182, 212, 0.06) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Nav */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(9, 9, 11, 0.8);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .nav-logo img {
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-links a.active {
-      color: var(--accent);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.45rem 1.15rem;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s ease;
-    }
-    .btn-primary { background: var(--text); color: var(--bg); }
-    .btn-primary:hover { background: #fff; box-shadow: 0 2px 12px rgba(255,255,255,0.1); }
-    .nav-cta { color: var(--bg) !important; }
-
-    .mobile-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text);
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-
-    /* Page */
-    .page {
-      position: relative;
-      z-index: 1;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 9rem 2rem 8rem;
-    }
-
-    .page-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.35rem 1rem;
-      border-radius: 100px;
-      background: var(--accent-glow);
-      border: 1px solid rgba(6, 182, 212, 0.2);
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--accent);
-      margin-bottom: 2rem;
-      font-family: var(--mono);
-    }
-
-    .page h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 1.5rem;
-    }
-
-    .page h1 .gradient {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 50%, #818cf8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .page .lead {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      line-height: 1.75;
-      margin-bottom: 4rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 3rem;
-    }
-
-    .section {
-      margin-bottom: 4rem;
-    }
-
-    .section h2 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.25rem;
-      color: var(--text);
-    }
-
-    .section p {
-      font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.8;
-      margin-bottom: 1.25rem;
-    }
-
-    .section p:last-child {
-      margin-bottom: 0;
-    }
-
-    .callout {
-      margin: 3rem 0;
-      padding: 1.5rem 1.75rem;
-      border-radius: 12px;
-      border: 1px solid rgba(6, 182, 212, 0.2);
-      background: var(--accent-glow);
-    }
-
-    .callout p {
-      font-size: 1.1rem;
-      font-style: italic;
-      color: var(--text);
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 3.5rem 0;
-    }
-
-    /* Footer */
-    footer {
-      position: relative;
-      z-index: 1;
-      padding: 2rem;
-      text-align: center;
-      border-top: 1px solid var(--border);
-    }
-
-    footer p {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-    }
-
-    footer a {
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    footer a:hover {
-      color: var(--text);
-    }
-
-    @media (max-width: 640px) {
-      .page {
-        padding: 7rem 1.5rem 5rem;
-      }
-
-      .page h1 {
-        font-size: 1.75rem;
-      }
-
-      .page .lead {
-        font-size: 1rem;
-      }
-
-      .nav-links {
-        display: none;
-        gap: 1rem;
-      }
-      .nav-links.open {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg);
-        border-bottom: 1px solid var(--border);
-        padding: 1rem 2rem;
-        gap: 1rem;
-      }
-      .mobile-toggle { display: block; }
-    }
-  </style>
+  <link rel="stylesheet" href="platform-pages.css">
 </head>
 
 <body>
-
-  <div class="glow-bg"></div>
-
-  <nav id="nav">
-    <a href="/" class="nav-logo">
-      <img src="favicon.png" alt="Ocean" />
-      Ocean
-    </a>
-    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-    <div class="nav-links">
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <a href="index.html" class="brand" aria-label="Ocean home"><img src="favicon.png" alt=""><span>Ocean</span></a>
+    <div class="nav-links" id="nav-links">
       <a href="for-developers.html">Developers</a>
       <a href="for-enterprise.html">Enterprise</a>
+      <a href="pricing/">Pricing</a>
       <a href="vision.html" class="active">Vision</a>
-      <a href="https://viveky259259.github.io/ocean-releases" target="_blank" rel="noopener">Docs</a>
-      <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://github.com/viveky259259/ocean-releases/releases" target="_blank" rel="noopener" class="btn btn-primary nav-cta">Download</a>
+      <a href="careers.html">Careers</a>
+      <a href="https://docs.getocean.dev" target="_blank" rel="noopener">Documentation</a>
+      <a href="https://github.com/Ocean-AI-Platform/ocean-releases" target="_blank" rel="noopener">GitHub</a>
+    </div>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">
+        <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A8.5 8.5 0 1111.2 3 6.5 6.5 0 0021 12.8z" />
+        </svg>
+        <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
+        </svg>
+      </button>
+      <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank" rel="noopener"
+        class="btn btn-primary">Download</a>
+      <button class="nav-menu" id="nav-menu" type="button" aria-label="Open navigation menu" aria-expanded="false"
+        aria-controls="nav-links">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
     </div>
   </nav>
 
-  <article class="page">
-    <div class="page-label">Our Thinking</div>
-    <h1>The future of development is<br><span class="gradient">multi-agent</span></h1>
-    <p class="lead">
-      Software development is about to change fundamentally. In the near future, developers will not write most code
-      themselves — they will manage teams of AI agents writing code in parallel. The bottleneck will no longer be code
-      generation, but coordination: isolating agent work, preventing conflicts, merging changes safely, and shipping
-      clean code.
-    </p>
+  <main>
+    <section class="hero" data-watermark="VISION">
+      <div class="container">
+        <a class="eyebrow" href="#future"><span class="pulse" aria-hidden="true"></span>The platform layer for coding
+          agents</a>
+        <h1>Agentic development needs a trust platform.</h1>
+        <p class="hero-copy">Coding agents will write more of the software. Ocean exists so teams can give that work
+          structure: isolation, evidence, budgets, review, and controlled autonomy.</p>
+        <div class="hero-actions">
+          <a href="index.html" class="btn btn-primary">Explore Ocean</a>
+          <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank" rel="noopener"
+            class="btn btn-secondary">Download</a>
+        </div>
+      </div>
+    </section>
 
-    <div class="section">
-      <h2>What we are building</h2>
-      <p>
-        We are building Ocean — a terminal designed for agentic software development, where multiple AI coding agents
-        work in parallel on the same codebase. As AI-assisted development becomes the default way software is built, the
-        biggest unsolved problem is not code generation, but coordination: isolation, conflicts, merging, visibility,
-        and shipping AI-generated work safely.
-      </p>
-      <p>
-        Ocean focuses on the infrastructure layer for AI development workflows. Instead of replacing IDEs or editors, we
-        are building the orchestration layer that sits underneath AI agents and manages sessions, detects conflicts in
-        real time, assists with merges, and converts parallel AI work into clean commits and pull requests.
-      </p>
-    </div>
+    <section class="section" id="future">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">What changes</span>
+          <h2>Development moves from one developer and one branch to many agents and many attempts.</h2>
+          <p>That shift needs a platform that can coordinate work, preserve evidence, and keep humans responsible for
+            production decisions.</p>
+        </div>
+        <div class="timeline-grid">
+          <article class="timeline-card"><span>Now</span><h3>Agents write code in isolated tools.</h3><p>Teams get speed, but workflows are fragmented across terminals, IDEs, chat tools, and manual review.</p></article>
+          <article class="timeline-card"><span>Next</span><h3>Agent work becomes structured.</h3><p>Every attempt has a lane, budget, validation state, risk signal, and merge recommendation.</p></article>
+          <article class="timeline-card"><span>Then</span><h3>Governed autonomy becomes possible.</h3><p>Agents can move faster because the platform makes their work measurable, reversible, and reviewable.</p></article>
+        </div>
+      </div>
+    </section>
 
-    <hr class="divider">
+    <section class="section band">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">Ocean belief</span>
+          <h2>The winning agent stack will be a platform, not a prompt box.</h2>
+          <p>Ocean is building the trust layer around coding agents: workspaces, validation, cost control, audit, merge,
+            and collaboration primitives.</p>
+        </div>
+        <div class="platform-grid">
+          <a class="tile" href="index.html"><span class="tile-icon">TR</span><h3>Trust</h3><p>Evidence before merge.</p></a>
+          <a class="tile" href="index.html"><span class="tile-icon">CO</span><h3>Control</h3><p>Humans stay in the approval path.</p></a>
+          <a class="tile" href="index.html"><span class="tile-icon">AU</span><h3>Audit</h3><p>Every accepted change has context.</p></a>
+          <a class="tile" href="index.html"><span class="tile-icon">SP</span><h3>Spend</h3><p>Cost ties back to useful output.</p></a>
+          <a class="tile" href="index.html"><span class="tile-icon">MR</span><h3>Merge</h3><p>Agent work lands through gates.</p></a>
+        </div>
+      </div>
+    </section>
 
-    <div class="section">
-      <h2>The shift we see coming</h2>
-      <p>
-        Our long-term vision is that software development will move from "one developer, one branch" to "one developer,
-        many agents," and teams will need tools to manage dozens of AI workers safely and predictably. Ocean is being
-        built as the terminal and orchestration environment for that future.
-      </p>
-      <p>
-        Our belief is that the future of software development is not one developer per branch, but one developer
-        managing many agents. Ocean is building the infrastructure and workflow layer for multi-agent software
-        development.
-      </p>
-    </div>
-
-    <div class="callout">
-      <p>If AI code generation is the new compiler, Ocean aims to be the operating system for AI-assisted development.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Where we are today</h2>
-      <p>
-        We are currently in private beta on macOS and actively building the core systems around session isolation,
-        conflict detection, merge orchestration, and agent-aware workflows. The goal is to give developers and teams the
-        tools to adopt multi-agent development workflows safely and predictably — starting now, and scaling as AI agents
-        become central to how software gets built.
-      </p>
-    </div>
-  </article>
+    <section class="cta">
+      <div class="container">
+        <div class="cta-inner">
+          <h2>Build the platform layer before agent usage becomes unmanageable.</h2>
+          <p>Ocean starts with the desktop workbench and grows toward governed multi-agent development.</p>
+          <div class="hero-actions">
+            <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank" rel="noopener"
+              class="btn btn-primary">Download</a>
+            <a href="for-enterprise.html" class="btn btn-secondary">For teams</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>
-      Ocean &mdash; Terminal for Agentic Development &middot;
-      <a href="https://viveky259259.github.io/ocean-releases">Docs</a> &middot;
-      <a href="https://github.com/viveky259259/ocean-releases" target="_blank" rel="noopener">GitHub</a> &middot;
-      <a href="https://github.com/viveky259259/ocean-releases/releases" target="_blank" rel="noopener">Releases</a>
-    </p>
+    Ocean - Agentic Development Platform &middot; <a href="index.html">Platform</a> &middot;
+    <a href="for-developers.html">Developers</a> &middot; <a href="for-enterprise.html">Teams</a> &middot;
+    <a href="careers.html">Careers</a>
   </footer>
 
+  <script src="platform-pages.js"></script>
 </body>
 
 </html>

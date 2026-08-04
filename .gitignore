@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Firebase
+.firebase/
+firebase-debug.log*
+ui-debug.log*
+
+# Dependencies
+node_modules/
+
+# Archives
+*.zip
+*.tar.gz
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log

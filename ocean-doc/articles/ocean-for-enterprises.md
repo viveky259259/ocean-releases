@@ -74,7 +74,7 @@ Traditional:
 
 Ocean:
   t=0     Agent A starts     Agent B starts
-  t=5min  ⚠️ Ocean: "Both editing auth.ts — overlapping changes"
+  t=5min  [WARN] Ocean: "Both editing auth.ts — overlapping changes"
   t=6min  Developer pauses Agent B or reviews diff
   t=60min Agent A finishes, Agent B continues on resolved base
   ═══════════════════════════════════════════
@@ -193,7 +193,7 @@ For enterprise teams, this means:
 
 ### Supply Chain
 
-- **Open source** — Full source code available for audit
+- **Auditable** — Full source code available for audit
 - **Minimal dependencies** — Rust backend with well-known crates (serde, tokio, rusqlite, git2)
 - **Code signing** — macOS builds are signed and notarized
 - **Reproducible builds** — Build from source with documented process
@@ -280,4 +280,4 @@ At $100/hour fully loaded developer cost: **~$358,000/year** in recovered produc
 
 ---
 
-*Ocean is open-source (all rights reserved). For enterprise inquiries, deployment support, or custom integration discussions, contact the Ocean team via [GitHub](https://github.com/viveky259259/ocean-releases).*
+*Ocean is private software (all rights reserved). For enterprise inquiries, deployment support, or custom integration discussions, contact the Ocean team via [GitHub](https://github.com/Ocean-AI-Platform/ocean-releases).*

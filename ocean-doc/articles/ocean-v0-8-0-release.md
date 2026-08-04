@@ -72,4 +72,4 @@ This release fixes 10 issues in the conflict detection and merge workflows:
 
 ---
 
-[Download v0.8.0](https://github.com/viveky259259/ocean-releases/releases/tag/v0.8.0)
+[Download v0.8.0](https://github.com/Ocean-AI-Platform/ocean-releases/releases/tag/v0.8.0)

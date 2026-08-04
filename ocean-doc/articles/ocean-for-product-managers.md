@@ -37,13 +37,13 @@ Instead of a mess of terminal windows, Ocean groups everything into **workspaces
 Think of it like a project board, but for AI agents:
 
 📁 Login Page Redesign
-   🤖 Claude — writing the login form      ✅ Active
-   🤖 Aider — writing login tests          ✅ Active
-   💻 Manual — monitoring & reviewing       ⏸️ Idle
+   [Agent] Claude — writing the login form      [Active]
+   [Agent] Aider — writing login tests          [Active]
+   [Human] Manual — monitoring & reviewing       [Idle]
 
 📁 Checkout Bug Fix
-   🤖 Claude — investigating the bug       ✅ Active
-   💻 Manual — testing the fix             ⏸️ Waiting
+   [Agent] Claude — investigating the bug       [Active]
+   [Human] Manual — testing the fix             [Waiting]
 ```
 
 ### 2. Prevents agents from breaking each other's work
@@ -52,16 +52,16 @@ This is Ocean's most important feature. When two agents work on the same project
 
 If two agents do happen to edit the same file, Ocean detects it **immediately** — not hours later when someone tries to combine the work. It shows the conflict in real-time with clear severity levels:
 
-- 🟢 **Safe** — Different files changed. No issue.
-- 🟡 **Caution** — Same file, different sections. Probably fine.
-- 🔴 **Conflict** — Same lines changed. Needs human decision.
+- [OK] Safe — Different files changed. No issue.
+- [WARN] Caution — Same file, different sections. Probably fine.
+- [CONFLICT] Conflict — Same lines changed. Needs human decision.
 
 ### 3. Shows everything at a glance
 
 A status bar at the top shows system health, project status, and agent state — all in real-time, without anyone having to ask:
 
 ```
-🌐 Online  │  RAM 62%  CPU 34%  │  main ↑2  +3 ~5  │  3 agents active
+[Network] Online  │  RAM 62%  CPU 34%  │  main +2  +3 ~5  │  3 agents active
 ```
 
 This is like a dashboard for your development environment.
@@ -146,9 +146,9 @@ Ocean is designed for three types of users on your team:
 
 ## Getting Started
 
-Ocean is a desktop application for macOS (Apple Silicon). It's free, open-source, and takes about 2 minutes to install:
+Ocean is a desktop application for macOS (Apple Silicon). It's free during the beta and takes about 2 minutes to install:
 
-1. Download from the [Releases page](https://github.com/viveky259259/ocean-releases/releases)
+1. Download from the [Releases page](https://github.com/Ocean-AI-Platform/ocean-releases/releases)
 2. Drag to Applications
 3. Open and start using it as a regular terminal
 
@@ -156,4 +156,4 @@ The AI-specific features reveal themselves naturally as developers start running
 
 ---
 
-*Ocean is open-source and free. No vendor lock-in. No cloud dependency. [Learn more](https://viveky259259.github.io/ocean-releases)*
+*Ocean is private software. No vendor lock-in. No cloud dependency. [Learn more](https://docs.getocean.dev)*

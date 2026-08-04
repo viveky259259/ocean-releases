@@ -8,11 +8,11 @@ Ocean is a desktop terminal built for developers working with AI coding agents. 
 
 | Site | URL | Purpose |
 |------|-----|---------|
-| Main website | [ocean-terminal.web.app](https://ocean-terminal.web.app) | Marketing landing page — features, waitlist |
-| Vision | [ocean-terminal.web.app/vision.html](https://ocean-terminal.web.app/vision.html) | Mission & long-term thinking |
-| Feature blog | [ocean-app.web.app](https://ocean-app.web.app) | Feature highlights & release announcements |
-| Technical docs | [ocean-doc.web.app](https://ocean-doc.web.app) | Documentation for external users |
-| GitHub Pages | [viveky259259.github.io/ocean-releases](https://viveky259259.github.io/ocean-releases) | Full developer reference (install, API, architecture) |
+| Main website | [getocean.dev](https://getocean.dev) | Marketing landing page — features, waitlist |
+| Vision | [getocean.dev/vision.html](https://getocean.dev/vision.html) | Mission & long-term thinking |
+| Feature blog | [getocean.dev/articles.html](https://getocean.dev/articles.html) | Feature highlights & release announcements |
+| Technical docs | [docs.getocean.dev](https://docs.getocean.dev) | Documentation for external users |
+| Full Reference | [docs.getocean.dev](https://docs.getocean.dev) | Full developer reference (install, API, architecture) |
 
 ## Waitlist
 
@@ -20,11 +20,13 @@ Ocean is a desktop terminal built for developers working with AI coding agents. 
 
 ## Download
 
-Download the latest release from the [Releases page](https://github.com/viveky259259/ocean-releases/releases).
+Latest release: **v0.3.1** (August 1, 2026).
+
+Download the latest release from the [Releases page](https://github.com/Ocean-AI-Platform/ocean-releases/releases).
 
 | Platform | Download |
 |----------|----------|
-| macOS (Apple Silicon) | [Ocean.app.tar.gz](https://github.com/viveky259259/ocean-releases/releases/latest) |
+| macOS (Apple Silicon) | [Ocean.app.tar.gz](https://github.com/Ocean-AI-Platform/ocean-releases/releases/latest) |
 
 ## Features
 

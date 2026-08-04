@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <title>Article — Ocean Docs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    .article-content {
+      max-width: 800px;
+      margin: 120px auto 80px;
+      padding: 0 24px;
+    }
+
+    .article-content h1 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--text);
+    }
+
+    .article-content h2 {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .article-content p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      color: var(--muted);
+    }
+
+    .article-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .article-content code {
+      font-family: var(--font-mono);
+      background: var(--surface-2);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: var(--accent);
+    }
+
+    .article-content pre {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 12px;
+      overflow-x: auto;
+      margin: 2rem 0;
+    }
+
+    .article-content pre code {
+      background: none;
+      padding: 0;
+      color: var(--text);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      transition: transform 0.2s;
+    }
+
+    .back-link:hover {
+      transform: translateX(-4px);
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="nav-left">
+      <a href="index.html" class="nav-logo">
+        <img src="favicon.png" alt="Ocean Logo" class="nav-logo-img">
+        <span>Ocean Docs</span>
+      </a>
+    </div>
+    <div class="nav-links">
+      <a href="https://getocean.dev">Home</a>
+      <a href="index.html">Docs</a>
+      <a href="articles.html">Articles</a>
+      <a href="https://github.com/Ocean-AI-Platform/ocean-releases" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </nav>
+
+  <main class="article-content" id="content">
+    <a href="articles.html" class="back-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Articles
+    </a>
+    <div id="article-body">
+      <p>Loading article...</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Ocean — The Native Platform for AI Agents<br>
+      <a href="articles.html">Back to Articles</a> &nbsp;&middot;&nbsp;
+      <a href="index.html">Docs</a> &nbsp;&middot;&nbsp;
+      <a href="https://getocean.dev">Home</a>
+    </p>
+  </footer>
+
+  <script>
+    async function loadArticle() {
+      const params = new URLSearchParams(window.location.search);
+      const articleId = params.get('id');
+
+      if (!articleId) {
+        document.getElementById('article-body').innerHTML = '<h1>Article not found</h1><p>No article ID provided.</p>';
+        return;
+      }
+
+      try {
+        const articlePath = `articles/${articleId}.md`;
+        console.log('Fetching article from:', articlePath);
+
+        const response = await fetch(articlePath);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const markdown = await response.text();
+        document.getElementById('article-body').innerHTML = marked.parse(markdown);
+
+        // Update page title
+        const firstH1 = document.querySelector('#article-body h1');
+        if (firstH1) {
+          document.title = `${firstH1.innerText} — Ocean Docs`;
+        }
+      } catch (err) {
+        console.error('Fetch error:', err);
+        let errorMsg = `Could not load the article "${articleId}".`;
+        if (window.location.protocol === 'file:') {
+          errorMsg += '<br><br><strong>Note:</strong> It looks like you are opening this file directly. Browser security (CORS) prevents fetching files via the "file://" protocol. Please use a local server (like <code>npx serve</code> or <code>firebase serve</code>) to preview the articles.';
+        } else {
+          errorMsg += `<br><br>Technical details: ${err.message}<br>Path attempted: articles/${articleId}.md`;
+        }
+        document.getElementById('article-body').innerHTML = `<h1>Load Error</h1><p>${errorMsg}</p>`;
+      }
+    }
+
+    loadArticle();
+  </script>
+</body>
+
+</html>

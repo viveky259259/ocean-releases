@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "default": "getoceanplatform"
+  },
+  "targets": {
+    "getoceanplatform": {
+      "hosting": {
+        "docs": [
+          "docs-getoceanproject"
+        ]
+      }
+    }
+  },
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}

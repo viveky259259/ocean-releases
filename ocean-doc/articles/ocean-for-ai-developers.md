@@ -77,12 +77,12 @@ Ocean detects AI agents automatically — Claude Code, Codex, Aider, Cursor, Cop
 
 ```
 ┌─────────────────────────┬─────────────────────────┐
-│ ● claude  auth-module   │ ● aider  test-suite     │
-│ ⚡ High | Opus 4.6      │ ⚡ Med  | Sonnet 4.6    │
+│ * claude  auth-module   │ * aider  test-suite     │
+│ [High] | Opus 4.6      │ [Med]  | Sonnet 4.6    │
 │ ~/project $             │ ~/project $             │
 │ Working on login flow...│ Writing unit tests...   │
 ├─────────────────────────┴─────────────────────────┤
-│ ● shell  manual                                   │
+│ * shell  manual                                   │
 │ ~/project $ git status                            │
 └───────────────────────────────────────────────────┘
 ```
@@ -124,8 +124,8 @@ Running a dev server in a session? Right-click the detected port to create a pub
 Ocean includes a visual settings panel for configuring Claude Code context. No more CLI flags and manual CLAUDE.md editing:
 
 - **Model selector** — Switch between Opus, Sonnet, and Haiku visually
-- **Effort level** — Dial from Low to Max with one click
-- **Session limits** — Set max turns and budget per session
+- **Parallel Claudes** — Batch spawn agents, broadcast commands, and use N-way diff to promote the best implementation
+- **Software-review skill** — Trigger comprehensive codebase audits directly from the terminal
 - **CLAUDE.md editor** — Edit your project context inline with token count
 - **Permission mode** — Choose how much autonomy Claude gets
 
@@ -137,12 +137,12 @@ Ocean is not an IDE. It doesn't replace VS Code or Cursor. It's your terminal �
 
 ## Get Started
 
-1. Download from the [Releases page](https://github.com/viveky259259/ocean-releases/releases)
-2. Create a workspace linked to your repo
+1. Download: [github.com/viveky259259/ocean-releases/releases](https://github.com/Ocean-AI-Platform/ocean-releases/releases)
+2. Docs: [docs.getocean.dev](https://docs.getocean.dev)
 3. Spawn child sessions for each agent
 4. Watch conflicts get caught in real-time
 5. Ship to PR when everything converges
 
 ---
 
-*Ocean is open-source, local-first, and runs entirely on your machine. No cloud dependency. No telemetry unless you opt in. No lock-in.*
+*Ocean is private software, local-first, and runs entirely on your machine. No cloud dependency. No telemetry unless you opt in. No lock-in.*
