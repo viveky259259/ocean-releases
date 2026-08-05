@@ -78,38 +78,109 @@
 
   <main>
     <section class="hero blog-hero" data-watermark="BLOG">
-      <div class="container">
-        <span class="eyebrow"><span class="pulse" aria-hidden="true"></span>Ocean field notes</span>
-        <h1>Practical thinking for teams adopting coding agents.</h1>
-        <p class="hero-copy">Essays on AI code review, validation evidence, engineering trust, and the workflow layer
-          teams need when agents start writing real production code.</p>
+      <div class="container blog-hero-grid">
+        <div class="blog-hero-copy">
+          <span class="eyebrow"><span class="pulse" aria-hidden="true"></span>Ocean field notes</span>
+          <h1>Practical thinking for teams adopting coding agents.</h1>
+          <p class="hero-copy">Essays for software service companies, VP Engineering teams, founders, and delivery
+            leaders who need faster agentic development without losing review discipline.</p>
+          <div class="blog-hero-metrics" aria-label="Editorial themes">
+            <span>AI code review</span>
+            <span>Validation evidence</span>
+            <span>Engineering trust</span>
+          </div>
+        </div>
+
+        <a class="blog-feature-card" href="/blogs/agent-written-code-evidence-trail/">
+          <img src="https://firebasestorage.googleapis.com/v0/b/getoceanplatform.firebasestorage.app/o/blogs%2Fimages%2Fevidence-trail-blog-header.png?alt=media&amp;token=3d52940f-31a5-4466-adc7-0cbe65983887"
+            alt="Engineering team reviewing a pull request with missing validation evidence">
+          <div class="blog-feature-card-body">
+            <span class="post-meta">Latest essay - August 6, 2026</span>
+            <h2>The New Engineering Risk: Agent-Written Code With No Evidence Trail</h2>
+            <p>What changes when AI agents create production code faster than teams can verify the work.</p>
+          </div>
+        </a>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section blog-focus-section">
       <div class="container">
-        <div class="post-grid" aria-label="Ocean blog posts">
-          <a class="post-card featured-post" href="/blogs/agent-written-code-evidence-trail/">
+        <div class="section-head">
+          <span class="section-label">Read by problem</span>
+          <h2>Where agentic engineering teams need sharper operating models.</h2>
+          <p>Ocean writing is built around the questions software service companies will face as AI coding moves from
+            experiments to client delivery.</p>
+        </div>
+        <div class="blog-topic-grid" aria-label="Ocean blog topics">
+          <div class="blog-topic-card">
+            <span>01</span>
+            <h3>Review Bottlenecks</h3>
+            <p>How engineering teams keep PR review useful when AI agents multiply branch volume.</p>
+          </div>
+          <div class="blog-topic-card">
+            <span>02</span>
+            <h3>Evidence Trails</h3>
+            <p>The logs, checks, risks, and handoff context reviewers need before trusting generated code.</p>
+          </div>
+          <div class="blog-topic-card">
+            <span>03</span>
+            <h3>Delivery Governance</h3>
+            <p>How founders and delivery leaders protect client trust while adopting agentic workflows.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section blog-list-section">
+      <div class="container">
+        <div class="blog-list-head">
+          <div>
+            <span class="section-label">All articles</span>
+            <h2>Latest from Ocean</h2>
+          </div>
+          <a class="btn btn-secondary" href="https://docs.getocean.dev" target="_blank" rel="noopener">Docs</a>
+        </div>
+
+        <div class="post-grid" aria-label="Ocean blog articles">
+          <a class="post-card" href="/blogs/agent-written-code-evidence-trail/">
             <img src="https://firebasestorage.googleapis.com/v0/b/getoceanplatform.firebasestorage.app/o/blogs%2Fimages%2Fevidence-trail-blog-header.png?alt=media&amp;token=3d52940f-31a5-4466-adc7-0cbe65983887"
               alt="Engineering team reviewing a pull request with missing validation evidence">
-            <div>
+            <div class="post-card-body">
               <span class="post-meta">AI Code Governance - August 6, 2026</span>
               <h2>The New Engineering Risk: Agent-Written Code With No Evidence Trail</h2>
               <p>Why agent-written code needs validation evidence before PR review, and what engineering leaders should
                 expect from modern AI coding workflows.</p>
+              <span class="post-link">Read article</span>
             </div>
           </a>
 
           <a class="post-card" href="/blogs/ai-coding-agents-review-process-not-ready/">
             <img src="https://firebasestorage.googleapis.com/v0/b/getoceanplatform.firebasestorage.app/o/blogs%2Fimages%2Fai-review-not-ready-hero.png?alt=media&amp;token=a2391786-e8e4-4860-86b2-a19204f0b740"
               alt="Engineering team looking at an overflowing pull request queue">
-            <div>
+            <div class="post-card-body">
               <span class="post-meta">AI Code Review - August 5, 2026</span>
               <h2>AI Coding Agents Are Fast. Your Review Process Is Not Ready.</h2>
               <p>AI coding agents can create branches faster than teams can review them. The next bottleneck is trust,
                 validation, and reviewer load.</p>
+              <span class="post-link">Read article</span>
             </div>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta blog-cta">
+      <div class="container">
+        <div class="cta-inner">
+          <span class="section-label">Ocean for teams</span>
+          <h2>Ship with agents. Keep the review trail.</h2>
+          <p>Ocean helps engineering teams run agentic development with workspace isolation, review context, and release
+            discipline built into the flow.</p>
+          <div class="hero-actions">
+            <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank" rel="noopener"
+              class="btn btn-primary">Download Ocean</a>
+            <a href="/for-enterprise.html" class="btn btn-secondary">For Teams</a>
+          </div>
         </div>
       </div>
     </section>
