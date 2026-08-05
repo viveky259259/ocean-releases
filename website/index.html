@@ -741,6 +741,116 @@
       line-height: 0.98;
     }
 
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .pricing-card {
+      display: flex;
+      min-height: 410px;
+      flex-direction: column;
+      padding: 24px;
+      border: 1px solid var(--line-dark);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .pricing-card.featured {
+      border-color: var(--text-dark);
+      background: var(--signal);
+      box-shadow: 0 14px 32px rgba(8, 9, 11, 0.1);
+    }
+
+    .pricing-card .kicker {
+      margin-bottom: 16px;
+    }
+
+    .pricing-card h3 {
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .pricing-card > p {
+      margin-top: 12px;
+      color: var(--muted-dark);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .price {
+      margin-top: 20px;
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .price small {
+      color: var(--muted-dark);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .pricing-list {
+      display: grid;
+      gap: 10px;
+      margin: 22px 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted-dark);
+      font-size: 14px;
+    }
+
+    .pricing-list li {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+    }
+
+    .pricing-list li::before {
+      content: "+";
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .pricing-card .btn {
+      margin-top: auto;
+    }
+
+    .start-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .start-step {
+      min-height: 220px;
+      padding: 24px;
+      border-top: 2px solid var(--text-dark);
+      background: var(--paper-2);
+    }
+
+    .start-step > span {
+      color: var(--blue);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .start-step h3 {
+      margin-top: 38px;
+      font-size: 25px;
+      line-height: 1.04;
+    }
+
+    .start-step p {
+      margin-top: 12px;
+      color: var(--muted-dark);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
     .persona-card p {
       margin-top: 14px;
       color: var(--muted-dark);
@@ -899,6 +1009,8 @@
       }
 
       .persona-grid,
+      .pricing-grid,
+      .start-grid,
       .signal-panel {
         grid-template-columns: 1fr;
       }
@@ -1025,6 +1137,8 @@
       }
     }
   </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-04ECN7XEVS"></script>
+  <script src="/analytics.js" defer></script>
 </head>
 
 <body>
@@ -1037,7 +1151,7 @@
     <div class="nav-links" id="nav-links">
       <a href="for-developers.html">Developers</a>
       <a href="for-enterprise.html">Enterprise</a>
-      <a href="pricing/">Pricing</a>
+      <a href="#pricing">Pricing</a>
       <a href="vision.html">Vision</a>
       <a href="careers.html">Careers</a>
       <a href="https://docs.getocean.dev" target="_blank" rel="noopener">Docs</a>
@@ -1202,6 +1316,97 @@
       </div>
     </section>
 
+    <section class="light-section" id="pricing">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="kicker">Pricing</span>
+            <h2>Start locally. Scale into shared controls when the team needs them.</h2>
+          </div>
+          <p>Ocean is free during beta. Choose the level of shared workflows, governance, and support that fits your team.</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="pricing-card featured reveal">
+            <span class="kicker">Start</span>
+            <h3>Free</h3>
+            <p>For developers trying Ocean and running agent work locally.</p>
+            <div class="price">$0 <small>/ month</small></div>
+            <ul class="pricing-list">
+              <li>Local workspaces and sessions</li>
+              <li>Agent development workflow</li>
+              <li>Spec-to-pull-request basics</li>
+            </ul>
+            <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank" rel="noopener"
+              class="btn btn-primary">Download</a>
+          </article>
+          <article class="pricing-card reveal">
+            <span class="kicker">Individual</span>
+            <h3>Pro</h3>
+            <p>For individual developers who want a stronger agentic development platform.</p>
+            <div class="price">$15 <small>/ seat / month</small></div>
+            <ul class="pricing-list">
+              <li>Everything in Free</li>
+              <li>Project knowledge context packs</li>
+              <li>Advanced local workflows</li>
+            </ul>
+            <a href="for-developers.html" class="btn btn-secondary">Get Pro</a>
+          </article>
+          <article class="pricing-card reveal">
+            <span class="kicker">Shared</span>
+            <h3>Teams</h3>
+            <p>For teams sharing workspaces, artifacts, workflows, and development policies.</p>
+            <div class="price">$25 <small>/ seat / month</small></div>
+            <ul class="pricing-list">
+              <li>Everything in Pro</li>
+              <li>Shared workspace collaboration</li>
+              <li>Team workflows and policy gates</li>
+            </ul>
+            <a href="for-enterprise.html" class="btn btn-secondary">Contact us</a>
+          </article>
+          <article class="pricing-card reveal">
+            <span class="kicker">Scale</span>
+            <h3>Enterprise</h3>
+            <p>For organizations that need security, governance, deployment, and support.</p>
+            <div class="price">Custom</div>
+            <ul class="pricing-list">
+              <li>SSO, RBAC, and audit controls</li>
+              <li>Self-hosted and managed options</li>
+              <li>SLA, governance, and recovery</li>
+            </ul>
+            <a href="for-enterprise.html" class="btn btn-secondary">Talk to sales</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="light-section" id="start">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="kicker">Start</span>
+            <h2>One platform to run, inspect, approve, and ship.</h2>
+          </div>
+          <p>Move from an agent task to a deliberate, evidence-backed merge without losing the team context.</p>
+        </div>
+        <div class="start-grid">
+          <div class="start-step reveal">
+            <span>01</span>
+            <h3>Install the native app</h3>
+            <p>Grab the latest macOS release from GitHub and move Ocean into Applications.</p>
+          </div>
+          <div class="start-step reveal">
+            <span>02</span>
+            <h3>Start agent lanes</h3>
+            <p>Open a workspace, spawn sessions, and run the agents you already use.</p>
+          </div>
+          <div class="start-step reveal">
+            <span>03</span>
+            <h3>Approve the merge</h3>
+            <p>Review diffs, resolve conflicts, merge selected work, and create the pull request.</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="cta">
       <div class="container">
         <div class="cta-inner reveal">
@@ -1223,7 +1428,7 @@
     Ocean - Agentic Development Platform &middot;
     <a href="for-developers.html">Developers</a> &middot;
     <a href="for-enterprise.html">Enterprise</a> &middot;
-    <a href="pricing/">Pricing</a> &middot;
+    <a href="#pricing">Pricing</a> &middot;
     <a href="vision.html">Vision</a> &middot;
     <a href="careers.html">Careers</a> &middot;
     <a href="https://articles.getocean.dev">Articles</a> &middot;
@@ -1231,8 +1436,6 @@
     <a href="https://github.com/Ocean-AI-Platform/ocean-releases" target="_blank" rel="noopener">GitHub</a>
   </footer>
 
-  <script src="https://www.gstatic.com/firebasejs/12.9.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/12.9.1/firebase-analytics-compat.js"></script>
   <script>
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav?.classList.toggle('scrolled', window.scrollY > 18));
@@ -1363,7 +1566,6 @@
     };
 
     let activeHeroVariant = 'control';
-    let analytics = null;
 
     function updateText(id, value) {
       const element = document.getElementById(id);
@@ -1390,8 +1592,11 @@
     }
 
     function logExperimentEvent(name, parameters = {}) {
-      if (!analytics) return;
-      firebase.analytics().logEvent(name, {
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function gtag() {
+        window.dataLayer.push(arguments);
+      };
+      window.gtag('event', name, {
         experiment_name: 'homepage_hero_message_v1',
         assignment_strategy: 'random_per_visit',
         hero_variant: activeHeroVariant,
@@ -1409,23 +1614,7 @@
     }
 
     function initializeAnalytics(source) {
-      const firebaseConfig = {
-        projectId: 'getoceanplatform',
-        appId: '1:939228557907:web:6f1981b43bf2fac66d8ca6',
-        storageBucket: 'getoceanplatform.firebasestorage.app',
-        apiKey: 'AIzaSyA1WFYxCbjWpfKuU4ginXAJiq1D45nVmtA',
-        authDomain: 'getoceanplatform.firebaseapp.com',
-        messagingSenderId: '939228557907',
-        measurementId: 'G-04ECN7XEVS',
-      };
-
-      try {
-        firebase.initializeApp(firebaseConfig);
-        analytics = firebase.analytics();
-        logExperimentEvent('homepage_experiment_view', { config_source: source });
-      } catch (_) {
-        // The selected landing page remains available if Firebase is blocked or unavailable.
-      }
+      logExperimentEvent('homepage_experiment_view', { config_source: source });
     }
 
     document.querySelectorAll('[data-cta]').forEach((element) => {
