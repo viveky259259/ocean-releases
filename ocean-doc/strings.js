@@ -57,6 +57,20 @@ const AppStrings = {
 
 const AppArticles = [
   {
+    id: "agent-written-code-evidence-trail",
+    tag: "AI Code Governance",
+    title: "The New Engineering Risk: Agent-Written Code With No Evidence Trail",
+    desc: "Why agent-written code needs validation evidence before PR review, and what engineering leaders should expect from modern AI coding workflows.",
+    date: "August 6, 2026",
+  },
+  {
+    id: "ai-coding-agents-review-process-not-ready",
+    tag: "AI Code Review",
+    title: "AI Coding Agents Are Fast. Your Review Process Is Not Ready.",
+    desc: "AI coding agents can create branches faster than teams can review them. The next bottleneck is trust, validation, and reviewer load.",
+    date: "August 5, 2026",
+  },
+  {
     id: "parallel-agents-run-many-keep-the-best",
     tag: "Featured Guide",
     title: "Parallel Agents: Run Many, Keep the Best",
