@@ -26,6 +26,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://getocean.dev/blogs/ai-code-accountability-gap-vp-engineering/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://getocean.dev/blogs/hidden-cost-ai-coding-verification-debt/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://getocean.dev/blogs/agent-written-code-evidence-trail/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
