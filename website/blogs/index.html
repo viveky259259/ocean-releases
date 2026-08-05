@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08090b">
+  <meta name="color-scheme" content="dark light">
+  <script>
+    (function () {
+      try {
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('ocean-theme') || 'dark');
+      } catch (e) { }
+    })();
+  </script>
+  <title>Ocean Blog - AI Coding Agents, Review, and Engineering Trust</title>
+  <meta name="description"
+    content="Field notes from Ocean on AI coding agents, code review, validation evidence, and engineering workflows for teams adopting agent-written code.">
+  <meta name="keywords"
+    content="Ocean blog, AI coding agents, AI code review, agent-written code, validation evidence, developer tools, engineering leadership">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://getocean.dev/blogs/">
+  <meta property="og:title" content="Ocean Blog - AI Coding Agents and Engineering Trust">
+  <meta property="og:description"
+    content="Practical writing on AI coding agents, review bottlenecks, validation evidence, and the trust layer engineering teams need now.">
+  <meta property="og:image" content="https://getocean.dev/blogs/images/evidence-trail-blog-header.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://getocean.dev/blogs/images/evidence-trail-blog-header.png">
+  <link rel="canonical" href="https://getocean.dev/blogs/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/platform-pages.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-04ECN7XEVS"></script>
+  <script src="/analytics.js" defer></script>
+</head>
+
+<body>
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <a href="/" class="brand" aria-label="Ocean home"><img src="/favicon.png" alt=""><span>Ocean</span></a>
+    <div class="nav-links" id="nav-links">
+      <a href="/for-developers.html">Developers</a>
+      <a href="/for-enterprise.html">Enterprise</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="/blogs/" class="active">Blogs</a>
+      <a href="/vision.html">Vision</a>
+      <a href="/careers.html">Careers</a>
+      <a href="https://docs.getocean.dev" target="_blank" rel="noopener">Documentation</a>
+      <a href="https://github.com/Ocean-AI-Platform/ocean-releases" target="_blank" rel="noopener">GitHub</a>
+    </div>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">
+        <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A8.5 8.5 0 1111.2 3 6.5 6.5 0 0021 12.8z" />
+        </svg>
+        <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
+        </svg>
+      </button>
+      <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank" rel="noopener"
+        class="btn btn-primary">Download</a>
+      <button class="nav-menu" id="nav-menu" type="button" aria-label="Open navigation menu" aria-expanded="false"
+        aria-controls="nav-links">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero blog-hero" data-watermark="BLOG">
+      <div class="container">
+        <span class="eyebrow"><span class="pulse" aria-hidden="true"></span>Ocean field notes</span>
+        <h1>Practical thinking for teams adopting coding agents.</h1>
+        <p class="hero-copy">Essays on AI code review, validation evidence, engineering trust, and the workflow layer
+          teams need when agents start writing real production code.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="post-grid" aria-label="Ocean blog posts">
+          <a class="post-card featured-post" href="/blogs/agent-written-code-evidence-trail/">
+            <img src="/blogs/images/evidence-trail-blog-header.png"
+              alt="Engineering team reviewing a pull request with missing validation evidence">
+            <div>
+              <span class="post-meta">AI Code Governance - August 6, 2026</span>
+              <h2>The New Engineering Risk: Agent-Written Code With No Evidence Trail</h2>
+              <p>Why agent-written code needs validation evidence before PR review, and what engineering leaders should
+                expect from modern AI coding workflows.</p>
+            </div>
+          </a>
+
+          <a class="post-card" href="/blogs/ai-coding-agents-review-process-not-ready/">
+            <img src="/blogs/images/ai-review-not-ready-hero.png"
+              alt="Engineering team looking at an overflowing pull request queue">
+            <div>
+              <span class="post-meta">AI Code Review - August 5, 2026</span>
+              <h2>AI Coding Agents Are Fast. Your Review Process Is Not Ready.</h2>
+              <p>AI coding agents can create branches faster than teams can review them. The next bottleneck is trust,
+                validation, and reviewer load.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Ocean - Agentic Development Platform &middot; <a href="/">Platform</a> &middot;
+    <a href="/for-developers.html">Developers</a> &middot; <a href="/for-enterprise.html">Enterprise</a> &middot;
+    <a href="/blogs/">Blogs</a> &middot; <a href="/pricing/">Pricing</a>
+  </footer>
+
+  <script src="/platform-pages.js"></script>
+</body>
+
+</html>

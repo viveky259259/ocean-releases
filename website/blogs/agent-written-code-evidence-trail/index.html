@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08090b">
+  <meta name="color-scheme" content="dark light">
+  <script>
+    (function () {
+      try {
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('ocean-theme') || 'dark');
+      } catch (e) { }
+    })();
+  </script>
+  <title>The New Engineering Risk: Agent-Written Code With No Evidence Trail - Ocean Blog</title>
+  <meta name="description"
+    content="Agent-written code needs validation evidence before PR review. Learn what engineering leaders should expect from modern AI coding workflows.">
+  <meta name="keywords"
+    content="agent-written code, AI code governance, validation evidence, AI code accountability, engineering leadership, Ocean">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://getocean.dev/blogs/agent-written-code-evidence-trail/">
+  <meta property="og:title" content="The New Engineering Risk: Agent-Written Code With No Evidence Trail">
+  <meta property="og:description"
+    content="AI can generate the branch. It cannot carry accountability for the merge.">
+  <meta property="og:image" content="https://getocean.dev/blogs/images/evidence-trail-blog-header.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://getocean.dev/blogs/images/evidence-trail-blog-header.png">
+  <link rel="canonical" href="https://getocean.dev/blogs/agent-written-code-evidence-trail/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/platform-pages.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-04ECN7XEVS"></script>
+  <script src="/analytics.js" defer></script>
+</head>
+
+<body>
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <a href="/" class="brand" aria-label="Ocean home"><img src="/favicon.png" alt=""><span>Ocean</span></a>
+    <div class="nav-links" id="nav-links">
+      <a href="/for-developers.html">Developers</a>
+      <a href="/for-enterprise.html">Enterprise</a>
+      <a href="/pricing/">Pricing</a>
+      <a href="/blogs/" class="active">Blogs</a>
+      <a href="/vision.html">Vision</a>
+      <a href="/careers.html">Careers</a>
+      <a href="https://docs.getocean.dev" target="_blank" rel="noopener">Documentation</a>
+      <a href="https://github.com/Ocean-AI-Platform/ocean-releases" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">
+        <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.8A8.5 8.5 0 1111.2 3 6.5 6.5 0 0021 12.8z" />
+        </svg>
+        <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
+        </svg>
+      </button>
+      <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank" rel="noopener"
+        class="btn btn-primary">Download</a>
+      <button class="nav-menu" id="nav-menu" type="button" aria-label="Open navigation menu" aria-expanded="false"
+        aria-controls="nav-links">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <main class="post-article">
+    <article class="container">
+      <a class="back-to-blog" href="/blogs/">Back to blogs</a>
+      <header class="article-header">
+        <span class="post-meta">AI Code Governance - August 6, 2026</span>
+        <h1>The New Engineering Risk: Agent-Written Code With No Evidence Trail</h1>
+        <p>AI can generate the branch. It cannot carry accountability for the merge. That is now the engineering
+          leader's problem.</p>
+      </header>
+
+      <img class="article-hero" src="/blogs/images/evidence-trail-blog-header.png"
+        alt="Engineering team reviewing a pull request with missing validation evidence while AI-generated branches flow toward review">
+
+      <div class="article-body">
+        <p>A pull request lands in review.</p>
+        <p>The diff looks reasonable. The description is confident. The implementation seems to follow the ticket. Maybe
+          the tests are green. Maybe the author says, "Claude wrote most of this," or "Copilot handled the first pass."
+        </p>
+        <p>Now comes the uncomfortable question.</p>
+        <p>What exactly was checked before this reached review?</p>
+        <p>Not what changed. The diff shows that. Not who clicked merge. GitHub shows that.</p>
+        <p>The real question is: what evidence exists that the agent understood the task, touched the right files, ran
+          the right checks, and noticed the risks before a human reviewer inherited the work?</p>
+        <p>For many teams, the answer is thin. And that is the new engineering risk: agent-written code with no evidence
+          trail.</p>
+
+        <h2>AI Code Is Not The Problem</h2>
+        <p>The easy argument is that AI-generated code is risky because AI makes mistakes. That is true, but incomplete.
+        </p>
+        <p>Humans make mistakes too. Engineering systems were built around that reality. We have branches, pull requests,
+          CI, tests, code owners, approvals, release gates, and incident reviews.</p>
+        <p>The issue is not that AI produces imperfect code. The issue is that AI can produce code faster than the
+          surrounding evidence system can explain it.</p>
+        <p>GitHub's documentation for <a href="https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent">Copilot
+            coding agent</a> describes workflows where an agent can research a repository, create a plan, make code
+          changes on a branch, and move toward a pull request. That is powerful. It also changes the shape of engineering
+          work.</p>
+        <p>A human developer usually carries context in messy but useful ways. They remember the tradeoff they made. They
+          know which test failed first. They know why they avoided one file and changed another.</p>
+        <p>An agent may have gone through similar steps. But unless those steps are captured, the reviewer only gets the
+          final artifact.</p>
+
+        <h2>The Pull Request Was Not Designed For This Volume</h2>
+        <p>The pull request became the default unit of engineering accountability because it is simple: show the diff,
+          discuss the change, run the checks, approve or reject.</p>
+        <p>That worked well when the bottleneck was mostly writing code.</p>
+        <p>But AI coding agents shift the bottleneck. The expensive part becomes understanding whether the generated code
+          deserves trust.</p>
+        <p>A <a href="https://arxiv.org/abs/2607.01904">2026 longitudinal study on arXiv</a>, based on one enterprise
+          setting, found that AI adoption was associated with a major increase in pull request throughput and a meaningful
+          increase in review load. Treat that as one data point rather than universal truth, but the pattern is familiar:
+          code creation is getting cheaper, while review attention is not.</p>
+        <p>Teams celebrate more PRs. Managers see more activity. Developers feel faster. But reviewers become the
+          compression layer for everything the agent did not document.</p>
+
+        <h2>The Evidence Trail Is The Missing Layer</h2>
+        <p>An evidence trail is not a longer PR description. It is not "I ran tests" written in a comment. It is a
+          structured record of what happened before review.</p>
+        <img src="/blogs/images/evidence-trail-infographic.png"
+          alt="A six-stage evidence trail: prompt, files changed, commands run, tests passed, risks flagged, reviewer handoff">
+        <ul>
+          <li>What prompt or task did the agent receive?</li>
+          <li>What files did it inspect before editing?</li>
+          <li>What files did it change?</li>
+          <li>What commands did it run?</li>
+          <li>Which tests passed?</li>
+          <li>Which tests failed first?</li>
+          <li>What assumptions did it make?</li>
+          <li>What risks did it flag?</li>
+        </ul>
+        <p>This does not need to be heavy enterprise governance. If it feels like paperwork, developers will avoid it.
+          The best version is automatic, local, and close to the developer workflow.</p>
+
+        <h2>"CI Passed" Is Not The Whole Story</h2>
+        <p>CI is necessary. It is not sufficient.</p>
+        <p>A green build tells you the configured checks passed. It does not tell you whether the agent chose the right
+          approach, skipped a relevant test, or changed three files after reading only one.</p>
+        <p>This matters even more for software service companies and consultancies. When a client asks, "How do you
+          verify AI-generated code before delivery?" a confident answer cannot be: "Our developers review it."</p>
+        <p>That may be true. It is not differentiated. It is not very reassuring. As AI usage becomes normal, clients
+          will expect more than good intentions. They will expect evidence.</p>
+
+        <img src="/blogs/images/engineering-evidence-desk-concept.png"
+          alt="A detective-style engineering desk with code diffs, terminal logs, and test results pinned as evidence">
+
+        <h2>The Accountability Gap</h2>
+        <p>AI can generate code, but it cannot absorb accountability.</p>
+        <p>If agent-written code causes a production issue, the incident review will not end with, "The model did it."
+        </p>
+        <p>The team owns the outcome. The VP Engineering owns the system. The CTO owns the risk posture. The consultancy
+          owns the client impact.</p>
+        <blockquote>A diff shows what changed. An evidence trail shows why the team should trust it.</blockquote>
+
+        <h2>What Leaders Should Ask This Week</h2>
+        <ul>
+          <li>When an agent writes code, where is the work validated before PR review?</li>
+          <li>Can reviewers see what checks were actually run?</li>
+          <li>Can tech leads distinguish human-written and agent-heavy changes?</li>
+          <li>Do we know which types of tasks agents are safe to handle?</li>
+          <li>Could we explain our AI code quality process to a client or auditor?</li>
+        </ul>
+        <p>If those answers are vague, the issue is not that your team is careless. It means your workflow was built for
+          a previous era.</p>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    Ocean - Agentic Development Platform &middot; <a href="/blogs/">Blogs</a> &middot;
+    <a href="/for-enterprise.html">Enterprise</a> &middot; <a href="/pricing/">Pricing</a>
+  </footer>
+
+  <script src="/platform-pages.js"></script>
+</body>
+
+</html>
