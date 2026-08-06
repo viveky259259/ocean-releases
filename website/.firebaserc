@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "getoceanplatform"
-  }
+  },
+  "targets": {
+    "getoceanplatform": {
+      "hosting": {
+        "blog": [
+          "blog-getocean-dev"
+        ],
+        "main": [
+          "getoceanplatform"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
