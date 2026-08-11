@@ -3,6 +3,18 @@
     {
       "target": "main",
       "public": ".",
+      "redirects": [
+        {
+          "source": "/unsubscirbe",
+          "destination": "/unsubscribe/",
+          "type": 301
+        },
+        {
+          "source": "/unsubscirbe/**",
+          "destination": "/unsubscribe/",
+          "type": 301
+        }
+      ],
       "headers": [
         {
           "source": "**",
@@ -42,6 +54,45 @@
         {
           "source": "/roadmap/**",
           "headers": [
+            {
+              "key": "X-Robots-Tag",
+              "value": "noindex, nofollow, noarchive"
+            }
+          ]
+        },
+        {
+          "source": "/unsubscribe/**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache"
+            },
+            {
+              "key": "X-Robots-Tag",
+              "value": "noindex, nofollow, noarchive"
+            }
+          ]
+        },
+        {
+          "source": "/health/**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-store"
+            },
+            {
+              "key": "X-Robots-Tag",
+              "value": "noindex, nofollow, noarchive"
+            }
+          ]
+        },
+        {
+          "source": "/health.json",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-store"
+            },
             {
               "key": "X-Robots-Tag",
               "value": "noindex, nofollow, noarchive"
