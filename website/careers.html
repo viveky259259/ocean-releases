@@ -97,10 +97,10 @@
     }
     a { color: inherit; }
     .container { width: min(var(--max-w), calc(100% - 4rem)); margin: 0 auto; }
-    .section { position: relative; padding: 7.5rem 0; border-top: 1px solid var(--border); }
+    .section { position: relative; padding: 6rem 0; border-top: 1px solid var(--border); }
     .section-label {
       font-family: var(--mono);
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -206,7 +206,7 @@
 
     .hero {
       position: relative;
-      padding: 11.5rem 0 7rem;
+      padding: 9rem 0 6rem;
       overflow: hidden;
     }
     .hero::before {
@@ -292,7 +292,7 @@
       border-radius: 12px;
       background: color-mix(in srgb, var(--green) 7%, transparent);
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 1rem;
     }
     .milestone strong { color: var(--green); }
 
@@ -319,7 +319,7 @@
       font: 600 0.78rem var(--mono);
     }
     .quality h3 { font-size: 1.02rem; letter-spacing: -0.015em; margin-bottom: 0.45rem; }
-    .quality p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; }
+    .quality p { color: var(--text-muted); font-size: 1rem; line-height: 1.65; }
     .quality:last-child { grid-column: 1 / -1; }
 
     .stack-grid {
@@ -336,7 +336,7 @@
     }
     .stack-card h3 {
       color: var(--accent);
-      font: 600 0.72rem var(--mono);
+      font: 600 0.75rem var(--mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 1rem;
@@ -348,7 +348,7 @@
       border-radius: 7px;
       background: var(--surface-2);
       color: var(--text-muted);
-      font: 500 0.72rem var(--mono);
+      font: 500 0.75rem var(--mono);
     }
 
     .evaluation-grid {
@@ -399,7 +399,7 @@
       grid-template-columns: 28px 1fr;
       gap: 0.7rem;
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 1rem;
     }
     .challenge-body li::before {
       content: counter(challenge);
@@ -446,7 +446,7 @@
       text-align: left;
       list-style: none;
       color: var(--text-muted);
-      font-size: 0.92rem;
+      font-size: 1rem;
     }
     .apply-list li::before { content: '→'; color: var(--accent); margin-right: 0.75rem; }
     .apply-note { margin-top: 1rem !important; font: 500 0.75rem var(--mono) !important; color: var(--text-dim) !important; }
@@ -465,15 +465,8 @@
     .reveal.visible { opacity: 1; transform: none; }
 
     @media (max-width: 960px) {
-      .snapshot { grid-template-columns: repeat(2, 1fr); }
-      .snapshot-item:nth-child(2) { border-right: 0; }
-      .snapshot-item:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
-      .stack-grid { grid-template-columns: repeat(2, 1fr); }
-      .evaluation-grid { grid-template-columns: 1fr; gap: 2rem; }
-    }
-    @media (max-width: 768px) {
-      .container { width: min(100% - 2.5rem, var(--max-w)); }
       nav { padding: 0.75rem 1.25rem; }
+      .nav-logo { min-height: 44px; }
       .nav-links { display: none; }
       .nav-links.open {
         position: absolute;
@@ -483,16 +476,44 @@
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        gap: 1rem;
+        gap: 0.25rem;
         padding: 1.25rem;
         background: var(--bg);
         border-bottom: 1px solid var(--border);
       }
-      .nav-links .theme-toggle { align-self: flex-start; }
-      .mobile-toggle { display: block; }
-      .hero { padding: 9rem 0 5rem; }
-      h1 { font-size: clamp(2.75rem, 14vw, 4.2rem); }
+      .nav-links > a {
+        display: flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 0 0.75rem;
+      }
+      .nav-links .theme-toggle {
+        align-self: flex-start;
+        width: 44px;
+        height: 44px;
+      }
+      .mobile-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+      }
+      .nav-cta { min-height: 44px; }
+      .hero { padding: 8rem 0 5.5rem; }
       .section { padding: 5.5rem 0; }
+      .snapshot { grid-template-columns: repeat(2, 1fr); }
+      .snapshot-item:nth-child(2) { border-right: 0; }
+      .snapshot-item:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .stack-grid { grid-template-columns: repeat(2, 1fr); }
+      .evaluation-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 768px) {
+      .container { width: min(100% - 2.5rem, var(--max-w)); }
+      .hero { padding: 7rem 0 4rem; }
+      h1 { font-size: clamp(2.75rem, 14vw, 4.2rem); }
+      .section { padding: 4rem 0; }
       .qualities-grid, .stack-grid { grid-template-columns: 1fr; }
       .quality:last-child { grid-column: auto; }
       .apply-card { padding: 3rem 1.4rem; }
@@ -518,12 +539,12 @@
 <body>
   <nav id="nav">
     <a href="/" class="nav-logo"><img src="favicon.png" alt="Ocean"> Ocean</a>
-    <button class="mobile-toggle" type="button"
-      onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">
+    <button class="mobile-toggle" id="mobile-toggle" type="button" aria-label="Open navigation menu"
+      aria-expanded="false" aria-controls="nav-links">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
         aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
-    <div class="nav-links">
+    <div class="nav-links" id="nav-links">
       <a href="for-developers.html">Developers</a>
       <a href="for-enterprise.html">Enterprise</a>
       <a href="pricing/">Pricing</a>
@@ -720,6 +741,19 @@
   <script>
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navLinks = document.getElementById('nav-links');
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      mobileToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    });
+    navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      mobileToggle.setAttribute('aria-expanded', 'false');
+      mobileToggle.setAttribute('aria-label', 'Open navigation menu');
+    }));
 
     const toggle = document.getElementById('theme-toggle');
     toggle.addEventListener('click', () => {

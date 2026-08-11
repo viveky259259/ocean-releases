@@ -174,8 +174,8 @@
 
     .nav-menu {
       display: none;
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       align-items: center;
       justify-content: center;
       border: 1px solid rgba(255, 255, 255, 0.16);
@@ -443,6 +443,19 @@
       font-family: var(--mono);
       font-size: 12px;
       font-weight: 700;
+    }
+
+    .surface-top > span:nth-child(2) {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .surface-top > span:last-child,
+    .window-dots {
+      flex: 0 0 auto;
     }
 
     .window-dots {

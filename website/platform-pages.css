@@ -509,7 +509,7 @@ html[data-theme="light"] .timeline-card {
   display: flex;
   gap: 10px;
   color: var(--text-muted);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.45;
 }
 
@@ -787,7 +787,7 @@ html[data-theme="light"] .band {
 .blog-topic-card p {
   margin-top: 14px;
   color: var(--text-muted);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.62;
 }
 
@@ -1022,6 +1022,53 @@ footer a {
 }
 
 @media (max-width: 980px) {
+  .nav {
+    padding: 12px 20px;
+  }
+
+  .brand {
+    min-height: 44px;
+  }
+
+  .nav-menu,
+  .theme-toggle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .nav-menu {
+    display: inline-flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 20px;
+    left: auto;
+    display: none;
+    width: min(360px, calc(100vw - 40px));
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px;
+  }
+
+  .nav-actions .btn {
+    display: none;
+  }
+
   .platform-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1059,43 +1106,17 @@ footer a {
   }
 
   .nav {
-    padding: 12px 14px;
+    padding: 10px 14px;
   }
 
   .brand span {
     display: none;
   }
 
-  .nav-menu {
-    display: inline-flex;
-  }
-
   .nav-links {
-    position: absolute;
-    top: calc(100% + 8px);
     right: 14px;
     left: 14px;
-    display: none;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 8px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--surface);
-    box-shadow: var(--shadow);
-  }
-
-  .nav-links.open {
-    display: flex;
-  }
-
-  .nav-links a {
-    padding: 12px;
-  }
-
-  .nav-actions .btn {
-    display: none;
+    width: auto;
   }
 
   .hero {
@@ -1164,6 +1185,10 @@ footer a {
     padding-top: 104px;
   }
 
+  .article-header h1 {
+    overflow-wrap: anywhere;
+  }
+
   .article-body p,
   .article-body li {
     font-size: 16px;
@@ -1173,6 +1198,10 @@ footer a {
   .section h2,
   .cta h2 {
     font-size: clamp(32px, 10vw, 44px);
+  }
+
+  .cta {
+    padding: 64px 20px;
   }
 
   .hero-actions {

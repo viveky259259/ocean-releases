@@ -564,7 +564,7 @@
       display: block;
       margin-top: 7px;
       color: var(--text-dim);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 750;
       line-height: 1.35;
     }
@@ -1195,7 +1195,7 @@
     .start-step p {
       margin-top: 12px;
       color: var(--text-muted);
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.6;
     }
 
@@ -1409,7 +1409,7 @@
     .proof-card p {
       margin-top: 12px;
       color: var(--text-muted);
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.65;
     }
 
@@ -1594,7 +1594,7 @@
     .pricing-card > p {
       margin-top: 12px;
       color: var(--text-muted);
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.55;
     }
 
@@ -1618,7 +1618,7 @@
       padding: 0;
       list-style: none;
       color: var(--text-muted);
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .pricing-list li {
@@ -1895,13 +1895,19 @@
       }
     }
 
-    @media (max-width: 780px) {
-      .container {
-        width: min(100% - 28px, var(--max-w));
+    @media (max-width: 980px) {
+      .nav {
+        padding: 12px 20px;
       }
 
-      .nav {
-        padding: 12px 14px;
+      .brand {
+        min-height: 44px;
+      }
+
+      .nav-menu,
+      .theme-toggle {
+        width: 44px;
+        height: 44px;
       }
 
       .nav-menu {
@@ -1911,9 +1917,10 @@
       .nav-links {
         position: absolute;
         top: calc(100% + 8px);
-        right: 14px;
-        left: 14px;
+        right: 20px;
+        left: auto;
         display: none;
+        width: min(360px, calc(100vw - 40px));
         flex-direction: column;
         align-items: stretch;
         gap: 0;
@@ -1934,6 +1941,22 @@
 
       .nav-actions .btn {
         display: none;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .container {
+        width: min(100% - 28px, var(--max-w));
+      }
+
+      .nav {
+        padding: 10px 14px;
+      }
+
+      .nav-links {
+        right: 14px;
+        left: 14px;
+        width: auto;
       }
 
       .hero {
@@ -2040,11 +2063,19 @@
       .cta h2 {
         font-size: clamp(32px, 10vw, 44px);
       }
+
+      .cta {
+        padding: 64px 20px;
+      }
     }
 
     @media (max-width: 470px) {
       .brand span {
         display: none;
+      }
+
+      .brand {
+        min-width: 44px;
       }
 
       .hero-actions,
