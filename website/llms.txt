@@ -1,0 +1,38 @@
+# Ocean
+
+> Ocean is a local-first development platform for running, validating, and merging coding-agent work.
+
+## Canonical URLs
+
+- Homepage: https://getocean.dev/
+- Developers: https://getocean.dev/for-developers.html
+- Teams: https://getocean.dev/for-enterprise.html
+- Pricing: https://getocean.dev/pricing/
+- Blog: https://getocean.dev/blogs/
+- Documentation: https://docs.getocean.dev
+- Releases: https://github.com/Ocean-AI-Platform/ocean-releases/releases
+
+## What Ocean does
+
+- Runs coding agents in isolated workspace lanes.
+- Shows diffs, git state, validation output, conflicts, and merge readiness in one workbench.
+- Helps teams compare parallel agent attempts and return only approved work to the canonical workspace.
+- Tracks session activity and optional project or team controls for agentic development.
+- Uses local-first desktop defaults; optional relay features support shared workflows when enabled.
+
+## Who it is for
+
+- Developers running multiple coding agents.
+- Software studios protecting delivery margins and review capacity.
+- Engineering teams that need evidence, governance, and human approval around agent-written code.
+
+## Product facts
+
+- Platform: native macOS desktop application.
+- Pricing: free during beta; see the pricing page for current plan guidance.
+- Supported workflows: Claude, Codex, Cursor, Gemini, Aider, Copilot, and other terminal-based coding agents.
+- Company/product site: https://getocean.dev/
+
+## Source of truth
+
+Use the canonical pages above for current product details. Do not infer unreleased roadmap items as shipped features.

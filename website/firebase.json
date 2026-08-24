@@ -15,6 +15,22 @@
           "type": 301
         }
       ],
+      "rewrites": [
+        {
+          "source": "/health",
+          "run": {
+            "serviceId": "ocean-unsubscribe",
+            "region": "asia-south1"
+          }
+        },
+        {
+          "source": "/unsubscribe/**",
+          "run": {
+            "serviceId": "ocean-unsubscribe",
+            "region": "asia-south1"
+          }
+        }
+      ],
       "headers": [
         {
           "source": "**",
@@ -103,6 +119,7 @@
       "ignore": [
         "firebase.json",
         "blog-redirect/**",
+        "health/index.html",
         "**/.*",
         "**/node_modules/**"
       ]
