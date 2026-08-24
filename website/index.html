@@ -21,6 +21,8 @@
   <meta name="author" content="Ocean Team">
 
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ocean">
+  <meta property="og:locale" content="en_US">
   <meta property="og:url" content="https://getocean.dev/">
   <meta property="og:title" content="Ocean - Agentic Development Platform">
   <meta property="og:description"
@@ -29,13 +31,50 @@
   <meta property="og:image:alt" content="Ocean desktop interface for managing parallel coding agent sessions">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://getocean.dev/">
+  <meta name="twitter:url" content="https://getocean.dev/">
+  <meta name="twitter:site" content="@getocean">
   <meta name="twitter:title" content="Ocean - Agentic Development Platform">
   <meta name="twitter:description"
     content="Control coding agents before they touch production. Isolate, validate, measure, and merge from one workbench.">
   <meta name="twitter:image" content="https://getocean.dev/home.png">
 
   <link rel="canonical" href="https://getocean.dev/">
+  <link rel="alternate" type="text/plain" href="https://getocean.dev/llms.txt" title="Ocean AI-readable site summary">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://getocean.dev/#organization",
+          "name": "Ocean",
+          "url": "https://getocean.dev/",
+          "logo": "https://getocean.dev/favicon.png",
+          "sameAs": ["https://github.com/Ocean-AI-Platform/ocean-releases"]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://getocean.dev/#software",
+          "name": "Ocean",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "macOS",
+          "description": "A local-first development platform for running, validating, and merging coding-agent work.",
+          "url": "https://getocean.dev/",
+          "downloadUrl": "https://github.com/Ocean-AI-Platform/ocean-releases/releases",
+          "creator": {"@id": "https://getocean.dev/#organization"},
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free during beta"}
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://getocean.dev/#website",
+          "url": "https://getocean.dev/",
+          "name": "Ocean",
+          "publisher": {"@id": "https://getocean.dev/#organization"},
+          "inLanguage": "en-US"
+        }
+      ]
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -289,6 +328,132 @@
         radial-gradient(76% 86% at 50% 18%, rgba(47, 124, 255, 0.38), transparent 64%),
         radial-gradient(58% 48% at 18% 44%, rgba(123, 97, 255, 0.22), transparent 68%),
         radial-gradient(52% 46% at 82% 48%, rgba(0, 213, 255, 0.15), transparent 70%);
+    }
+
+    .hero > .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-atmosphere {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .hero-orb {
+      position: absolute;
+      width: clamp(18rem, 34vw, 34rem);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      filter: blur(8px);
+      opacity: 0.56;
+      will-change: transform;
+    }
+
+    .hero-orb--cyan {
+      top: 12%;
+      left: -9%;
+      background: radial-gradient(circle, rgba(0, 213, 255, 0.22), transparent 66%);
+      animation: atmosphere-drift 16s ease-in-out infinite alternate;
+    }
+
+    .hero-orb--violet {
+      right: -10%;
+      bottom: -18%;
+      background: radial-gradient(circle, rgba(123, 97, 255, 0.24), transparent 66%);
+      animation: atmosphere-drift 19s -7s ease-in-out infinite alternate-reverse;
+    }
+
+    .hero-orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(74vw, 58rem);
+      aspect-ratio: 1;
+      border: 1px solid rgba(0, 213, 255, 0.15);
+      border-radius: 50%;
+      box-shadow: inset 0 0 42px rgba(47, 124, 255, 0.08);
+      opacity: 0.82;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+      animation: orbit-turn 30s linear infinite;
+    }
+
+    .hero-orbit::before,
+    .hero-orbit::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      box-shadow: 0 0 0 6px rgba(0, 213, 255, 0.08), 0 0 22px var(--cyan);
+    }
+
+    .hero-orbit::before {
+      top: 12%;
+      right: 8%;
+      background: var(--cyan);
+    }
+
+    .hero-orbit::after {
+      bottom: 9%;
+      left: 10%;
+      width: 6px;
+      background: var(--violet);
+      box-shadow: 0 0 0 5px rgba(123, 97, 255, 0.08), 0 0 18px var(--violet);
+    }
+
+    @keyframes atmosphere-drift {
+      from { transform: translate3d(-3%, -2%, 0) scale(0.96); }
+      to { transform: translate3d(8%, 7%, 0) scale(1.08); }
+    }
+
+    @keyframes orbit-turn {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      width: 30px;
+      aspect-ratio: 1;
+      border: 1px solid rgba(0, 213, 255, 0.72);
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(0, 213, 255, 0.2);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+      transition: width 160ms ease, opacity 140ms ease, border-color 160ms ease, background 160ms ease;
+      will-change: transform, opacity, width;
+    }
+
+    .cursor-glow::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 4px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan);
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-active .cursor-glow {
+      opacity: 1;
+    }
+
+    .cursor-active.cursor-hover .cursor-glow {
+      width: 42px;
+      border-color: rgba(41, 240, 195, 0.8);
+      background: rgba(0, 213, 255, 0.08);
     }
 
     .hero::before {
@@ -1637,6 +1802,58 @@
       margin-top: auto;
     }
 
+    .faq-list {
+      display: grid;
+      gap: 12px;
+      max-width: 900px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 24px;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 750;
+      list-style: none;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: '+';
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 400;
+    }
+
+    .faq-item[open] summary::after {
+      content: '−';
+    }
+
+    .faq-item p {
+      max-width: 760px;
+      padding: 0 24px 24px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .faq-item a {
+      color: var(--cyan);
+    }
+
     .start-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1861,6 +2078,16 @@
       .reveal {
         opacity: 1;
         transform: none;
+      }
+
+      .hero-atmosphere,
+      .hero-atmosphere * {
+        animation: none !important;
+        transform: none !important;
+      }
+
+      .cursor-glow {
+        display: none;
       }
     }
 
@@ -2102,6 +2329,7 @@
 </head>
 
 <body>
+  <div class="cursor-glow" aria-hidden="true"></div>
   <nav class="nav" id="nav" aria-label="Main navigation">
     <a href="#top" class="brand" aria-label="Ocean home">
       <img src="favicon.png" alt="">
@@ -2145,6 +2373,11 @@
 
   <main id="top">
     <section class="hero">
+      <div class="hero-atmosphere" aria-hidden="true">
+        <span class="hero-orb hero-orb--cyan"></span>
+        <span class="hero-orb hero-orb--violet"></span>
+        <span class="hero-orbit"></span>
+      </div>
       <div class="container trust-ticker" aria-label="Live Ocean trust signals">
         <div class="ticker-track" aria-hidden="true">
           <span><b>LANE A</b> ready to merge</span>
@@ -2588,6 +2821,38 @@
       </div>
     </section>
 
+    <section class="section faq-section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-label">Answers</span>
+          <h2>What is Ocean?</h2>
+          <p>Short answers for teams evaluating a platform for coding agents.</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item reveal" open>
+            <summary>What is Ocean?</summary>
+            <p>Ocean is a local-first development platform for running coding agents in isolated workspaces, inspecting their changes, validating the result, and merging only approved work.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>How does Ocean make coding agents safer?</summary>
+            <p>Ocean gives each agent a separate workspace lane, surfaces conflicts and validation evidence, tracks session activity, and keeps a human approval step before work returns to the main codebase.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Which coding agents can I use with Ocean?</summary>
+            <p>Ocean is designed for the tools teams already use, including Claude, Codex, Cursor, Gemini, Aider, Copilot, and other terminal-based coding agents.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>Is Ocean a cloud service?</summary>
+            <p>Ocean is a native desktop application with local-first defaults. Optional team and relay capabilities can be enabled when shared workspaces or governance require them.</p>
+          </details>
+          <details class="faq-item reveal">
+            <summary>How do I download Ocean?</summary>
+            <p>Download the latest macOS release from the <a href="https://github.com/Ocean-AI-Platform/ocean-releases/releases" target="_blank" rel="noopener">Ocean releases page</a>. Ocean is free during beta.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <section class="cta">
       <div class="container reveal">
         <h2>Let agents move fast. Keep the repo under control.</h2>
@@ -2606,6 +2871,7 @@
     <a href="for-developers.html">Developers</a> &middot;
     <a href="for-enterprise.html">Enterprise</a> &middot;
     <a href="#pricing">Pricing</a> &middot;
+    <a href="#faq">FAQ</a> &middot;
     <a href="blogs/">Blogs</a> &middot;
     <a href="vision.html">Vision</a> &middot;
     <a href="careers.html">Careers</a> &middot;
@@ -2615,6 +2881,43 @@
   </footer>
 
   <script>
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const supportsFinePointer = window.matchMedia('(pointer: fine)').matches;
+    const cursorGlow = document.querySelector('.cursor-glow');
+
+    if (cursorGlow && supportsFinePointer && !reducedMotion.matches) {
+      let cursorFrame;
+      let cursorX = -100;
+      let cursorY = -100;
+      const interactiveSelector = 'a, button, input, select, textarea, [role="button"]';
+
+      const paintCursor = () => {
+        cursorGlow.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+        cursorFrame = undefined;
+      };
+
+      window.addEventListener('pointermove', (event) => {
+        if (event.pointerType !== 'mouse') return;
+        cursorX = event.clientX;
+        cursorY = event.clientY;
+        document.body.classList.add('cursor-active');
+        if (!cursorFrame) cursorFrame = window.requestAnimationFrame(paintCursor);
+      }, { passive: true });
+
+      document.addEventListener('pointerover', (event) => {
+        if (event.target.closest(interactiveSelector)) document.body.classList.add('cursor-hover');
+      });
+
+      document.addEventListener('pointerout', (event) => {
+        const fromInteractive = event.target.closest(interactiveSelector);
+        const toInteractive = event.relatedTarget?.closest?.(interactiveSelector);
+        if (fromInteractive && !toInteractive) document.body.classList.remove('cursor-hover');
+        if (!event.relatedTarget) document.body.classList.remove('cursor-active', 'cursor-hover');
+      });
+
+      window.addEventListener('blur', () => document.body.classList.remove('cursor-active', 'cursor-hover'));
+    }
+
     const themeToggle = document.getElementById('theme-toggle');
     themeToggle?.addEventListener('click', () => {
       const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
