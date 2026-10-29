@@ -1,0 +1,18 @@
+# terminal.getocean.dev — static download page, served as an assets-only Worker, the same way the
+# getocean.dev site (`ocean-landing`) is served. `node render.mjs` writes public/index.html from
+# the public release manifests; `wrangler deploy` uploads `public/` and keeps the custom domain's
+# DNS record (the getocean.dev zone is in the same Cloudflare account). See deploy.sh.
+name = "terminal-getocean-dev"
+compatibility_date = "2026-10-01"
+# Only the custom domain serves this; the workers.dev copy stays off.
+workers_dev = false
+
+# Top-level on purpose: placed after a [table] header this would become `assets.routes` and be ignored.
+routes = [
+  { pattern = "terminal.getocean.dev", custom_domain = true }
+]
+
+[assets]
+directory = "public"
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"
