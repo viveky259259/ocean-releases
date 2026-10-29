@@ -1,0 +1,6 @@
+# terminal.getocean.dev — static download page on Cloudflare Pages.
+# `node render.mjs` writes public/index.html from the public release manifests, then
+# `wrangler pages deploy` uploads `public/`. See deploy.sh.
+name = "terminal-getocean-dev"
+compatibility_date = "2026-10-01"
+pages_build_output_dir = "public"
